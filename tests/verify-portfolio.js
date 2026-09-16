@@ -34,6 +34,7 @@ const requiredFiles = [
   'js/three-hero.js',
   'js/projects.js',
   'js/main.js',
+  'js/admin.js',
   'data/projects.json',
   'assets/icons/favicon.svg',
   'assets/icons/icon-192.svg',
@@ -57,6 +58,7 @@ const jsFiles = [
   'js/three-hero.js',
   'js/projects.js',
   'js/main.js',
+  'js/admin.js',
   'sw.js'
 ];
 
@@ -270,6 +272,50 @@ assert(css.includes('.tippy-box[data-theme~="cyber"]'), `css/style.css defines c
 assert(swJs.includes('CDN_ASSETS'), `sw.js defines CDN_ASSETS for high-performance libraries`);
 assert(swJs.includes('three.min.js') && swJs.includes('chart.umd.min.js') && swJs.includes('swiper-bundle.min.js'), `sw.js preheats external CDN assets in cache`);
 assert(swJs.includes('Promise.all') && swJs.includes('CDN_ASSETS.map'), `sw.js reliably awaits CDN cache warming before completing install`);
+
+console.log('\n🔍 [10/10] VALIDATING OVERLAP BUG FIX & FULL ADMIN CMS BACKOFFICE...');
+
+// 1. Hero 3D Overlap Fix & Holographic Pedestal Layout
+assert(html.includes('hero-hologram-stage'), `Hero section contains .hero-hologram-stage for 3D core separation`);
+assert(html.includes('hologram-pedestal-base'), `Hero section contains .hologram-pedestal-base emitter`);
+assert(html.includes('hero-card-wrapper'), `Hero section separates profile card in .hero-card-wrapper`);
+assert(css.includes('.hero-hologram-stage') && css.includes('.hologram-pedestal-base'), `css/style.css defines styling for hologram stage and pedestal`);
+
+// 2. Admin Access & Floating Control Bar
+assert(html.includes('id="admin-login-btn"'), `Navbar includes #admin-login-btn`);
+assert(html.includes('id="admin-control-bar"'), `index.html includes #admin-control-bar`);
+assert(html.includes('id="admin-login-modal"'), `index.html includes #admin-login-modal`);
+const adminJs = fs.readFileSync('js/admin.js', 'utf8');
+assert(adminJs.includes('class AdminBackofficeCMS'), `js/admin.js defines AdminBackofficeCMS class`);
+assert(adminJs.includes('admin123'), `AdminBackofficeCMS supports default password admin123`);
+assert(adminJs.includes('Alt'), `AdminBackofficeCMS supports Alt+A keyboard shortcut`);
+
+// 3. Project CRUD System
+assert(html.includes('id="admin-projects-modal"'), `index.html includes #admin-projects-modal`);
+assert(html.includes('id="admin-project-form-modal"'), `index.html includes #admin-project-form-modal`);
+assert(adminJs.includes('openProjectsManager') && adminJs.includes('openProjectForm'), `AdminBackofficeCMS implements project manager and form modal`);
+assert(adminJs.includes('saveProjectFromForm') && adminJs.includes('deleteProject'), `AdminBackofficeCMS implements save and delete project operations`);
+assert(adminJs.includes('updateCategoryCounts') && adminJs.includes('renderProjects'), `Project CRUD dynamically updates live website view without reload`);
+
+// 4. Profile & Bio Editor
+assert(html.includes('id="admin-profile-modal"'), `index.html includes #admin-profile-modal`);
+assert(adminJs.includes('openProfileModal') && adminJs.includes('saveProfileForm'), `AdminBackofficeCMS implements profile & bio editor`);
+assert(adminJs.includes('applyProfileToDOM'), `AdminBackofficeCMS updates live DOM elements on profile save`);
+
+// 5. Live In-Place Text Editing (CMS)
+assert(html.includes('data-cms-key="hero_greeting"') && html.includes('data-cms-key="profile_name"'), `index.html elements define data-cms-key attributes`);
+assert(adminJs.includes('toggleLiveEditMode') && adminJs.includes('contenteditable'), `AdminBackofficeCMS supports live in-place text editing`);
+assert(css.includes('.cms-editable-active'), `css/style.css defines .cms-editable-active neon styling`);
+assert(adminJs.includes('portfolio_text_overrides'), `AdminBackofficeCMS persists text overrides in localStorage`);
+
+// 6. Data Persistence & Export/Import
+const dataJsFile = fs.readFileSync('js/data.js', 'utf8');
+assert(dataJsFile.includes('INITIAL_PORTFOLIO_DATA'), `js/data.js saves initial data clone for reset capability`);
+assert(dataJsFile.includes('portfolio_projects_data') && dataJsFile.includes('portfolio_profile_data'), `js/data.js restores customized data from localStorage`);
+assert(adminJs.includes('exportJson') && adminJs.includes('projects.json'), `AdminBackofficeCMS supports exporting projects.json`);
+assert(adminJs.includes('handleFileImport') && adminJs.includes('FileReader'), `AdminBackofficeCMS supports importing JSON files`);
+assert(adminJs.includes('resetToDefault'), `AdminBackofficeCMS supports resetting customizations to default`);
+
 
 console.log('\n' + '='.repeat(50));
 console.log(`TOTAL TESTS: ${passedTests + failedTests}`);

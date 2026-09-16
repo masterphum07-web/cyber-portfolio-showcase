@@ -15,6 +15,7 @@ const CORE_ASSETS = [
   './js/three-hero.js',
   './js/projects.js',
   './js/main.js',
+  './js/admin.js',
   './data/projects.json',
   './manifest.webmanifest',
   './assets/icons/favicon.svg',

@@ -394,3 +394,30 @@ window.PORTFOLIO_DATA = {
     }
   ]
 };
+
+// Save a deep clone of the initial default data for reset capabilities & restore customizations
+if (typeof window !== 'undefined') {
+  try {
+    window.INITIAL_PORTFOLIO_DATA = JSON.parse(JSON.stringify(window.PORTFOLIO_DATA));
+
+    if (typeof localStorage !== 'undefined') {
+      const savedProjects = localStorage.getItem('portfolio_projects_data');
+      if (savedProjects) {
+        const parsed = JSON.parse(savedProjects);
+        if (Array.isArray(parsed) && parsed.length > 0) {
+          window.PORTFOLIO_DATA.projects = parsed;
+        }
+      }
+
+      const savedProfile = localStorage.getItem('portfolio_profile_data');
+      if (savedProfile) {
+        const parsedProf = JSON.parse(savedProfile);
+        if (parsedProf && parsedProf.name) {
+          window.PORTFOLIO_DATA.portfolio_owner = Object.assign({}, window.PORTFOLIO_DATA.portfolio_owner, parsedProf);
+        }
+      }
+    }
+  } catch (err) {
+    console.warn('[DataStore] Error restoring data from localStorage:', err);
+  }
+}

@@ -117,6 +117,11 @@
           <i data-lucide="keyboard"></i>
         </button>
 
+        <!-- Admin Backoffice Login Button -->
+        <button class="theme-toggle-btn admin-toggle-btn" id="admin-login-btn" title="ระบบจัดการหลังบ้าน (Admin CMS) กด Alt+A" aria-label="Admin CMS Login">
+          <i data-lucide="shield"></i>
+        </button>
+
         <!-- CTA Resume / Quick Contact Button -->
         <a href="#contact" class="btn btn-primary btn-sm" style="display: none; @media(min-width: 768px){ display: inline-flex; }">
           <i data-lucide="send" style="width: 15px; height: 15px;"></i> ร่วมงานกัน
@@ -142,17 +147,17 @@
         <div class="hero-content reveal">
           <div class="hero-badge">
             <span class="badge-live-pulse"></span>
-            <span>พร้อมรับโปรเจคใหม่ &amp; ร่วมงานทันที</span>
+            <span data-cms-key="hero_badge">พร้อมรับโปรเจคใหม่ &amp; ร่วมงานทันที</span>
           </div>
 
-          <h1 class="hero-greeting">
+          <h1 class="hero-greeting" data-cms-key="hero_greeting">
             สวัสดีครับ, ผมคือ <span class="gradient-text">กฤษณะ</span><br />
             <div class="typewriter-wrapper">
               <span class="typewriter-text" id="typewriter-text"></span>
             </div>
           </h1>
 
-          <p class="hero-bio">
+          <p class="hero-bio" data-cms-key="hero_bio">
             ผู้พัฒนาซอฟต์แวร์และเว็บแอปพลิเคชันที่หลงใหลใน 3D Interactive Web, AI Integration และ Clean Architecture 
             มุ่งเน้นสร้างสรรค์ผลงานที่รวดเร็ว สวยงาม แปลกใหม่ และตอบโจทย์ธุรกิจจริง
           </p>
@@ -167,52 +172,81 @@
           </div>
         </div>
 
-        <!-- Right: 3D Tilt Card, Three.js WebGL Hologram & Floating Badges -->
+        <!-- Right: 3D Holographic Cyber Stage & Clean Profile Card (Non-overlapping) -->
         <div class="hero-visual reveal-scale">
-          <!-- Real Three.js WebGL 3D Interactive Cyber Core Canvas -->
-          <div class="hero-3d-webgl-wrapper" id="hero-3d-webgl-wrapper">
-            <canvas id="hero-three-canvas" aria-label="3D Interactive Cyber Core"></canvas>
-            <div class="hero-3d-badge">
-              <span class="hero-3d-dot"></span>
-              <span id="hero-3d-mesh-name">3D ICOSAHEDRON</span>
-              <button type="button" id="hero-3d-toggle-btn" class="hero-3d-toggle" title="สลับโหมด 3D: Icosahedron / Torus Knot" aria-label="สลับรูปทรง 3D">
-                <i data-lucide="refresh-cw" style="width: 12px; height: 12px;"></i>
-              </button>
+          <!-- Holographic 3D Cyber Core Pedestal (Separated & Elevated) -->
+          <div class="hero-hologram-stage">
+            <div class="hero-3d-webgl-wrapper" id="hero-3d-webgl-wrapper">
+              <canvas id="hero-three-canvas" aria-label="3D Interactive Cyber Core"></canvas>
+
+              <!-- Futuristic Hologram Projector Pedestal Base -->
+              <div class="hologram-pedestal-base">
+                <div class="hologram-emitter-glow"></div>
+                <div class="hologram-beam-cone"></div>
+                <div class="hologram-ring hologram-ring-outer"></div>
+                <div class="hologram-ring hologram-ring-inner"></div>
+              </div>
+
+              <!-- 3D Core Mode Badge & Geometry Morph Switch -->
+              <div class="hero-3d-badge">
+                <span class="hero-3d-dot"></span>
+                <span id="hero-3d-mesh-name">3D ICOSAHEDRON</span>
+                <button type="button" id="hero-3d-toggle-btn" class="hero-3d-toggle" title="สลับโหมด 3D: Icosahedron / Torus Knot" aria-label="สลับรูปทรง 3D">
+                  <i data-lucide="refresh-cw" style="width: 12px; height: 12px;"></i>
+                </button>
+              </div>
             </div>
           </div>
 
-          <!-- Floating Badge 1 (Top Left) -->
-          <div class="floating-element float-top-left">
-            <div class="float-icon" style="background: linear-gradient(135deg, #00f2fe, #4facfe);">
-              <i data-lucide="code-2" style="width: 18px; height: 18px;"></i>
+          <!-- Developer Profile Card (100% Unobstructed) -->
+          <div class="hero-card-wrapper">
+            <!-- Floating Badge 1 (Top Left) -->
+            <div class="floating-element float-top-left">
+              <div class="float-icon" style="background: linear-gradient(135deg, #00f2fe, #4facfe);">
+                <i data-lucide="code-2" style="width: 18px; height: 18px;"></i>
+              </div>
+              <div>
+                <div style="font-size: 0.75rem; color: var(--text-muted);" data-cms-key="badge_exp_label">ประสบการณ์</div>
+                <div style="color: var(--neon-cyan); font-weight: 700;" data-cms-key="badge_exp_value">Full-Stack 4+ ปี</div>
+              </div>
             </div>
-            <div>
-              <div style="font-size: 0.75rem; color: var(--text-muted);">ประสบการณ์</div>
-              <div style="color: var(--neon-cyan); font-weight: 700;">Full-Stack 4+ ปี</div>
-            </div>
-          </div>
 
-          <!-- Central 3D Card -->
-          <div class="hero-3d-card" data-tilt>
-            <div class="hero-avatar-glow-ring">
-              <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=600&q=80" alt="Avatar" />
+            <!-- Central 3D Card -->
+            <div class="hero-3d-card" data-tilt>
+              <div class="hero-avatar-glow-ring">
+                <img id="hero-profile-avatar" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=600&q=80" alt="Avatar" />
+              </div>
+              <h3 class="hero-card-name" id="hero-profile-name" data-cms-key="profile_name">กฤษณะ เกียรติอนันต์</h3>
+              <div class="hero-card-role" id="hero-profile-role" data-cms-key="profile_role">&lt;CREATIVE DEVELOPER /&gt;</div>
+              <div class="hero-card-location" id="hero-profile-location">
+                <i data-lucide="map-pin" style="width: 14px; height: 14px; display: inline-block; vertical-align: middle; color: var(--neon-pink);"></i>
+                <span data-cms-key="profile_location">กรุงเทพมหานคร, ประเทศไทย</span>
+              </div>
+              <div class="hero-card-stats">
+                <div class="hero-card-stat-item">
+                  <span class="stat-num" id="hero-stat-projects" data-target="38">38</span>
+                  <span class="stat-label">โปรเจคเสร็จ</span>
+                </div>
+                <div class="hero-card-stat-item">
+                  <span class="stat-num" id="hero-stat-satisfaction" data-target="100">100</span>
+                  <span class="stat-label">ความพึงพอใจ %</span>
+                </div>
+                <div class="hero-card-stat-item">
+                  <span class="stat-num" id="hero-stat-years" data-target="4">4</span>
+                  <span class="stat-label">ปีประสบการณ์</span>
+                </div>
+              </div>
             </div>
-            <h3 class="hero-card-name">กฤษณะ เกียรติอนันต์</h3>
-            <div class="hero-card-role">&lt;CREATIVE DEVELOPER /&gt;</div>
-            <div style="margin-top: 14px; font-size: 0.85rem; color: var(--text-muted);">
-              <i data-lucide="map-pin" style="width: 14px; height: 14px; display: inline-block; vertical-align: middle; color: var(--neon-pink);"></i>
-              กรุงเทพมหานคร, ประเทศไทย
-            </div>
-          </div>
 
-          <!-- Floating Badge 2 (Bottom Right) -->
-          <div class="floating-element float-bottom-right">
-            <div class="float-icon" style="background: linear-gradient(135deg, #ff007f, #8a2be2);">
-              <i data-lucide="sparkles" style="width: 18px; height: 18px;"></i>
-            </div>
-            <div>
-              <div style="font-size: 0.75rem; color: var(--text-muted);">โปรเจคสำเร็จ</div>
-              <div style="color: var(--neon-pink); font-weight: 700;">38+ Projects</div>
+            <!-- Floating Badge 2 (Bottom Right) -->
+            <div class="floating-element float-bottom-right">
+              <div class="float-icon" style="background: linear-gradient(135deg, #ff007f, #8a2be2);">
+                <i data-lucide="sparkles" style="width: 18px; height: 18px;"></i>
+              </div>
+              <div>
+                <div style="font-size: 0.75rem; color: var(--text-muted);" data-cms-key="badge_quality_label">โปรเจคสำเร็จ</div>
+                <div style="color: var(--neon-pink); font-weight: 700;" data-cms-key="badge_quality_value">38+ Projects</div>
+              </div>
             </div>
           </div>
         </div>
@@ -236,7 +270,7 @@
       <div class="section-header reveal">
         <span class="section-tag"><i data-lucide="user"></i> About Me</span>
         <h2 class="section-title">เกี่ยวกับ<span class="gradient-text">ตัวผม</span></h2>
-        <p class="section-subtitle">
+        <p class="section-subtitle" data-cms-key="about_subtitle">
           ทำความรู้จักตัวตน ประสบการณ์ และแรงบันดาลใจในการสร้างสรรค์ผลงานด้านซอฟต์แวร์
         </p>
       </div>
@@ -273,27 +307,27 @@
         <!-- Left: 3D Avatar Profile Card -->
         <div class="glass-card about-avatar-card reveal-left" data-tilt>
           <div class="about-avatar-wrapper">
-            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=600&q=80" alt="Kritsana Profile" />
+            <img id="about-profile-avatar" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=600&q=80" alt="Kritsana Profile" />
           </div>
-          <h3 style="font-size: 1.4rem; margin-bottom: 4px;">กฤษณะ เกียรติอนันต์</h3>
-          <p style="color: var(--neon-cyan); font-size: 0.9rem; font-family: var(--font-heading);">Full-Stack &amp; Creative Coder</p>
+          <h3 id="about-profile-name" style="font-size: 1.4rem; margin-bottom: 4px;" data-cms-key="about_name">กฤษณะ เกียรติอนันต์</h3>
+          <p id="about-profile-role" style="color: var(--neon-cyan); font-size: 0.9rem; font-family: var(--font-heading);" data-cms-key="about_role">Full-Stack &amp; Creative Coder</p>
 
           <div class="about-info-list">
             <div class="about-info-item">
               <div class="about-info-label">อายุ</div>
-              <div class="about-info-val">26 ปี</div>
+              <div class="about-info-val" data-cms-key="about_age">26 ปี</div>
             </div>
             <div class="about-info-item">
               <div class="about-info-label">ตำแหน่ง</div>
-              <div class="about-info-val">Senior Developer</div>
+              <div class="about-info-val" data-cms-key="about_job">Senior Developer</div>
             </div>
             <div class="about-info-item">
               <div class="about-info-label">การศึกษา</div>
-              <div class="about-info-val">วท.บ. วิทยาการคอมฯ</div>
+              <div class="about-info-val" data-cms-key="about_edu">วท.บ. วิทยาการคอมฯ</div>
             </div>
             <div class="about-info-item">
               <div class="about-info-label">ที่อยู่</div>
-              <div class="about-info-val">กรุงเทพมหานคร</div>
+              <div class="about-info-val" data-cms-key="about_city">กรุงเทพมหานคร</div>
             </div>
           </div>
         </div>
@@ -446,7 +480,7 @@
       <div class="section-header reveal">
         <span class="section-tag"><i data-lucide="briefcase"></i> Featured Projects</span>
         <h2 class="section-title">ผลงาน<span class="gradient-text">โปรเจคที่โดดเด่น</span></h2>
-        <p class="section-subtitle">
+        <p class="section-subtitle" data-cms-key="projects_subtitle">
           รวมผลงานจริงที่ครอบคลุมทั้ง Web App, Mobile App, AI/ML, Game และ Developer Tools
         </p>
       </div>
@@ -541,7 +575,7 @@
       <div class="section-header reveal">
         <span class="section-tag"><i data-lucide="cpu"></i> Technologies</span>
         <h2 class="section-title">เทคโนโลยี<span class="gradient-text">ที่เชี่ยวชาญ</span></h2>
-        <p class="section-subtitle">
+        <p class="section-subtitle" data-cms-key="skills_subtitle">
           เครื่องมือและสแต็กเทคโนโลยีสมัยใหม่ที่เลือกใช้เพื่อความเร็ว ความปลอดภัย และประสิทธิภาพสูงสุด
         </p>
       </div>
@@ -689,7 +723,7 @@
       <div class="section-header reveal">
         <span class="section-tag"><i data-lucide="message-square"></i> Testimonials</span>
         <h2 class="section-title">เสียงตอบรับ<span class="gradient-text">จากผู้ร่วมงาน</span></h2>
-        <p class="section-subtitle">
+        <p class="section-subtitle" data-cms-key="testimonials_subtitle">
           ความคิดเห็นและความประทับใจจากลูกค้า, หัวหน้าทีม และพาร์ตเนอร์ที่เคยร่วมงานกัน
         </p>
       </div>
@@ -831,7 +865,7 @@
       <div class="section-header reveal">
         <span class="section-tag"><i data-lucide="book-open"></i> Insights &amp; Articles</span>
         <h2 class="section-title">บทความ<span class="gradient-text">และองค์ความรู้</span></h2>
-        <p class="section-subtitle">
+        <p class="section-subtitle" data-cms-key="articles_subtitle">
           แบ่งปันประสบการณ์ แนวคิดสถาปัตยกรรมระบบ และเทคนิคการเขียนโค้ดสำหรับนักพัฒนา
         </p>
       </div>
@@ -914,7 +948,7 @@
       <div class="section-header reveal">
         <span class="section-tag"><i data-lucide="mail"></i> Get In Touch</span>
         <h2 class="section-title">ติดต่อ<span class="gradient-text">และร่วมงานกัน</span></h2>
-        <p class="section-subtitle">
+        <p class="section-subtitle" data-cms-key="contact_subtitle">
           มีโปรเจคที่ต้องการพัฒนา หรือสนใจร่วมงาน สามารถส่งข้อความหรือติดต่อผ่านช่องทางด้านล่างได้ตลอดเวลาครับ
         </p>
       </div>
@@ -1116,10 +1150,324 @@
           <kbd>Esc</kbd>
         </div>
         <div class="shortcut-row">
+          <span>เข้าสู่ระบบแอดมินหลังบ้าน</span>
+          <div style="display: flex; gap: 4px;"><kbd>Alt</kbd> <kbd>A</kbd></div>
+        </div>
+        <div class="shortcut-row">
           <span>เปิด/ปิดคู่มือคีย์ลัดนี้</span>
           <kbd>?</kbd>
         </div>
       </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       ADMIN FLOATING CONTROL BAR (BACKOFFICE & IN-PLACE CMS)
+       ═══════════════════════════════════════════════════════════ -->
+  <aside class="admin-control-bar" id="admin-control-bar" aria-label="Admin Control Bar">
+    <div class="admin-bar-inner">
+      <div class="admin-bar-brand">
+        <span class="admin-status-dot"></span>
+        <span class="admin-brand-label">ADMIN CMS</span>
+      </div>
+
+      <!-- Live Text Edit Toggle -->
+      <button type="button" class="btn-admin-pill" id="admin-live-edit-btn" onclick="window.adminCMS?.toggleLiveEditMode()" title="สลับโหมดแก้ไขข้อความสดบนหน้าเว็บ (คลิกเพื่อเปิด/ปิด)">
+        <i data-lucide="edit-3"></i>
+        <span>แก้ไขสด:</span>
+        <span id="admin-live-edit-status" class="badge-status-pill">ปิด (OFF)</span>
+      </button>
+
+      <!-- Manage Projects -->
+      <button type="button" class="btn-admin-pill" id="admin-manage-projects-btn" title="จัดการโปรเจค (เพิ่ม / แก้ไข / ลบ)">
+        <i data-lucide="layers"></i>
+        <span>จัดการโปรเจค</span>
+      </button>
+
+      <!-- Edit Profile & Bio -->
+      <button type="button" class="btn-admin-pill" id="admin-edit-profile-btn" title="แก้ไขประวัติและข้อมูลส่วนตัว">
+        <i data-lucide="user-check"></i>
+        <span>ข้อมูลส่วนตัว</span>
+      </button>
+
+      <!-- Export JSON -->
+      <button type="button" class="btn-admin-pill" id="admin-export-btn" title="ดาวน์โหลดไฟล์ projects.json ล่าสุด">
+        <i data-lucide="download"></i>
+        <span>Export JSON</span>
+      </button>
+
+      <!-- Import JSON -->
+      <button type="button" class="btn-admin-pill" id="admin-import-btn" title="นำเข้าไฟล์ projects.json จากเครื่อง">
+        <i data-lucide="upload"></i>
+        <span>Import JSON</span>
+      </button>
+
+      <!-- Reset to Default -->
+      <button type="button" class="btn-admin-pill btn-admin-danger" id="admin-reset-btn" title="ล้างการปรับแต่งและคืนค่าเริ่มต้น">
+        <i data-lucide="rotate-ccw"></i>
+        <span>รีเซ็ต</span>
+      </button>
+
+      <!-- Logout -->
+      <button type="button" class="btn-admin-pill btn-admin-logout" onclick="window.adminCMS?.logout()" title="ออกจากระบบแอดมิน">
+        <i data-lucide="log-out"></i>
+      </button>
+    </div>
+  </aside>
+
+  <!-- Hidden File Input for JSON Import -->
+  <input type="file" id="admin-import-file-input" accept=".json" style="display: none;" />
+
+  <!-- ═══════════════════════════════════════════════════════════
+       ADMIN LOGIN MODAL
+       ═══════════════════════════════════════════════════════════ -->
+  <div class="modal-backdrop" id="admin-login-modal" role="dialog" aria-modal="true" aria-labelledby="admin-login-title">
+    <div class="admin-modal-card">
+      <button type="button" class="modal-close-btn" id="admin-login-close" title="ปิดหน้าต่าง" aria-label="ปิด">
+        <i data-lucide="x" style="width: 20px; height: 20px;"></i>
+      </button>
+      <div class="admin-modal-header">
+        <div class="admin-login-icon">
+          <i data-lucide="shield-check" style="width: 28px; height: 28px;"></i>
+        </div>
+        <h3 class="admin-modal-title" id="admin-login-title">เข้าสู่ระบบแอดมินหลังบ้าน</h3>
+        <p class="admin-modal-subtitle">ระบบจัดการเนื้อหา ผลงานโปรเจค และประวัติส่วนตัว (CMS Backoffice)</p>
+      </div>
+
+      <form id="admin-login-form" class="admin-login-form">
+        <div class="admin-form-group">
+          <label for="admin-password-input" class="admin-form-label">รหัสผ่านแอดมิน (Admin Password)</label>
+          <div class="admin-pass-wrapper">
+            <input type="password" id="admin-password-input" class="admin-form-input" placeholder="กรอกรหัสผ่าน..." autocomplete="current-password" required />
+            <button type="button" id="admin-pass-toggle" class="admin-pass-toggle-btn" title="แสดง/ซ่อนรหัสผ่าน" aria-label="แสดงรหัสผ่าน">
+              <i data-lucide="eye"></i>
+            </button>
+          </div>
+          <span class="admin-form-hint"><i data-lucide="info" style="width: 13px; height: 13px; display: inline-block; vertical-align: middle;"></i> รหัสผ่านเริ่มต้นคือ: <code>admin123</code></span>
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-magnetic" style="width: 100%; justify-content: center; margin-top: 10px;">
+          <i data-lucide="unlock" style="width: 18px; height: 18px;"></i> เข้าสู่ระบบแอดมิน
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       ADMIN PROJECT CRUD MANAGER MODAL
+       ═══════════════════════════════════════════════════════════ -->
+  <div class="modal-backdrop" id="admin-projects-modal" role="dialog" aria-modal="true" aria-labelledby="admin-proj-mgr-title">
+    <div class="admin-modal-container admin-modal-wide">
+      <button type="button" class="modal-close-btn" id="admin-projects-close" title="ปิดหน้าต่าง" aria-label="ปิด">
+        <i data-lucide="x" style="width: 20px; height: 20px;"></i>
+      </button>
+      
+      <div class="admin-modal-header">
+        <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px;">
+          <div>
+            <h3 class="admin-modal-title" id="admin-proj-mgr-title">
+              <i data-lucide="layers" style="color: var(--neon-cyan);"></i> จัดการผลงานโปรเจค (Project Manager)
+            </h3>
+            <p class="admin-modal-subtitle">เพิ่ม แก้ไข หรือลบโปรเจค พร้อมอัปเดตหน้าเว็บจริงแบบเรียลไทม์</p>
+          </div>
+          <button type="button" class="btn btn-primary btn-sm" id="admin-add-new-project-btn">
+            <i data-lucide="plus" style="width: 16px; height: 16px;"></i> เพิ่มโปรเจคใหม่
+          </button>
+        </div>
+
+        <!-- Search input in admin modal -->
+        <div class="admin-search-bar">
+          <i data-lucide="search" style="width: 16px; height: 16px; color: var(--text-muted);"></i>
+          <input type="text" id="admin-project-search" placeholder="ค้นหาโปรเจคตามชื่อ, หมวดหมู่ หรือเทคโนโลยี..." />
+        </div>
+      </div>
+
+      <!-- Projects List Container -->
+      <div class="admin-projects-list" id="admin-projects-list">
+        <!-- Rendered dynamically by js/admin.js -->
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       ADMIN PROJECT CREATE / EDIT FORM MODAL
+       ═══════════════════════════════════════════════════════════ -->
+  <div class="modal-backdrop" id="admin-project-form-modal" role="dialog" aria-modal="true">
+    <div class="admin-modal-container">
+      <button type="button" class="modal-close-btn" id="admin-project-form-close" title="ปิดหน้าต่าง" aria-label="ปิด">
+        <i data-lucide="x" style="width: 20px; height: 20px;"></i>
+      </button>
+
+      <div class="admin-modal-header">
+        <h3 class="admin-modal-title" id="admin-project-form-title">
+          <i data-lucide="edit-2"></i> แก้ไขข้อมูลโปรเจค
+        </h3>
+      </div>
+
+      <form id="admin-project-form" class="admin-form">
+        <div class="admin-form-grid">
+          <div class="admin-form-group span-2">
+            <label for="proj-title" class="admin-form-label">ชื่อโปรเจค (Project Title) *</label>
+            <input type="text" id="proj-title" class="admin-form-input" required />
+          </div>
+
+          <div class="admin-form-group">
+            <label for="proj-category" class="admin-form-label">หมวดหมู่ (Category)</label>
+            <select id="proj-category" class="admin-form-select">
+              <option value="Web App">Web App</option>
+              <option value="Mobile App">Mobile App</option>
+              <option value="AI/ML">AI/ML</option>
+              <option value="Game">Game</option>
+              <option value="Tool">Tool</option>
+            </select>
+          </div>
+
+          <div class="admin-form-group">
+            <label for="proj-status" class="admin-form-label">สถานะ (Status)</label>
+            <select id="proj-status" class="admin-form-select">
+              <option value="completed">เสร็จสมบูรณ์ (completed)</option>
+              <option value="in-progress">กำลังพัฒนา (in-progress)</option>
+            </select>
+          </div>
+
+          <div class="admin-form-group span-2">
+            <label for="proj-desc-short" class="admin-form-label">คำอธิบายสั้น (Short Description)</label>
+            <input type="text" id="proj-desc-short" class="admin-form-input" placeholder="คำอธิบายที่แสดงบนการ์ดในหน้าแรก..." />
+          </div>
+
+          <div class="admin-form-group span-2">
+            <label for="proj-desc-full" class="admin-form-label">คำอธิบายละเอียด (Full Description)</label>
+            <textarea id="proj-desc-full" class="admin-form-textarea" rows="3" placeholder="รายละเอียดของโปรเจค สถาปัตยกรรม และความท้าทาย..."></textarea>
+          </div>
+
+          <div class="admin-form-group">
+            <label for="proj-thumb" class="admin-form-label">รูปภาพตัวอย่าง (Thumbnail Image URL)</label>
+            <input type="url" id="proj-thumb" class="admin-form-input" placeholder="https://..." />
+          </div>
+
+          <div class="admin-form-group">
+            <label for="proj-video" class="admin-form-label">วิดีโอเดโม (YouTube/Vimeo Embed URL)</label>
+            <input type="url" id="proj-video" class="admin-form-input" placeholder="https://www.youtube.com/watch?v=..." />
+          </div>
+
+          <div class="admin-form-group span-2">
+            <label for="proj-tech" class="admin-form-label">สแต็กเทคโนโลยี (Tech Stack, คั่นด้วยจุลภาค , )</label>
+            <input type="text" id="proj-tech" class="admin-form-input" placeholder="React, Node.js, Three.js, Tailwind CSS" />
+          </div>
+
+          <div class="admin-form-group span-2">
+            <label for="proj-features" class="admin-form-label">ฟีเจอร์เด่น (Features, บรรทัดละ 1 ข้อ)</label>
+            <textarea id="proj-features" class="admin-form-textarea" rows="4" placeholder="ระบบชำระเงิน Real-time&#10;โมเดล AI ตรวจจับความแม่นยำ 98%&#10;สถาปัตยกรรม Cloud Native"></textarea>
+          </div>
+
+          <div class="admin-form-group">
+            <label for="proj-github" class="admin-form-label">GitHub URL</label>
+            <input type="url" id="proj-github" class="admin-form-input" placeholder="https://github.com/..." />
+          </div>
+
+          <div class="admin-form-group">
+            <label for="proj-demo" class="admin-form-label">Live Demo URL</label>
+            <input type="url" id="proj-demo" class="admin-form-input" placeholder="https://example.com" />
+          </div>
+        </div>
+
+        <div class="admin-modal-footer">
+          <button type="button" class="btn btn-secondary" onclick="window.adminCMS?.closeProjectForm()">ยกเลิก</button>
+          <button type="submit" class="btn btn-primary"><i data-lucide="save"></i> บันทึกโปรเจค</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       ADMIN PROFILE & BIO EDITOR MODAL
+       ═══════════════════════════════════════════════════════════ -->
+  <div class="modal-backdrop" id="admin-profile-modal" role="dialog" aria-modal="true" aria-labelledby="admin-profile-title">
+    <div class="admin-modal-container">
+      <button type="button" class="modal-close-btn" id="admin-profile-close" title="ปิดหน้าต่าง" aria-label="ปิด">
+        <i data-lucide="x" style="width: 20px; height: 20px;"></i>
+      </button>
+
+      <div class="admin-modal-header">
+        <h3 class="admin-modal-title" id="admin-profile-title">
+          <i data-lucide="user-check" style="color: var(--neon-cyan);"></i> แก้ไขประวัติและข้อมูลส่วนตัว (Profile &amp; Bio Editor)
+        </h3>
+        <p class="admin-modal-subtitle">แก้ไขชื่อ ตำแหน่ง บทบาท คำบรรยาย รูปโปรไฟล์ และสถิติแสดงผล</p>
+      </div>
+
+      <form id="admin-profile-form" class="admin-form">
+        <div class="admin-form-grid">
+          <div class="admin-form-group">
+            <label for="prof-name" class="admin-form-label">ชื่อ-นามสกุล (ภาษาไทย) *</label>
+            <input type="text" id="prof-name" class="admin-form-input" required />
+          </div>
+
+          <div class="admin-form-group">
+            <label for="prof-english-name" class="admin-form-label">English Name</label>
+            <input type="text" id="prof-english-name" class="admin-form-input" />
+          </div>
+
+          <div class="admin-form-group">
+            <label for="prof-title" class="admin-form-label">ตำแหน่งหลัก (Hero Role / Title)</label>
+            <input type="text" id="prof-title" class="admin-form-input" />
+          </div>
+
+          <div class="admin-form-group">
+            <label for="prof-location" class="admin-form-label">ที่อยู่ / พิกัด (Location)</label>
+            <input type="text" id="prof-location" class="admin-form-input" />
+          </div>
+
+          <div class="admin-form-group span-2">
+            <label for="prof-roles" class="admin-form-label">ข้อความสำหรับ Typewriter (บรรทัดละ 1 ข้อความ)</label>
+            <textarea id="prof-roles" class="admin-form-textarea" rows="3" placeholder="Full-Stack Developer&#10;Creative Coder &amp; 3D Web&#10;AI &amp; Cloud Architect"></textarea>
+          </div>
+
+          <div class="admin-form-group span-2">
+            <label for="prof-bio" class="admin-form-label">คำบรรยายส่วนตัว (Hero Bio)</label>
+            <textarea id="prof-bio" class="admin-form-textarea" rows="3"></textarea>
+          </div>
+
+          <div class="admin-form-group span-2">
+            <label for="prof-avatar" class="admin-form-label">URL รูปภาพ Avatar</label>
+            <input type="url" id="prof-avatar" class="admin-form-input" />
+          </div>
+
+          <div class="admin-form-group">
+            <label for="prof-email" class="admin-form-label">อีเมลติดต่อ (Email)</label>
+            <input type="email" id="prof-email" class="admin-form-input" />
+          </div>
+
+          <div class="admin-form-group">
+            <label for="prof-phone" class="admin-form-label">เบอร์โทรศัพท์ (Phone)</label>
+            <input type="text" id="prof-phone" class="admin-form-input" />
+          </div>
+
+          <div class="admin-form-group">
+            <label for="prof-github" class="admin-form-label">GitHub URL</label>
+            <input type="url" id="prof-github" class="admin-form-input" />
+          </div>
+
+          <div class="admin-form-group">
+            <label for="prof-linkedin" class="admin-form-label">LinkedIn URL</label>
+            <input type="url" id="prof-linkedin" class="admin-form-input" />
+          </div>
+
+          <div class="admin-form-group">
+            <label for="prof-projects-stat" class="admin-form-label">ตัวเลขโปรเจคสำเร็จ (Stats Count)</label>
+            <input type="number" id="prof-projects-stat" class="admin-form-input" />
+          </div>
+
+          <div class="admin-form-group">
+            <label for="prof-exp-stat" class="admin-form-label">ตัวเลขปีประสบการณ์ (Years Exp)</label>
+            <input type="number" id="prof-exp-stat" class="admin-form-input" />
+          </div>
+        </div>
+
+        <div class="admin-modal-footer">
+          <button type="button" class="btn btn-secondary" onclick="window.adminCMS?.closeProfileModal()">ยกเลิก</button>
+          <button type="submit" class="btn btn-primary"><i data-lucide="save"></i> บันทึกข้อมูลส่วนตัว</button>
+        </div>
+      </form>
     </div>
   </div>
 
@@ -1153,6 +1501,7 @@
   <script src="js/three-hero.js"></script>
   <script src="js/projects.js"></script>
   <script src="js/main.js"></script>
+  <script src="js/admin.js"></script>
 
   <!-- Lucide Icon Initialization -->
   <script>

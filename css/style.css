@@ -644,18 +644,43 @@ img {
   flex-wrap: wrap;
 }
 
-/* Hero 3D Visual & Floating Badges */
+/* Hero 3D Visual & Floating Badges (Separated & Non-overlapping) */
 .hero-visual {
   position: relative;
   display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  perspective: 1000px;
+  width: 100%;
+}
+
+/* Hologram Stage & Pedestal Platform */
+.hero-hologram-stage {
+  position: relative;
+  width: 100%;
+  max-width: 380px;
+  display: flex;
   justify-content: center;
   align-items: center;
-  perspective: 1000px;
+  z-index: 5;
+}
+
+.hero-card-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 380px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 4;
 }
 
 .hero-3d-card {
-  width: 360px;
-  height: 440px;
+  width: 100%;
+  max-width: 360px;
+  min-height: 380px;
   border-radius: var(--radius-lg);
   background: var(--grad-card-glow), var(--bg-card);
   border: 1px solid var(--border-glass);
@@ -667,18 +692,19 @@ img {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 30px;
+  padding: 26px 22px;
   text-align: center;
+  transition: transform 0.2s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
 .hero-avatar-glow-ring {
-  width: 170px;
-  height: 170px;
+  width: 125px;
+  height: 125px;
   border-radius: 50%;
-  padding: 5px;
+  padding: 4px;
   background: var(--grad-primary);
-  box-shadow: 0 0 40px rgba(0, 242, 254, 0.4);
-  margin-bottom: 20px;
+  box-shadow: 0 0 35px rgba(0, 242, 254, 0.45);
+  margin-bottom: 14px;
   position: relative;
   animation: float-slow 4s ease-in-out infinite;
 }
@@ -692,15 +718,58 @@ img {
 }
 
 .hero-card-name {
-  font-size: 1.4rem;
-  margin-bottom: 6px;
+  font-size: 1.35rem;
+  font-weight: 700;
+  margin-bottom: 4px;
+  letter-spacing: -0.01em;
 }
 
 .hero-card-role {
-  font-size: 0.9rem;
+  font-size: 0.88rem;
   color: var(--neon-cyan);
   font-family: var(--font-heading);
-  letter-spacing: 0.05em;
+  letter-spacing: 0.06em;
+  margin-bottom: 4px;
+}
+
+.hero-card-location {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  color: var(--text-muted);
+  font-size: 0.82rem;
+  margin-top: 6px;
+}
+
+.hero-card-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  width: 100%;
+  margin-top: 18px;
+  padding-top: 14px;
+  border-top: 1px solid var(--border-glass);
+}
+
+.hero-card-stat-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.hero-card-stat-item .stat-num {
+  font-family: var(--font-heading);
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--neon-cyan);
+  line-height: 1.2;
+}
+
+.hero-card-stat-item .stat-label {
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  white-space: nowrap;
 }
 
 /* Floating Elements around Hero */
@@ -723,13 +792,13 @@ img {
 
 .float-top-left {
   top: -20px;
-  left: -40px;
+  left: -35px;
   animation-delay: 0s;
 }
 
 .float-bottom-right {
   bottom: -20px;
-  right: -30px;
+  right: -25px;
   animation-delay: 2s;
 }
 
@@ -2645,19 +2714,30 @@ img {
    EXTENDED STYLES: THREE.JS, CHART.JS, SWIPER.JS & TIPPY.JS
    ═══════════════════════════════════════════════════════════ */
 
-/* 1. THREE.JS 3D WEBGL HERO CANVAS */
+/* 1. THREE.JS 3D WEBGL HERO CANVAS & HOLOGRAPHIC PEDESTAL */
 .hero-3d-webgl-wrapper {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 520px;
-  height: 520px;
+  position: relative;
+  width: 100%;
+  height: 220px;
   pointer-events: none;
-  z-index: 1;
+  z-index: 2;
   display: flex;
   justify-content: center;
   align-items: center;
+  border-radius: var(--radius-lg);
+  background: radial-gradient(circle at 50% 65%, rgba(0, 242, 254, 0.09) 0%, rgba(138, 43, 226, 0.05) 50%, transparent 80%);
+  border: 1px solid rgba(0, 242, 254, 0.22);
+  box-shadow: 0 10px 30px -5px rgba(0, 242, 254, 0.2), inset 0 0 25px rgba(0, 242, 254, 0.05);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  overflow: visible;
+  transition: var(--transition-smooth);
+}
+
+[data-theme="light"] .hero-3d-webgl-wrapper {
+  background: radial-gradient(circle at 50% 65%, rgba(0, 180, 216, 0.08) 0%, rgba(114, 9, 183, 0.04) 50%, rgba(255, 255, 255, 0.65) 85%);
+  border: 1px solid rgba(0, 150, 200, 0.25);
+  box-shadow: 0 10px 25px -5px rgba(0, 100, 200, 0.12);
 }
 
 #hero-three-canvas {
@@ -2665,25 +2745,108 @@ img {
   height: 100% !important;
   pointer-events: auto;
   cursor: grab;
+  position: relative;
+  z-index: 3;
 }
 
 #hero-three-canvas:active {
   cursor: grabbing;
 }
 
+/* Hologram Pedestal Base Emitter */
+.hologram-pedestal-base {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 220px;
+  height: 60px;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.hologram-emitter-glow {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 160px;
+  height: 26px;
+  border-radius: 50%;
+  background: radial-gradient(ellipse, rgba(0, 242, 254, 0.65) 0%, rgba(255, 0, 127, 0.35) 50%, transparent 80%);
+  filter: blur(8px);
+  animation: pulse-glow 2.5s ease-in-out infinite alternate;
+}
+
+.hologram-beam-cone {
+  position: absolute;
+  bottom: 14px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 180px;
+  height: 130px;
+  background: linear-gradient(to top, rgba(0, 242, 254, 0.2) 0%, rgba(138, 43, 226, 0.08) 40%, transparent 100%);
+  clip-path: polygon(25% 100%, 75% 100%, 95% 0%, 5% 0%);
+  pointer-events: none;
+  opacity: 0.85;
+  animation: hologram-flicker 4s infinite ease-in-out;
+}
+
+.hologram-ring {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%) rotateX(68deg);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.hologram-ring-outer {
+  width: 180px;
+  height: 68px;
+  border: 1.5px dashed rgba(0, 242, 254, 0.75);
+  box-shadow: 0 0 15px rgba(0, 242, 254, 0.4);
+  animation: spin-pedestal 12s linear infinite;
+}
+
+.hologram-ring-inner {
+  width: 120px;
+  height: 45px;
+  border: 1px solid rgba(255, 0, 127, 0.65);
+  box-shadow: 0 0 10px rgba(255, 0, 127, 0.35);
+  animation: spin-pedestal-reverse 8s linear infinite;
+}
+
+@keyframes spin-pedestal {
+  0% { transform: translateX(-50%) rotateX(68deg) rotate(0deg); }
+  100% { transform: translateX(-50%) rotateX(68deg) rotate(360deg); }
+}
+
+@keyframes spin-pedestal-reverse {
+  0% { transform: translateX(-50%) rotateX(68deg) rotate(360deg); }
+  100% { transform: translateX(-50%) rotateX(68deg) rotate(0deg); }
+}
+
+@keyframes hologram-flicker {
+  0%, 100% { opacity: 0.85; }
+  25% { opacity: 0.7; }
+  50% { opacity: 0.95; }
+  75% { opacity: 0.75; }
+}
+
 .hero-3d-badge {
   position: absolute;
   bottom: 8px;
-  right: 18px;
-  z-index: 3;
+  right: 14px;
+  z-index: 4;
   pointer-events: auto;
   background: var(--bg-card);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
   border: 1px solid var(--border-glass);
   border-radius: var(--radius-full);
-  padding: 5px 14px;
-  font-size: 0.72rem;
+  padding: 4px 12px;
+  font-size: 0.7rem;
   font-family: var(--font-heading);
   font-weight: 700;
   letter-spacing: 1px;
@@ -2723,8 +2886,7 @@ img {
 
 @media (max-width: 768px) {
   .hero-3d-webgl-wrapper {
-    width: 360px;
-    height: 440px;
+    height: 200px;
   }
 }
 
@@ -2988,3 +3150,487 @@ img {
   color: var(--neon-cyan);
   padding: 3px 8px;
 }
+
+/* ═══════════════════════════════════════════════════════════
+   ADMIN BACKOFFICE, FLOATING CONTROL BAR & IN-PLACE CMS
+   ═══════════════════════════════════════════════════════════ */
+
+/* Navbar Admin Button */
+.admin-toggle-btn {
+  position: relative;
+}
+
+.admin-toggle-btn.admin-active::after {
+  content: '';
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  width: 7px;
+  height: 7px;
+  background: var(--neon-green);
+  border-radius: 50%;
+  box-shadow: 0 0 8px var(--neon-green);
+  animation: pulse-glow 1.5s infinite;
+}
+
+/* Floating Admin Control Bar */
+.admin-control-bar {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%) translateY(110px);
+  opacity: 0;
+  pointer-events: none;
+  z-index: 1200;
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.3s ease;
+  max-width: 95vw;
+}
+
+.admin-control-bar.visible {
+  transform: translateX(-50%) translateY(0);
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.admin-bar-inner {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 16px;
+  border-radius: var(--radius-full);
+  background: rgba(10, 14, 32, 0.92);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--neon-cyan);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.7), 0 0 25px rgba(0, 242, 254, 0.35);
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+[data-theme="light"] .admin-bar-inner {
+  background: rgba(255, 255, 255, 0.94);
+  border: 1px solid rgba(0, 150, 200, 0.5);
+  box-shadow: 0 10px 35px rgba(0, 0, 0, 0.15), 0 0 20px rgba(0, 180, 216, 0.25);
+}
+
+.admin-bar-brand {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding-right: 10px;
+  border-right: 1px solid var(--border-glass);
+}
+
+.admin-status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--neon-green);
+  box-shadow: 0 0 10px var(--neon-green);
+  animation: pulse-glow 1.5s infinite;
+}
+
+.admin-brand-label {
+  font-family: var(--font-heading);
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 1px;
+  color: var(--neon-cyan);
+}
+
+.btn-admin-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  border-radius: var(--radius-full);
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid var(--border-glass);
+  color: var(--text-main);
+  font-size: 0.78rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition-fast);
+  white-space: nowrap;
+}
+
+.btn-admin-pill i {
+  width: 14px;
+  height: 14px;
+}
+
+.btn-admin-pill:hover {
+  background: rgba(0, 242, 254, 0.15);
+  border-color: var(--neon-cyan);
+  color: var(--neon-cyan);
+  transform: translateY(-2px);
+}
+
+.btn-admin-pill.active {
+  background: rgba(0, 255, 136, 0.18);
+  border-color: var(--neon-green);
+  color: var(--neon-green);
+}
+
+.btn-admin-pill.btn-admin-danger:hover {
+  background: rgba(255, 0, 127, 0.18);
+  border-color: var(--neon-pink);
+  color: var(--neon-pink);
+}
+
+.btn-admin-pill.btn-admin-logout:hover {
+  background: rgba(255, 75, 75, 0.2);
+  border-color: #ff4b4b;
+  color: #ff4b4b;
+}
+
+.badge-status-pill {
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 1px 6px;
+  border-radius: 4px;
+  background: rgba(0, 0, 0, 0.3);
+}
+
+/* In-Place CMS Live Editable Elements */
+.cms-editable-active {
+  outline: 2px dashed var(--neon-cyan) !important;
+  outline-offset: 4px !important;
+  cursor: text !important;
+  position: relative !important;
+  transition: outline-color 0.2s ease, background-color 0.2s ease !important;
+  border-radius: 4px !important;
+}
+
+.cms-editable-active:hover {
+  outline-color: var(--neon-pink) !important;
+  background-color: rgba(0, 242, 254, 0.08) !important;
+}
+
+.cms-editable-active:focus {
+  outline: 2px solid var(--neon-green) !important;
+  background-color: rgba(0, 255, 136, 0.1) !important;
+}
+
+/* Admin Modals */
+.admin-modal-card {
+  width: 100%;
+  max-width: 440px;
+  background: var(--bg-card);
+  backdrop-filter: blur(25px);
+  -webkit-backdrop-filter: blur(25px);
+  border: 1px solid var(--neon-cyan);
+  border-radius: var(--radius-lg);
+  padding: 32px;
+  box-shadow: 0 25px 60px rgba(0,0,0,0.85), 0 0 30px rgba(0, 242, 254, 0.25);
+  animation: hud-pop-in 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  position: relative;
+}
+
+.admin-modal-container {
+  width: 100%;
+  max-width: 680px;
+  max-height: 90vh;
+  overflow-y: auto;
+  background: var(--bg-card);
+  backdrop-filter: blur(25px);
+  -webkit-backdrop-filter: blur(25px);
+  border: 1px solid var(--border-glow);
+  border-radius: var(--radius-lg);
+  padding: 32px;
+  box-shadow: 0 25px 60px rgba(0,0,0,0.85), var(--shadow-glow);
+  animation: hud-pop-in 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  position: relative;
+}
+
+.admin-modal-wide {
+  max-width: 860px;
+}
+
+.admin-modal-header {
+  margin-bottom: 24px;
+}
+
+.admin-modal-title {
+  font-size: 1.35rem;
+  color: var(--neon-cyan);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 6px;
+}
+
+.admin-modal-subtitle {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.admin-login-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: 14px;
+  background: rgba(0, 242, 254, 0.12);
+  border: 1px solid rgba(0, 242, 254, 0.35);
+  color: var(--neon-cyan);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 16px;
+}
+
+.admin-pass-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.admin-pass-toggle-btn {
+  position: absolute;
+  right: 12px;
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px;
+  border-radius: 4px;
+}
+
+.admin-pass-toggle-btn:hover {
+  color: var(--neon-cyan);
+}
+
+.admin-pass-toggle-btn i {
+  width: 18px;
+  height: 18px;
+}
+
+.admin-form-hint {
+  display: block;
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  margin-top: 8px;
+}
+
+.admin-form-hint code {
+  background: rgba(0, 242, 254, 0.15);
+  color: var(--neon-cyan);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-family: monospace;
+}
+
+/* Admin Form Grid & Inputs */
+.admin-form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+@media (max-width: 600px) {
+  .admin-form-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.admin-form-group.span-2 {
+  grid-column: 1 / -1;
+}
+
+.admin-form-label {
+  display: block;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  margin-bottom: 6px;
+}
+
+.admin-form-input,
+.admin-form-select,
+.admin-form-textarea {
+  width: 100%;
+  padding: 10px 14px;
+  border-radius: var(--radius-sm);
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--border-glass);
+  color: var(--text-main);
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  transition: var(--transition-fast);
+}
+
+[data-theme="light"] .admin-form-input,
+[data-theme="light"] .admin-form-select,
+[data-theme="light"] .admin-form-textarea {
+  background: rgba(0, 0, 0, 0.03);
+}
+
+.admin-form-input:focus,
+.admin-form-select:focus,
+.admin-form-textarea:focus {
+  outline: none;
+  border-color: var(--neon-cyan);
+  box-shadow: 0 0 15px rgba(0, 242, 254, 0.35);
+  background: rgba(0, 242, 254, 0.03);
+}
+
+.admin-modal-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 24px;
+  padding-top: 18px;
+  border-top: 1px solid var(--border-glass);
+}
+
+/* Projects Management Table/List */
+.admin-search-bar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 14px;
+  border-radius: var(--radius-md);
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--border-glass);
+  margin-top: 16px;
+}
+
+.admin-search-bar input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: var(--text-main);
+  font-size: 0.88rem;
+}
+
+.admin-projects-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-height: 480px;
+  overflow-y: auto;
+  padding-right: 4px;
+}
+
+.admin-project-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 12px 14px;
+  border-radius: var(--radius-md);
+  background: rgba(255, 255, 255, 0.025);
+  border: 1px solid var(--border-glass);
+  transition: var(--transition-fast);
+}
+
+.admin-project-row:hover {
+  background: rgba(0, 242, 254, 0.04);
+  border-color: rgba(0, 242, 254, 0.3);
+}
+
+.admin-project-thumb {
+  width: 60px;
+  height: 45px;
+  border-radius: 6px;
+  object-fit: cover;
+  border: 1px solid var(--border-glass);
+}
+
+.admin-project-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.admin-project-title {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--text-main);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.admin-project-meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.75rem;
+  margin-top: 4px;
+  flex-wrap: wrap;
+}
+
+.admin-tag-cat {
+  padding: 2px 6px;
+  border-radius: 4px;
+  background: rgba(0, 242, 254, 0.12);
+  color: var(--neon-cyan);
+  font-weight: 600;
+}
+
+.admin-tag-status {
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-weight: 600;
+}
+
+.admin-tag-status.status-completed {
+  background: rgba(0, 255, 136, 0.12);
+  color: var(--neon-green);
+}
+
+.admin-tag-status.status-progress {
+  background: rgba(255, 170, 0, 0.12);
+  color: #ffaa00;
+}
+
+.admin-tech-preview {
+  color: var(--text-muted);
+}
+
+.admin-project-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.btn-admin-action {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 6px 10px;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition-fast);
+  border: 1px solid var(--border-glass);
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--text-main);
+}
+
+.btn-admin-action i {
+  width: 13px;
+  height: 13px;
+}
+
+.btn-admin-edit:hover {
+  background: rgba(0, 242, 254, 0.15);
+  border-color: var(--neon-cyan);
+  color: var(--neon-cyan);
+}
+
+.btn-admin-delete:hover {
+  background: rgba(255, 0, 127, 0.15);
+  border-color: var(--neon-pink);
+  color: var(--neon-pink);
+}
+
+.admin-empty-state {
+  text-align: center;
+  padding: 40px;
+  color: var(--text-muted);
+}
+
