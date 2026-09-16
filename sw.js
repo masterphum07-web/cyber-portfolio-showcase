@@ -4,7 +4,7 @@
  * Employs Stale-While-Revalidate for dynamic assets and Cache-First for shell.
  */
 
-const CACHE_NAME = 'portfolio-cache-v1.4';
+const CACHE_NAME = 'portfolio-cache-v1.5';
 const CORE_ASSETS = [
   './',
   './index.html',

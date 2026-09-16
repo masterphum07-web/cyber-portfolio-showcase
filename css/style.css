@@ -651,7 +651,7 @@ img {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 16px;
+  gap: 28px;
   perspective: 1000px;
   width: 100%;
 }
@@ -791,8 +791,8 @@ img {
 }
 
 .float-top-left {
-  top: -20px;
-  left: -35px;
+  top: -8px;
+  left: -26px;
   animation-delay: 0s;
 }
 
@@ -3298,18 +3298,21 @@ img {
   outline-offset: 4px !important;
   cursor: text !important;
   position: relative !important;
-  transition: outline-color 0.2s ease, background-color 0.2s ease !important;
+  transition: outline-color 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease !important;
   border-radius: 4px !important;
+  box-shadow: 0 0 10px rgba(0, 242, 254, 0.25) !important;
 }
 
 .cms-editable-active:hover {
   outline-color: var(--neon-pink) !important;
   background-color: rgba(0, 242, 254, 0.08) !important;
+  box-shadow: 0 0 14px rgba(255, 0, 127, 0.35) !important;
 }
 
 .cms-editable-active:focus {
   outline: 2px solid var(--neon-green) !important;
-  background-color: rgba(0, 255, 136, 0.1) !important;
+  background-color: rgba(0, 255, 136, 0.12) !important;
+  box-shadow: 0 0 18px rgba(0, 255, 136, 0.45) !important;
 }
 
 /* Admin Modals */

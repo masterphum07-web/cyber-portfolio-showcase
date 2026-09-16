@@ -285,7 +285,36 @@ class AdminBackofficeCMS {
   }
 
   setupInPlaceEditingListeners() {
-    // Listen for blur and input on editable elements
+    // 1. Plain-text paste interceptor: strips HTML tags, formatting & scripts
+    document.addEventListener('paste', (e) => {
+      if (this.isLiveEditActive && e.target && e.target.isContentEditable) {
+        e.preventDefault();
+        const text = (e.clipboardData || window.clipboardData).getData('text/plain');
+        document.execCommand('insertText', false, text);
+      }
+    });
+
+    // 2. Universal Click-to-Edit: allows clicking on any text element on the webpage to edit it
+    document.addEventListener('click', (e) => {
+      if (!this.isLiveEditActive) return;
+      const target = e.target;
+      if (!target || target.closest('#admin-control-bar, .modal-backdrop, .modal-card, script, style, canvas, svg, button, input, textarea, select')) return;
+
+      if (!target.hasAttribute('data-cms-key')) {
+        const isTextElement = /^(H[1-6]|P|SPAN|LI|LABEL|BLOCKQUOTE)$/i.test(target.tagName) ||
+          (target.tagName === 'DIV' && target.children.length === 0 && target.textContent.trim().length > 0);
+        if (isTextElement) {
+          const autoKey = this.generateElementKey(target);
+          target.setAttribute('data-cms-key', autoKey);
+          target.setAttribute('contenteditable', 'true');
+          target.setAttribute('spellcheck', 'false');
+          target.classList.add('cms-editable-active');
+          target.focus();
+        }
+      }
+    });
+
+    // 3. Listen for blur and input on editable elements
     document.addEventListener('blur', (e) => {
       if (this.isLiveEditActive && e.target && e.target.hasAttribute && e.target.hasAttribute('data-cms-key')) {
         this.saveElementText(e.target);
@@ -301,7 +330,7 @@ class AdminBackofficeCMS {
       }
     });
 
-    // Enter key blur on single-line headings
+    // 4. Enter key blur on single-line headings
     document.addEventListener('keydown', (e) => {
       if (this.isLiveEditActive && e.target && e.target.hasAttribute && e.target.hasAttribute('data-cms-key')) {
         if (e.key === 'Enter' && !e.shiftKey && (e.target.tagName.startsWith('H') || e.target.classList.contains('hero-card-role'))) {
@@ -312,10 +341,21 @@ class AdminBackofficeCMS {
     });
   }
 
+  generateElementKey(el) {
+    if (el.id) return `cms_el_${el.id}`;
+    const section = el.closest('section');
+    const secId = section ? (section.id || 'sec') : 'page';
+    const tag = el.tagName.toLowerCase();
+    const list = Array.from((section || document.body).querySelectorAll(tag));
+    const idx = list.indexOf(el);
+    return `cms_${secId}_${tag}_${idx >= 0 ? idx : 0}`;
+  }
+
   saveElementText(el, showToastNotification = true) {
     const key = el.getAttribute('data-cms-key');
     if (!key) return;
 
+    // Sanitize: text content only, strip any illegal HTML tags
     const value = el.innerText.trim();
     this.textOverrides[key] = value;
 
@@ -325,20 +365,37 @@ class AdminBackofficeCMS {
       console.warn('[AdminCMS] Failed to save text override:', e);
     }
 
-    // Also synchronize corresponding data if it's profile field
+    // Synchronize corresponding data if it's profile field
     if (window.PORTFOLIO_DATA && window.PORTFOLIO_DATA.portfolio_owner) {
-      if (key === 'profile_name') {
-        window.PORTFOLIO_DATA.portfolio_owner.name = value;
-      } else if (key === 'profile_role') {
-        window.PORTFOLIO_DATA.portfolio_owner.title = value;
-      } else if (key === 'profile_location') {
-        window.PORTFOLIO_DATA.portfolio_owner.location = value;
+      const owner = window.PORTFOLIO_DATA.portfolio_owner;
+      let shouldSyncProfile = false;
+
+      if (key === 'profile_name' || key === 'about_name') {
+        owner.name = value;
+        shouldSyncProfile = true;
+      } else if (key === 'profile_role' || key === 'about_role') {
+        owner.title = value;
+        shouldSyncProfile = true;
+      } else if (key === 'profile_location' || key === 'about_city' || key === 'contact_location') {
+        owner.location = value;
+        shouldSyncProfile = true;
       } else if (key === 'hero_bio') {
-        window.PORTFOLIO_DATA.portfolio_owner.bio = value;
+        owner.bio = value;
+        shouldSyncProfile = true;
+      } else if (key === 'contact_phone') {
+        owner.phone = value;
+        shouldSyncProfile = true;
+      } else if (key === 'contact_email') {
+        owner.email = value;
+        shouldSyncProfile = true;
       }
-      try {
-        localStorage.setItem('portfolio_profile_data', JSON.stringify(window.PORTFOLIO_DATA.portfolio_owner));
-      } catch (e) {}
+
+      if (shouldSyncProfile) {
+        try {
+          localStorage.setItem('portfolio_profile_data', JSON.stringify(owner));
+        } catch (e) {}
+        this.applyProfileToDOM();
+      }
     }
 
     if (showToastNotification) {
@@ -355,7 +412,26 @@ class AdminBackofficeCMS {
       const value = this.textOverrides[key];
       const elements = document.querySelectorAll(`[data-cms-key="${key}"]`);
       elements.forEach(el => {
-        el.innerText = value;
+        // Special case: if key is hero_greeting on H1, preserve typewriter wrapper
+        if (key === 'hero_greeting' && el.tagName === 'H1') {
+          const textSpan = el.querySelector('.hero-greeting-text');
+          if (textSpan) {
+            textSpan.innerText = value;
+          } else {
+            // Check if there is typewriter
+            const tw = el.querySelector('.typewriter-wrapper');
+            if (tw) {
+              const cloneTw = tw.cloneNode(true);
+              el.innerText = value;
+              el.appendChild(document.createElement('br'));
+              el.appendChild(cloneTw);
+            } else {
+              el.innerText = value;
+            }
+          }
+        } else {
+          el.innerText = value;
+        }
       });
     });
   }
@@ -479,53 +555,101 @@ class AdminBackofficeCMS {
     const owner = window.PORTFOLIO_DATA && window.PORTFOLIO_DATA.portfolio_owner;
     if (!owner) return;
 
-    // 1. Hero Card Profile Name, Role, Location, Avatar
-    const nameEls = document.querySelectorAll('#hero-profile-name, [data-cms-key="profile_name"]');
-    nameEls.forEach(el => el.textContent = owner.name);
+    // 1. Profile Name (Hero, About, Footer)
+    if (owner.name) {
+      const nameEls = document.querySelectorAll('#hero-profile-name, #about-profile-name, [data-cms-key="profile_name"], [data-cms-key="about_name"]');
+      nameEls.forEach(el => el.textContent = owner.name);
 
-    const roleEls = document.querySelectorAll('#hero-profile-role, [data-cms-key="profile_role"]');
-    roleEls.forEach(el => el.textContent = owner.title);
+      const footerCopy = document.querySelector('[data-cms-key="footer_copyright"], .footer-bottom div:first-child');
+      if (footerCopy) {
+        footerCopy.innerHTML = `Copyright &copy; 2026 ${owner.name}. All rights reserved.`;
+      }
+    }
 
-    const locEls = document.querySelectorAll('#hero-profile-location span, [data-cms-key="profile_location"]');
-    locEls.forEach(el => el.textContent = owner.location);
+    // 2. Profile Role / Title (Hero, About)
+    if (owner.title) {
+      const roleEls = document.querySelectorAll('#hero-profile-role, #about-profile-role, [data-cms-key="profile_role"], [data-cms-key="about_role"]');
+      roleEls.forEach(el => el.textContent = owner.title);
+    }
 
+    // 3. Location (Hero, About, Contact)
+    if (owner.location) {
+      const locEls = document.querySelectorAll('#hero-profile-location span, [data-cms-key="profile_location"], [data-cms-key="about_city"], [data-cms-key="contact_location"], .contact-location-val');
+      locEls.forEach(el => el.textContent = owner.location);
+    }
+
+    // 4. Avatar Images (Hero, About)
     if (owner.avatar) {
-      const avatarImgs = document.querySelectorAll('#hero-profile-avatar, .hero-avatar-glow-ring img, .about-avatar-wrapper img');
+      const avatarImgs = document.querySelectorAll('#hero-profile-avatar, #about-profile-avatar, .hero-avatar-glow-ring img, .about-avatar-wrapper img');
       avatarImgs.forEach(img => {
         img.src = owner.avatar;
       });
     }
 
-    // 2. Hero Bio
+    // 5. Bio
     if (owner.bio) {
       const bioEls = document.querySelectorAll('.hero-bio, [data-cms-key="hero_bio"]');
       bioEls.forEach(el => el.textContent = owner.bio);
     }
 
-    // 3. Stats Numbers
+    // 6. Stats Numbers (Hero Card & About Grid Counters)
+    const projectsCount = owner.completed_projects || 38;
     const statProjects = document.getElementById('hero-stat-projects');
     if (statProjects) {
-      statProjects.setAttribute('data-target', owner.completed_projects || 38);
-      statProjects.textContent = owner.completed_projects || 38;
+      statProjects.setAttribute('data-target', projectsCount);
+      statProjects.textContent = projectsCount;
+    }
+    const aboutStatProjects = document.querySelector('.stats-counter-grid .stat-box:nth-child(1) .stat-number');
+    if (aboutStatProjects) {
+      aboutStatProjects.setAttribute('data-target', projectsCount);
+      aboutStatProjects.textContent = projectsCount;
     }
 
+    const yearsCount = owner.experience_years || 4;
     const statYears = document.getElementById('hero-stat-years');
     if (statYears) {
-      statYears.setAttribute('data-target', owner.experience_years || 4);
-      statYears.textContent = owner.experience_years || 4;
+      statYears.setAttribute('data-target', yearsCount);
+      statYears.textContent = yearsCount;
+    }
+    const aboutStatYears = document.querySelector('.stats-counter-grid .stat-box:nth-child(2) .stat-number');
+    if (aboutStatYears) {
+      aboutStatYears.setAttribute('data-target', yearsCount);
+      aboutStatYears.textContent = yearsCount;
     }
 
-    // 4. Contact Info
+    // 7. Contact Email
     if (owner.email) {
-      const emailLinks = document.querySelectorAll('a[href^="mailto:"]');
+      const emailLinks = document.querySelectorAll('a[href^="mailto:"], [data-cms-key="contact_email"]');
       emailLinks.forEach(link => {
-        link.href = `mailto:${owner.email}`;
+        if (link.tagName === 'A') link.href = `mailto:${owner.email}`;
         link.textContent = owner.email;
       });
     }
 
-    // 5. Restart Typewriter with updated roles
-    if (window.initTypewriter && Array.isArray(owner.roles)) {
+    // 8. Contact Phone
+    if (owner.phone) {
+      const cleanPhone = owner.phone.replace(/[\s-]/g, '');
+      const phoneLinks = document.querySelectorAll('a[href^="tel:"], [data-cms-key="contact_phone"]');
+      phoneLinks.forEach(link => {
+        if (link.tagName === 'A') link.href = `tel:${cleanPhone}`;
+        link.textContent = owner.phone;
+      });
+    }
+
+    // 9. Social Media Links
+    if (owner.social) {
+      if (owner.social.github) {
+        const ghLinks = document.querySelectorAll('a[href*="github.com"]:not([class*="admin"])');
+        ghLinks.forEach(l => l.href = owner.social.github);
+      }
+      if (owner.social.linkedin) {
+        const inLinks = document.querySelectorAll('a[href*="linkedin.com"]:not([class*="admin"])');
+        inLinks.forEach(l => l.href = owner.social.linkedin);
+      }
+    }
+
+    // 10. Restart Typewriter safely with updated roles
+    if (typeof window.initTypewriter === 'function') {
       window.initTypewriter();
     }
   }
@@ -680,7 +804,8 @@ class AdminBackofficeCMS {
       setVal('proj-tech', Array.isArray(proj.tech_stack) ? proj.tech_stack.join(', ') : '');
       setVal('proj-features', Array.isArray(proj.features) ? proj.features.join('\n') : '');
       setVal('proj-github', proj.github_url || '');
-      setVal('proj-demo', proj.demo_url || '');
+      setVal('proj-demo', proj.live_url || proj.demo_url || '');
+      setVal('proj-screenshots', Array.isArray(proj.screenshots) ? proj.screenshots.join('\n') : (proj.thumbnail || ''));
     } else {
       // Create New Project Mode
       if (formTitle) formTitle.innerHTML = `<i data-lucide="plus-circle"></i> เพิ่มโปรเจคใหม่ (New Project)`;
@@ -690,6 +815,7 @@ class AdminBackofficeCMS {
       setVal('proj-desc-short', '');
       setVal('proj-desc-full', '');
       setVal('proj-thumb', 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=800&q=80');
+      setVal('proj-screenshots', '');
       setVal('proj-video', '');
       setVal('proj-tech', 'React, TypeScript, Tailwind CSS');
       setVal('proj-features', 'ระบบทำงานแบบ Real-time High Performance\nดีไซน์ล้ำสมัย Cyberpunk UX/UI\nรองรับ Responsive ทุกหน้าจอ 100%');
@@ -726,19 +852,27 @@ class AdminBackofficeCMS {
     const featuresRaw = getVal('proj-features');
     const featuresArray = featuresRaw ? featuresRaw.split('\n').map(f => f.trim()).filter(Boolean) : ['Complete Feature Set'];
 
+    const demoUrl = getVal('proj-demo') || '#';
+    const thumbUrl = getVal('proj-thumb') || 'assets/icons/favicon.svg';
+
+    const screenshotsRaw = getVal('proj-screenshots');
+    const screenshotsList = screenshotsRaw ? screenshotsRaw.split('\n').map(s => s.trim()).filter(Boolean) : [];
+    const finalScreenshots = screenshotsList.length > 0 ? screenshotsList : [thumbUrl];
+
     const projectData = {
       title,
       category: getVal('proj-category') || 'Web App',
       status: getVal('proj-status') || 'completed',
       description_short: getVal('proj-desc-short'),
       description_full: getVal('proj-desc-full') || getVal('proj-desc-short'),
-      thumbnail: getVal('proj-thumb') || 'assets/icons/favicon.svg',
+      thumbnail: thumbUrl,
       video_url: getVal('proj-video'),
       tech_stack: techArray,
       features: featuresArray,
       github_url: getVal('proj-github') || '#',
-      demo_url: getVal('proj-demo') || '#',
-      screenshots: [getVal('proj-thumb')]
+      demo_url: demoUrl,
+      live_url: demoUrl,
+      screenshots: finalScreenshots
     };
 
     let projects = (window.projectsApp && window.projectsApp.projects) || (window.PORTFOLIO_DATA && window.PORTFOLIO_DATA.projects) || [];
@@ -832,10 +966,16 @@ class AdminBackofficeCMS {
   }
 
   exportJson() {
-    const projects = (window.projectsApp && window.projectsApp.projects) || (window.PORTFOLIO_DATA && window.PORTFOLIO_DATA.projects) || [];
+    const rawProjects = (window.projectsApp && window.projectsApp.projects) || (window.PORTFOLIO_DATA && window.PORTFOLIO_DATA.projects) || [];
     const owner = (window.PORTFOLIO_DATA && window.PORTFOLIO_DATA.portfolio_owner) || {};
     const skills = (window.PORTFOLIO_DATA && window.PORTFOLIO_DATA.skills) || [];
     const timeline = (window.PORTFOLIO_DATA && window.PORTFOLIO_DATA.timeline) || [];
+
+    // Ensure both live_url and demo_url are present for 100% interoperability
+    const projects = rawProjects.map(p => {
+      const url = p.live_url || p.demo_url || '#';
+      return Object.assign({}, p, { live_url: url, demo_url: url });
+    });
 
     const exportPayload = {
       portfolio_owner: owner,
@@ -869,27 +1009,50 @@ class AdminBackofficeCMS {
     reader.onload = (event) => {
       try {
         const importedData = JSON.parse(event.target.result);
-        if (!importedData) throw new Error('ไฟล์ JSON ว่างเปล่า');
+        if (!importedData || (typeof importedData !== 'object' && !Array.isArray(importedData))) {
+          throw new Error('ไฟล์ JSON ว่างเปล่าหรือรูปแบบไม่ถูกต้อง');
+        }
 
-        // 1. Projects
-        if (Array.isArray(importedData.projects)) {
-          window.PORTFOLIO_DATA.projects = importedData.projects;
-          if (window.projectsApp) window.projectsApp.projects = importedData.projects;
-          localStorage.setItem('portfolio_projects_data', JSON.stringify(importedData.projects));
+        let hasRecognizedData = false;
+
+        // 1. Projects: Handle both wrapped { projects: [...] } and raw array [ ... ]
+        let projectsToImport = null;
+        if (Array.isArray(importedData)) {
+          projectsToImport = importedData;
+        } else if (Array.isArray(importedData.projects)) {
+          projectsToImport = importedData.projects;
+        }
+
+        if (projectsToImport) {
+          // Normalize live_url and demo_url
+          const normalized = projectsToImport.map(p => {
+            const url = p.live_url || p.demo_url || '#';
+            return Object.assign({}, p, { live_url: url, demo_url: url });
+          });
+          window.PORTFOLIO_DATA.projects = normalized;
+          if (window.projectsApp) window.projectsApp.projects = normalized;
+          localStorage.setItem('portfolio_projects_data', JSON.stringify(normalized));
+          hasRecognizedData = true;
         }
 
         // 2. Profile
-        if (importedData.portfolio_owner) {
+        if (importedData && importedData.portfolio_owner && typeof importedData.portfolio_owner === 'object') {
           window.PORTFOLIO_DATA.portfolio_owner = Object.assign({}, window.PORTFOLIO_DATA.portfolio_owner, importedData.portfolio_owner);
           localStorage.setItem('portfolio_profile_data', JSON.stringify(window.PORTFOLIO_DATA.portfolio_owner));
           this.applyProfileToDOM();
+          hasRecognizedData = true;
         }
 
         // 3. Text Overrides
-        if (importedData.text_overrides && typeof importedData.text_overrides === 'object') {
+        if (importedData && importedData.text_overrides && typeof importedData.text_overrides === 'object') {
           this.textOverrides = importedData.text_overrides;
           localStorage.setItem('portfolio_text_overrides', JSON.stringify(this.textOverrides));
           this.applyTextOverridesToDOM();
+          hasRecognizedData = true;
+        }
+
+        if (!hasRecognizedData) {
+          throw new Error('ไม่พบข้อมูลโปรเจคหรือโปรไฟล์ที่รองรับในไฟล์ JSON');
         }
 
         // Re-render
@@ -903,7 +1066,7 @@ class AdminBackofficeCMS {
       } catch (err) {
         console.error('[AdminCMS] Import JSON Error:', err);
         window.soundFx?.error?.();
-        window.showToast?.('เกิดข้อผิดพลาดในการอ่านไฟล์ JSON: รูปแบบไม่ถูกต้อง', 'error', 'alert-triangle');
+        window.showToast?.(`เกิดข้อผิดพลาดในการนำเข้าไฟล์ JSON: ${err.message || 'รูปแบบไม่ถูกต้อง'}`, 'error', 'alert-triangle');
       } finally {
         e.target.value = ''; // reset file input
       }

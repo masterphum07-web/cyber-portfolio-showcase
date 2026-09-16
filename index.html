@@ -150,8 +150,8 @@
             <span data-cms-key="hero_badge">พร้อมรับโปรเจคใหม่ &amp; ร่วมงานทันที</span>
           </div>
 
-          <h1 class="hero-greeting" data-cms-key="hero_greeting">
-            สวัสดีครับ, ผมคือ <span class="gradient-text">กฤษณะ</span><br />
+          <h1 class="hero-greeting">
+            <span class="hero-greeting-text" data-cms-key="hero_greeting">สวัสดีครับ, ผมคือ <span class="gradient-text">กฤษณะ</span></span><br />
             <div class="typewriter-wrapper">
               <span class="typewriter-text" id="typewriter-text"></span>
             </div>
@@ -269,7 +269,7 @@
     <div class="container">
       <div class="section-header reveal">
         <span class="section-tag"><i data-lucide="user"></i> About Me</span>
-        <h2 class="section-title">เกี่ยวกับ<span class="gradient-text">ตัวผม</span></h2>
+        <h2 class="section-title" data-cms-key="about_title">เกี่ยวกับ<span class="gradient-text">ตัวผม</span></h2>
         <p class="section-subtitle" data-cms-key="about_subtitle">
           ทำความรู้จักตัวตน ประสบการณ์ และแรงบันดาลใจในการสร้างสรรค์ผลงานด้านซอฟต์แวร์
         </p>
@@ -479,7 +479,7 @@
     <div class="container">
       <div class="section-header reveal">
         <span class="section-tag"><i data-lucide="briefcase"></i> Featured Projects</span>
-        <h2 class="section-title">ผลงาน<span class="gradient-text">โปรเจคที่โดดเด่น</span></h2>
+        <h2 class="section-title" data-cms-key="projects_title">ผลงาน<span class="gradient-text">โปรเจคที่โดดเด่น</span></h2>
         <p class="section-subtitle" data-cms-key="projects_subtitle">
           รวมผลงานจริงที่ครอบคลุมทั้ง Web App, Mobile App, AI/ML, Game และ Developer Tools
         </p>
@@ -574,7 +574,7 @@
     <div class="container">
       <div class="section-header reveal">
         <span class="section-tag"><i data-lucide="cpu"></i> Technologies</span>
-        <h2 class="section-title">เทคโนโลยี<span class="gradient-text">ที่เชี่ยวชาญ</span></h2>
+        <h2 class="section-title" data-cms-key="skills_title">เทคโนโลยี<span class="gradient-text">ที่เชี่ยวชาญ</span></h2>
         <p class="section-subtitle" data-cms-key="skills_subtitle">
           เครื่องมือและสแต็กเทคโนโลยีสมัยใหม่ที่เลือกใช้เพื่อความเร็ว ความปลอดภัย และประสิทธิภาพสูงสุด
         </p>
@@ -722,7 +722,7 @@
     <div class="container">
       <div class="section-header reveal">
         <span class="section-tag"><i data-lucide="message-square"></i> Testimonials</span>
-        <h2 class="section-title">เสียงตอบรับ<span class="gradient-text">จากผู้ร่วมงาน</span></h2>
+        <h2 class="section-title" data-cms-key="testimonials_title">เสียงตอบรับ<span class="gradient-text">จากผู้ร่วมงาน</span></h2>
         <p class="section-subtitle" data-cms-key="testimonials_subtitle">
           ความคิดเห็นและความประทับใจจากลูกค้า, หัวหน้าทีม และพาร์ตเนอร์ที่เคยร่วมงานกัน
         </p>
@@ -864,7 +864,7 @@
     <div class="container">
       <div class="section-header reveal">
         <span class="section-tag"><i data-lucide="book-open"></i> Insights &amp; Articles</span>
-        <h2 class="section-title">บทความ<span class="gradient-text">และองค์ความรู้</span></h2>
+        <h2 class="section-title" data-cms-key="articles_title">บทความ<span class="gradient-text">และองค์ความรู้</span></h2>
         <p class="section-subtitle" data-cms-key="articles_subtitle">
           แบ่งปันประสบการณ์ แนวคิดสถาปัตยกรรมระบบ และเทคนิคการเขียนโค้ดสำหรับนักพัฒนา
         </p>
@@ -947,7 +947,7 @@
     <div class="container">
       <div class="section-header reveal">
         <span class="section-tag"><i data-lucide="mail"></i> Get In Touch</span>
-        <h2 class="section-title">ติดต่อ<span class="gradient-text">และร่วมงานกัน</span></h2>
+        <h2 class="section-title" data-cms-key="contact_title">ติดต่อ<span class="gradient-text">และร่วมงานกัน</span></h2>
         <p class="section-subtitle" data-cms-key="contact_subtitle">
           มีโปรเจคที่ต้องการพัฒนา หรือสนใจร่วมงาน สามารถส่งข้อความหรือติดต่อผ่านช่องทางด้านล่างได้ตลอดเวลาครับ
         </p>
@@ -1017,7 +1017,7 @@
                 </div>
                 <div>
                   <div class="contact-item-title">เบอร์โทรศัพท์ (Phone)</div>
-                  <a href="tel:+66812345678" class="contact-item-val">
+                  <a href="tel:+66812345678" class="contact-item-val" data-cms-key="contact_phone">
                     +66 81 234 5678
                   </a>
                 </div>
@@ -1029,7 +1029,7 @@
                 </div>
                 <div>
                   <div class="contact-item-title">สถานที่ทำงาน</div>
-                  <div class="contact-item-val">
+                  <div class="contact-item-val contact-location-val" data-cms-key="contact_location">
                     กรุงเทพมหานคร, ประเทศไทย (On-site &amp; Remote)
                   </div>
                 </div>
@@ -1098,10 +1098,10 @@
       </div>
 
       <div class="footer-bottom">
-        <div>
+        <div data-cms-key="footer_copyright">
           Copyright &copy; 2026 กฤษณะ เกียรติอนันต์. All rights reserved.
         </div>
-        <div>
+        <div data-cms-key="footer_tagline">
           Made with <span style="color: var(--neon-pink);">❤️</span> and lots of <span style="color: #ffaa00;">☕</span>
         </div>
       </div>
@@ -1348,6 +1348,11 @@
           <div class="admin-form-group">
             <label for="proj-video" class="admin-form-label">วิดีโอเดโม (YouTube/Vimeo Embed URL)</label>
             <input type="url" id="proj-video" class="admin-form-input" placeholder="https://www.youtube.com/watch?v=..." />
+          </div>
+
+          <div class="admin-form-group span-2">
+            <label for="proj-screenshots" class="admin-form-label">รูปภาพแกลเลอรีเพิ่มเติม (Screenshots Gallery, บรรทัดละ 1 URL)</label>
+            <textarea id="proj-screenshots" class="admin-form-textarea" rows="2" placeholder="https://images.unsplash.com/...&#10;https://images.unsplash.com/..."></textarea>
           </div>
 
           <div class="admin-form-group span-2">

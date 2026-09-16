@@ -79,7 +79,7 @@ class ThreeHeroScene {
       const height = this.container ? this.container.clientHeight : (this.canvas.clientHeight || 440);
       const aspect = width / height;
       this.camera = new THREE.PerspectiveCamera(45, aspect, 0.1, 100);
-      this.camera.position.z = 6.2;
+      this.camera.position.z = 7.0;
 
       // 3. WebGL Renderer
       this.renderer = new THREE.WebGLRenderer({

@@ -407,11 +407,18 @@ function initCustomCursor() {
 /* ═══════════════════════════════════════════════════════════
    5. TYPEWRITER ANIMATION (HERO SECTION)
    ═══════════════════════════════════════════════════════════ */
+let typewriterTimeout = null;
+
 function initTypewriter() {
+  if (typewriterTimeout) {
+    clearTimeout(typewriterTimeout);
+    typewriterTimeout = null;
+  }
+
   const target = document.getElementById('typewriter-text');
   if (!target) return;
 
-  const roles = (window.PORTFOLIO_DATA && window.PORTFOLIO_DATA.portfolio_owner.roles) || [
+  const roles = (window.PORTFOLIO_DATA && window.PORTFOLIO_DATA.portfolio_owner && window.PORTFOLIO_DATA.portfolio_owner.roles) || [
     "Full-Stack Developer",
     "Creative Coder & 3D Web",
     "AI & Cloud Architect",
@@ -424,7 +431,8 @@ function initTypewriter() {
   let typingSpeed = 100;
 
   function typeLoop() {
-    const currentRole = roles[roleIdx];
+    if (!target) return;
+    const currentRole = roles[roleIdx] || "Full-Stack Developer";
 
     if (isDeleting) {
       target.textContent = currentRole.substring(0, charIdx - 1);
@@ -445,11 +453,13 @@ function initTypewriter() {
       typingSpeed = 380;
     }
 
-    setTimeout(typeLoop, typingSpeed);
+    typewriterTimeout = setTimeout(typeLoop, typingSpeed);
   }
 
   typeLoop();
 }
+
+window.initTypewriter = initTypewriter;
 
 /* ═══════════════════════════════════════════════════════════
    6. SCROLL REVEAL & STATS COUNTER

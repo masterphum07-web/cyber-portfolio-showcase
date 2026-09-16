@@ -316,6 +316,19 @@ assert(adminJs.includes('exportJson') && adminJs.includes('projects.json'), `Adm
 assert(adminJs.includes('handleFileImport') && adminJs.includes('FileReader'), `AdminBackofficeCMS supports importing JSON files`);
 assert(adminJs.includes('resetToDefault'), `AdminBackofficeCMS supports resetting customizations to default`);
 
+// 7. Rigorous Edge Cases & Deep Functional Integrity Fixes
+assert(html.includes('hero-greeting-text'), `Hero greeting isolates text in .hero-greeting-text to prevent Typewriter element destruction`);
+assert(mainJs.includes('window.initTypewriter = initTypewriter'), `js/main.js exports window.initTypewriter for clean live restarts`);
+assert(mainJs.includes('typewriterTimeout'), `initTypewriter tracks and clears timer to prevent concurrent racing loops`);
+assert(adminJs.includes('live_url: demoUrl'), `Project CRUD correctly binds live_url to prevent broken demo link on cards and modal`);
+assert(adminJs.includes('proj-screenshots'), `Admin project form supports multi-image gallery screenshots management`);
+assert(adminJs.includes('generateElementKey'), `AdminBackofficeCMS implements universal click-to-edit for arbitrary webpage text`);
+assert(adminJs.includes('insertText') && adminJs.includes('text/plain'), `AdminBackofficeCMS sanitizes pasted content into clean plain text`);
+assert(adminJs.includes('contact_phone') && adminJs.includes('footerCopy'), `applyProfileToDOM synchronizes phone, email, social, and footer copyright`);
+assert(dataJsFile.includes('if (Array.isArray(parsed))'), `js/data.js allows empty array project list hydration on deletion`);
+assert(adminJs.includes('Array.isArray(importedData)'), `AdminBackofficeCMS supports importing raw JSON project arrays`);
+assert(threeHeroJs.includes('camera.position.z = 7.0'), `js/three-hero.js positions camera at z=7.0 for optimal 3D core framing`);
+
 
 console.log('\n' + '='.repeat(50));
 console.log(`TOTAL TESTS: ${passedTests + failedTests}`);

@@ -404,7 +404,7 @@ if (typeof window !== 'undefined') {
       const savedProjects = localStorage.getItem('portfolio_projects_data');
       if (savedProjects) {
         const parsed = JSON.parse(savedProjects);
-        if (Array.isArray(parsed) && parsed.length > 0) {
+        if (Array.isArray(parsed)) {
           window.PORTFOLIO_DATA.projects = parsed;
         }
       }
@@ -412,7 +412,7 @@ if (typeof window !== 'undefined') {
       const savedProfile = localStorage.getItem('portfolio_profile_data');
       if (savedProfile) {
         const parsedProf = JSON.parse(savedProfile);
-        if (parsedProf && parsedProf.name) {
+        if (parsedProf && typeof parsedProf === 'object') {
           window.PORTFOLIO_DATA.portfolio_owner = Object.assign({}, window.PORTFOLIO_DATA.portfolio_owner, parsedProf);
         }
       }
