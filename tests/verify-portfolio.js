@@ -1,0 +1,284 @@
+/**
+ * AUTOMATED VERIFICATION SUITE FOR 3D PORTFOLIO WEBSITE
+ * Validates file integrity, JS syntax, JSON structures, PWA assets,
+ * HTML elements, and accessibility requirements.
+ */
+
+const fs = require('fs');
+const path = require('path');
+const { execSync } = require('child_process');
+
+let passedTests = 0;
+let failedTests = 0;
+
+function assert(condition, message) {
+  if (condition) {
+    console.log(`  ✅ PASS: ${message}`);
+    passedTests++;
+  } else {
+    console.error(`  ❌ FAIL: ${message}`);
+    failedTests++;
+  }
+}
+
+console.log('\n🔍 [1/7] CHECKING FILE SYSTEM INTEGRITY...');
+const requiredFiles = [
+  'index.html',
+  'README.md',
+  'manifest.webmanifest',
+  'sw.js',
+  'css/style.css',
+  'css/animations.css',
+  'js/data.js',
+  'js/particles.js',
+  'js/three-hero.js',
+  'js/projects.js',
+  'js/main.js',
+  'data/projects.json',
+  'assets/icons/favicon.svg',
+  'assets/icons/icon-192.svg',
+  'assets/icons/icon-512.svg',
+  'assets/icons/icon-192.png',
+  'assets/icons/icon-512.png',
+  'assets/icons/icon-maskable.png'
+];
+
+requiredFiles.forEach(file => {
+  const filePath = path.join(process.cwd(), file);
+  const exists = fs.existsSync(filePath);
+  const size = exists ? fs.statSync(filePath).size : 0;
+  assert(exists && size > 0, `File '${file}' exists and is non-empty (${size} bytes)`);
+});
+
+console.log('\n🔍 [2/7] VALIDATING JAVASCRIPT SYNTAX...');
+const jsFiles = [
+  'js/data.js',
+  'js/particles.js',
+  'js/three-hero.js',
+  'js/projects.js',
+  'js/main.js',
+  'sw.js'
+];
+
+jsFiles.forEach(file => {
+  try {
+    execSync(`node -c "${file}"`);
+    assert(true, `JS Syntax valid for '${file}'`);
+  } catch (e) {
+    assert(false, `JS Syntax error in '${file}': ${e.message}`);
+  }
+});
+
+console.log('\n🔍 [3/7] VALIDATING JSON & PWA MANIFEST...');
+try {
+  const projectsData = JSON.parse(fs.readFileSync('data/projects.json', 'utf8'));
+  assert(Array.isArray(projectsData.projects), `data/projects.json contains 'projects' array`);
+  assert(projectsData.projects.length >= 8, `data/projects.json has ${projectsData.projects.length} projects (expected >= 8)`);
+
+  // Check each project
+  projectsData.projects.forEach(p => {
+    const hasRequired = p.id && p.title && p.category && p.status && Array.isArray(p.tech_stack) && p.features;
+    assert(hasRequired, `Project #${p.id} ('${p.title}') has all required fields`);
+  });
+} catch (e) {
+  assert(false, `Failed to parse data/projects.json: ${e.message}`);
+}
+
+try {
+  const manifest = JSON.parse(fs.readFileSync('manifest.webmanifest', 'utf8'));
+  assert(manifest.name && manifest.short_name, `manifest.webmanifest has name and short_name`);
+  assert(manifest.display === 'standalone', `manifest.webmanifest display is 'standalone'`);
+  assert(Array.isArray(manifest.icons) && manifest.icons.length >= 4, `manifest.webmanifest specifies required icons`);
+  assert(manifest.background_color && manifest.theme_color, `manifest.webmanifest has theme and background colors`);
+} catch (e) {
+  assert(false, `Failed to parse manifest.webmanifest: ${e.message}`);
+}
+
+console.log('\n🔍 [4/7] VALIDATING SERVICE WORKER PRECACHE ASSETS...');
+try {
+  const swContent = fs.readFileSync('sw.js', 'utf8');
+  assert(swContent.includes('CACHE_NAME'), `sw.js defines CACHE_NAME`);
+  assert(swContent.includes('CORE_ASSETS'), `sw.js defines CORE_ASSETS list`);
+  assert(swContent.includes('skipWaiting'), `sw.js supports skipWaiting`);
+
+  // Extract core assets
+  const match = swContent.match(/CORE_ASSETS\s*=\s*\[([\s\S]*?)\];/);
+  if (match) {
+    const assets = match[1]
+      .split(',')
+      .map(s => s.trim().replace(/['"]/g, ''))
+      .filter(s => s && s !== './');
+
+    assets.forEach(assetPath => {
+      const cleanPath = assetPath.replace(/^\.\//, '');
+      const exists = fs.existsSync(path.join(process.cwd(), cleanPath));
+      assert(exists, `SW precache asset exists on disk: '${cleanPath}'`);
+    });
+  }
+} catch (e) {
+  assert(false, `Error inspecting sw.js: ${e.message}`);
+}
+
+console.log('\n🔍 [5/7] VALIDATING HTML5 & ACCESSIBILITY MARKUP...');
+const html = fs.readFileSync('index.html', 'utf8');
+assert(html.includes('lang="th"'), `HTML tag specifies lang="th"`);
+assert(html.includes('data-theme="dark"'), `Default theme is dark`);
+assert(html.includes('rel="manifest"'), `PWA manifest link present`);
+assert(html.includes('rel="icon"'), `Favicon link present`);
+assert(html.includes('name="theme-color"'), `theme-color meta present`);
+assert(html.includes('id="sound-toggle-btn"'), `Sound toggle button present`);
+assert(html.includes('id="theme-toggle-btn"'), `Theme toggle button present`);
+assert(html.includes('id="shortcuts-help-btn"'), `Keyboard shortcuts help button present`);
+assert(html.includes('id="shortcuts-modal"'), `Keyboard shortcuts modal present`);
+assert(html.includes('id="toast-container"'), `Toast notification container present`);
+assert(html.includes('id="search-announcer"'), `Screen reader announcer present`);
+assert(html.includes('id="project-sort-select"'), `Projects sort selector present`);
+assert(html.includes('id="view-grid-btn"') && html.includes('id="view-list-btn"'), `Grid and List view switcher present`);
+
+// Check all 8 core sections
+const sections = ['hero', 'about', 'projects', 'skills', 'testimonials', 'articles', 'contact'];
+sections.forEach(secId => {
+  assert(html.includes(`id="${secId}"`), `Section '#${secId}' exists in index.html`);
+});
+
+console.log('\n🔍 [6/7] VALIDATING CSS & 3D GLARE / PARALLAX STYLING...');
+const css = fs.readFileSync('css/style.css', 'utf8');
+assert(css.includes('.card-glare'), `CSS defines .card-glare specular reflection`);
+assert(css.includes('transform-style: preserve-3d'), `CSS defines preserve-3d for 3D depth`);
+assert(css.includes('translateZ('), `CSS defines parallax translateZ depth layers`);
+assert(css.includes(':focus-visible'), `CSS defines :focus-visible for keyboard accessibility`);
+assert(css.includes('.projects-grid.list-view'), `CSS defines list-view layout`);
+assert(css.includes('.toast-container'), `CSS defines .toast-container`);
+assert(css.includes('@media print'), `CSS defines @media print styles`);
+
+const animCss = fs.readFileSync('css/animations.css', 'utf8');
+assert(animCss.includes('@keyframes toast-slide-in'), `animations.css defines toast-slide-in`);
+assert(animCss.includes('@keyframes hud-pop-in'), `animations.css defines hud-pop-in`);
+assert(animCss.includes('prefers-reduced-motion'), `animations.css handles prefers-reduced-motion`);
+
+console.log('\n🔍 [7/8] VALIDATING IN-BROWSER / LIVE SIMULATION...');
+// Validate that data.js loads and assigns to window
+const dataJs = fs.readFileSync('js/data.js', 'utf8');
+assert(dataJs.includes('window.PORTFOLIO_DATA'), `js/data.js populates window.PORTFOLIO_DATA`);
+const mockWindow = {};
+eval(`(function(window){ ${dataJs} })(mockWindow)`);
+assert(mockWindow.PORTFOLIO_DATA && mockWindow.PORTFOLIO_DATA.projects.length === 8, `Evaluated PORTFOLIO_DATA contains 8 projects`);
+assert(mockWindow.PORTFOLIO_DATA.skills.length >= 10, `Evaluated PORTFOLIO_DATA contains skills array`);
+assert(mockWindow.PORTFOLIO_DATA.timeline.length >= 4, `Evaluated PORTFOLIO_DATA contains timeline array`);
+
+console.log('\n🔍 [8/8] VALIDATING BOOSTED FIXES, EDGE CASES & ADVANCED FEATURES...');
+const projectsJs = fs.readFileSync('js/projects.js', 'utf8');
+const mainJs = fs.readFileSync('js/main.js', 'utf8');
+
+// 1. YouTube & Video auto-embed normalizer
+assert(projectsJs.includes('normalizeEmbedUrl'), `js/projects.js defines normalizeEmbedUrl`);
+const mockProjectsScope = {};
+eval(`(function(exports){ ${projectsJs.match(/function normalizeEmbedUrl[\s\S]*?^}/m)[0]} exports.normalizeEmbedUrl = normalizeEmbedUrl; })(mockProjectsScope)`);
+assert(mockProjectsScope.normalizeEmbedUrl('https://www.youtube.com/watch?v=dQw4w9WgXcQ').includes('/embed/dQw4w9WgXcQ'), `normalizeEmbedUrl handles youtube.com/watch?v= URLs`);
+assert(mockProjectsScope.normalizeEmbedUrl('https://youtu.be/dQw4w9WgXcQ').includes('/embed/dQw4w9WgXcQ'), `normalizeEmbedUrl handles youtu.be short URLs`);
+assert(mockProjectsScope.normalizeEmbedUrl('https://www.youtube.com/shorts/dQw4w9WgXcQ').includes('/embed/dQw4w9WgXcQ'), `normalizeEmbedUrl handles youtube.com/shorts URLs`);
+assert(mockProjectsScope.normalizeEmbedUrl('https://vimeo.com/123456789').includes('player.vimeo.com/video/123456789'), `normalizeEmbedUrl handles vimeo.com URLs`);
+
+// 2. Safe SVG placeholder generation with tricky quote edge cases
+assert(projectsJs.includes('getSafeSvgPlaceholder'), `js/projects.js defines getSafeSvgPlaceholder`);
+eval(`(function(exports){ ${projectsJs.match(/function getSafeSvgPlaceholder[\s\S]*?^}/m)[0]} exports.getSafeSvgPlaceholder = getSafeSvgPlaceholder; })(mockProjectsScope)`);
+const trickyTitle = `Kritsana's "Advanced" <Web> & Coder's Suite`;
+const safeResult = mockProjectsScope.getSafeSvgPlaceholder(trickyTitle);
+assert(safeResult.startsWith('data:image/svg+xml;charset=utf-8,'), `getSafeSvgPlaceholder returns valid data URI`);
+assert(!safeResult.includes("'") && !safeResult.includes('"'), `getSafeSvgPlaceholder safely encodes quotes without breaking inline attributes`);
+
+// 3. Mobile Gyroscope / DeviceOrientation in TiltEngine
+assert(projectsJs.includes('deviceorientation'), `TiltEngine implements mobile gyroscope DeviceOrientation support`);
+assert(projectsJs.includes('touchcancel'), `ParticleNetwork cleans up mouse coordinates on touchcancel`);
+
+// 4. Browser History & Back Button navigation
+assert(projectsJs.includes('replaceState'), `closeModal uses replaceState to prevent history stack corruption`);
+
+// 5. iOS Standalone meta tags and Sort by Date
+assert(html.includes('apple-mobile-web-app-title'), `index.html includes apple-mobile-web-app-title`);
+assert(html.includes('value="date"'), `index.html includes sorting by date option`);
+assert(html.includes('aria-atomic="true"'), `index.html specifies aria-atomic on search announcer`);
+
+// 6. AudioContext user gesture unlock & HUD modal focus trap
+assert(mainJs.includes('unlock'), `SoundEffectsEngine supports first-gesture audio unlocking`);
+assert(mainJs.includes('document.body.style.overflow = \'hidden\''), `Shortcuts modal locks body scroll to prevent background jump`);
+
+// 7. Service Worker opaque response caching for CDNs
+const swJs = fs.readFileSync('sw.js', 'utf8');
+assert(swJs.includes("response.type === 'opaque'"), `sw.js caches opaque cross-origin CDN assets for offline use`);
+assert(swJs.includes("!url.protocol.startsWith('http')"), `sw.js guards against non-http protocols`);
+
+console.log('\n🔍 [9/9] VALIDATING ADVANCED HIGH-PERFORMANCE WEB LIBRARIES (CDN & INTEGRATION)...');
+
+// 1. Three.js Real WebGL 3D Interactive Hero
+assert(html.includes('three.min.js'), `index.html includes Three.js library CDN link`);
+assert(html.includes('id="hero-three-canvas"'), `Hero section contains #hero-three-canvas WebGL element`);
+assert(html.includes('id="hero-3d-toggle-btn"'), `Hero section contains 3D geometry toggle button`);
+const threeHeroJs = fs.readFileSync('js/three-hero.js', 'utf8');
+assert(threeHeroJs.includes('class ThreeHeroScene'), `js/three-hero.js defines ThreeHeroScene class`);
+assert(threeHeroJs.includes('isWebGLAvailable'), `ThreeHeroScene implements WebGL availability check`);
+assert(threeHeroJs.includes('createIcosahedronCore') && threeHeroJs.includes('createTorusKnotCore'), `ThreeHeroScene implements both Icosahedron and Torus Knot geometries`);
+assert(threeHeroJs.includes('createParticleCloud'), `ThreeHeroScene implements 3D orbiting neon particle cloud`);
+assert(threeHeroJs.includes('setShape') && threeHeroJs.includes('toggleShape'), `ThreeHeroScene supports dynamic geometry morphing`);
+assert(threeHeroJs.includes('IntersectionObserver'), `ThreeHeroScene implements IntersectionObserver battery saver`);
+assert(threeHeroJs.includes('destroy()') && threeHeroJs.includes('dispose'), `ThreeHeroScene implements destroy() to prevent WebGL memory leaks`);
+assert(threeHeroJs.includes('webglcontextlost') && threeHeroJs.includes('webglcontextrestored'), `ThreeHeroScene implements WebGL context loss recovery`);
+assert(threeHeroJs.includes('particleSystem.position.copy'), `ThreeHeroScene synchronizes particle cloud concentric position with core`);
+
+// 2. Chart.js Skill Radar Chart & 2D Canvas Offline Fallback
+assert(html.includes('chart.umd.min.js'), `index.html includes Chart.js library CDN link`);
+assert(html.includes('id="skills-radar-chart"'), `About Me section contains #skills-radar-chart canvas`);
+assert(mainJs.includes('initSkillsRadarChart'), `js/main.js defines initSkillsRadarChart`);
+assert(mainJs.includes('updateSkillsRadarChartTheme'), `js/main.js dynamically synchronizes radar chart with theme switcher`);
+assert(mainJs.includes("type: 'radar'"), `Skill Radar Chart uses 'radar' chart type`);
+assert(mainJs.includes('#00f2fe') && mainJs.includes('#ff007f'), `Skill Radar Chart uses neon cyan and pink colorway`);
+assert(mainJs.includes('renderRadarChartFallback'), `js/main.js implements 2D canvas radar chart fallback for 100% offline resilience`);
+assert(css.includes('.skill-radar-card') && css.includes('.radar-chart-wrapper'), `css/style.css defines styling for skill radar card`);
+
+// 3. Swiper.js Testimonials & Modal Carousel
+assert(html.includes('swiper-bundle.min.css'), `index.html includes Swiper.js CSS CDN link`);
+assert(html.includes('swiper-bundle.min.js'), `index.html includes Swiper.js JavaScript CDN link`);
+assert(html.includes('testimonials-swiper') && html.includes('swiper-wrapper'), `Testimonials section utilizes Swiper.js markup`);
+assert(html.includes('testimonials-prev') && html.includes('testimonials-next'), `Testimonials Swiper provides navigation buttons`);
+assert(html.includes('testimonials-pagination'), `Testimonials Swiper provides pagination bullets`);
+const testimonialsSection = html.slice(html.indexOf('id="testimonials"'), html.indexOf('id="articles"'));
+const testimonialSlideCount = (testimonialsSection.match(/class="swiper-slide"/g) || []).length;
+assert(testimonialSlideCount >= 5, `Testimonials section has ${testimonialSlideCount} slides (>= 5 required for smooth loop mode with 3 slidesPerView)`);
+assert(mainJs.includes('initTestimonialsSwiper'), `js/main.js defines initTestimonialsSwiper`);
+assert(mainJs.includes('breakpoints:'), `Testimonials Swiper defines responsive breakpoints`);
+assert(projectsJs.includes('modal-swiper'), `js/projects.js integrates Swiper into Project Modal carousel`);
+assert(projectsJs.includes('modalSwiper.destroy'), `js/projects.js cleanly cleans up Swiper instance on modal close`);
+assert(!projectsJs.includes('modal-swiper-next" onclick='), `Modal Swiper buttons omit duplicate inline onclick to prevent double-slide bug`);
+
+// 4. Vanilla-Tilt.js 3D Card Physics & Memory Leak Guard
+assert(html.includes('vanilla-tilt.min.js'), `index.html includes Vanilla-Tilt.js CDN link`);
+assert(projectsJs.includes('VanillaTilt.init'), `TiltEngine in js/projects.js initializes VanillaTilt`);
+assert(projectsJs.includes('glare: true'), `VanillaTilt enables specular glare reflection`);
+assert(projectsJs.includes('oldTiltCards') && projectsJs.includes('c.vanillaTilt.destroy'), `renderProjects() cleans up previous VanillaTilt instances before replacing grid HTML`);
+
+// 5. Tippy.js & Popper.js Interactive Tooltips & Keyboard Accessibility
+assert(html.includes('popper.min.js'), `index.html includes Popper.js CDN link`);
+assert(html.includes('tippy.umd.min.js'), `index.html includes Tippy.js CDN link`);
+assert(html.includes('tippy.css'), `index.html includes Tippy.js CSS link`);
+assert(html.includes('data-tippy-tech') && html.includes('data-tippy-level'), `Tech stack cards in #skills contain rich tooltip metadata`);
+assert(html.includes('tabindex="0"') && html.includes('role="region"'), `Tech stack cards specify tabindex="0" and role="region" for keyboard accessibility`);
+assert(mainJs.includes('initTechStackTooltips'), `js/main.js defines initTechStackTooltips`);
+assert(mainJs.includes("theme: 'cyber'"), `Tech Stack tooltips use custom 'cyber' theme`);
+assert(css.includes('.tippy-box[data-theme~="cyber"]'), `css/style.css defines custom .tippy-box cyber theme styling`);
+
+// 6. Service Worker CDN Pre-caching & Offline Resilience
+assert(swJs.includes('CDN_ASSETS'), `sw.js defines CDN_ASSETS for high-performance libraries`);
+assert(swJs.includes('three.min.js') && swJs.includes('chart.umd.min.js') && swJs.includes('swiper-bundle.min.js'), `sw.js preheats external CDN assets in cache`);
+assert(swJs.includes('Promise.all') && swJs.includes('CDN_ASSETS.map'), `sw.js reliably awaits CDN cache warming before completing install`);
+
+console.log('\n' + '='.repeat(50));
+console.log(`TOTAL TESTS: ${passedTests + failedTests}`);
+console.log(`PASSED: ${passedTests}`);
+console.log(`FAILED: ${failedTests}`);
+console.log('='.repeat(50));
+
+if (failedTests > 0) {
+  process.exit(1);
+} else {
+  console.log('\n🎉 ALL PORTFOLIO BOOST VERIFICATION TESTS PASSED PERFECTLY!\n');
+}

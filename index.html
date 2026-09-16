@@ -1,0 +1,1164 @@
+<!DOCTYPE html>
+<html lang="th" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kritsana | Project Showcase Portfolio (3D & Interactive)</title>
+  
+  <!-- SEO & Open Graph Meta Tags -->
+  <meta name="description" content="เว็บไซต์ Portfolio สำหรับโชว์ผลงานโปรเจค Full-Stack Developer & Creative Coder พร้อมระบบ 3D Interactive, Glassmorphism และฟังก์ชันครบถ้วน" />
+  <meta name="keywords" content="Portfolio, Web Development, Full-Stack, React, Next.js, Three.js, Creative Coder, Project Showcase" />
+  <meta name="author" content="Kritsana Kiat-anan" />
+  <meta property="og:title" content="Kritsana | Project Showcase Portfolio" />
+  <meta property="og:description" content="พอร์ตโฟลิโอรวมผลงานโปรเจคด้าน Web App, Mobile App, AI/ML, Game และ Tools ในรูปแบบ 3D Interactive ล้ำสมัย" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://images.unsplash.com/photo-1556742049-0a67e5572293?auto=format&fit=crop&w=1200&q=80" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <!-- PWA & Mobile Web App Meta Tags -->
+  <link rel="manifest" href="manifest.webmanifest" />
+  <link rel="icon" type="image/svg+xml" href="assets/icons/favicon.svg" />
+  <link rel="apple-touch-icon" href="assets/icons/icon-192.png" />
+  <meta name="theme-color" content="#0a0a1a" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="Kritsana 3D" />
+
+  <!-- Google Fonts: Orbitron, Kanit, Inter, Sarabun -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Kanit:wght@300;400;500;600;700;800&family=Orbitron:wght@500;700;800;900&family=Sarabun:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Lucide Icons via CDN -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- Canvas Confetti via CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+
+  <!-- Swiper & Tippy CSS via CDN -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tippy.js@6/dist/tippy.css" />
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/animations.css" />
+
+  <!-- JSON-LD Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "กฤษณะ เกียรติอนันต์",
+    "jobTitle": "Full-Stack Developer & Creative Coder",
+    "url": "https://portfolio.example.com",
+    "sameAs": [
+      "https://github.com",
+      "https://linkedin.com"
+    ]
+  }
+  </script>
+</head>
+
+<body>
+  <!-- ═══════════════════════════════════════════════════════════
+       PRELOADER SCREEN
+       ═══════════════════════════════════════════════════════════ -->
+  <div id="preloader">
+    <div class="loader-logo gradient-text">&lt;KRITSANA.DEV /&gt;</div>
+    <div class="loader-bar-container">
+      <div class="loader-bar" id="loader-bar"></div>
+    </div>
+    <div class="loader-text" id="loader-text">INITIALIZING SYSTEM... 0%</div>
+  </div>
+
+  <!-- Custom Glowing Cursor (Desktop Only) -->
+  <div class="cursor-dot"></div>
+  <div class="cursor-ring"></div>
+
+  <!-- Interactive 3D Particle Canvas Background -->
+  <canvas id="particle-canvas"></canvas>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       NAVIGATION BAR
+       ═══════════════════════════════════════════════════════════ -->
+  <header class="navbar">
+    <div class="container nav-container">
+      <a href="#hero" class="nav-brand">
+        <span class="brand-dot"></span>
+        <span class="gradient-text">KRITSANA</span><span style="color: var(--neon-cyan);">.IO</span>
+      </a>
+
+      <!-- Desktop Nav Menu -->
+      <nav aria-label="เมนูหลัก">
+        <ul class="nav-menu" id="nav-menu">
+          <li><a href="#hero" class="nav-link active">หน้าแรก</a></li>
+          <li><a href="#about" class="nav-link">เกี่ยวกับผม</a></li>
+          <li><a href="#projects" class="nav-link">ผลงานโปรเจค</a></li>
+          <li><a href="#skills" class="nav-link">เทคโนโลยี</a></li>
+          <li><a href="#testimonials" class="nav-link">รีวิว</a></li>
+          <li><a href="#articles" class="nav-link">บทความ</a></li>
+          <li><a href="#contact" class="nav-link">ติดต่อ</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-actions">
+        <!-- Sound Toggle Button (Web Audio SFX) -->
+        <button class="sound-toggle-btn" id="sound-toggle-btn" title="เปิด/ปิดเสียงเอฟเฟกต์ (กด M)" aria-label="Toggle Sound">
+          <i data-lucide="volume-x"></i>
+        </button>
+
+        <!-- Theme Toggle Button -->
+        <button class="theme-toggle-btn" id="theme-toggle-btn" title="สลับ Dark / Light Mode (กด T)" aria-label="Toggle Theme">
+          <i id="theme-icon" data-lucide="sun"></i>
+        </button>
+
+        <!-- Keyboard Shortcuts Help Button -->
+        <button class="theme-toggle-btn" id="shortcuts-help-btn" onclick="window.toggleShortcutsModal()" title="คีย์ลัดคีย์บอร์ด (กด ?)" aria-label="Keyboard Shortcuts">
+          <i data-lucide="keyboard"></i>
+        </button>
+
+        <!-- CTA Resume / Quick Contact Button -->
+        <a href="#contact" class="btn btn-primary btn-sm" style="display: none; @media(min-width: 768px){ display: inline-flex; }">
+          <i data-lucide="send" style="width: 15px; height: 15px;"></i> ร่วมงานกัน
+        </a>
+
+        <!-- Mobile Hamburger Toggle -->
+        <button class="mobile-toggle-btn" id="mobile-toggle-btn" aria-label="เปิดเมนูนำทาง">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       1. HERO SECTION
+       ═══════════════════════════════════════════════════════════ -->
+  <section class="section hero-section" id="hero">
+    <div class="container">
+      <div class="hero-grid">
+        <!-- Left: Intro & Typewriter -->
+        <div class="hero-content reveal">
+          <div class="hero-badge">
+            <span class="badge-live-pulse"></span>
+            <span>พร้อมรับโปรเจคใหม่ &amp; ร่วมงานทันที</span>
+          </div>
+
+          <h1 class="hero-greeting">
+            สวัสดีครับ, ผมคือ <span class="gradient-text">กฤษณะ</span><br />
+            <div class="typewriter-wrapper">
+              <span class="typewriter-text" id="typewriter-text"></span>
+            </div>
+          </h1>
+
+          <p class="hero-bio">
+            ผู้พัฒนาซอฟต์แวร์และเว็บแอปพลิเคชันที่หลงใหลใน 3D Interactive Web, AI Integration และ Clean Architecture 
+            มุ่งเน้นสร้างสรรค์ผลงานที่รวดเร็ว สวยงาม แปลกใหม่ และตอบโจทย์ธุรกิจจริง
+          </p>
+
+          <div class="hero-cta-group">
+            <a href="#projects" class="btn btn-primary btn-magnetic">
+              <i data-lucide="layers" style="width: 18px; height: 18px;"></i> ดูผลงานทั้งหมด
+            </a>
+            <a href="#contact" class="btn btn-secondary btn-magnetic">
+              <i data-lucide="mail" style="width: 18px; height: 18px;"></i> ติดต่อผม
+            </a>
+          </div>
+        </div>
+
+        <!-- Right: 3D Tilt Card, Three.js WebGL Hologram & Floating Badges -->
+        <div class="hero-visual reveal-scale">
+          <!-- Real Three.js WebGL 3D Interactive Cyber Core Canvas -->
+          <div class="hero-3d-webgl-wrapper" id="hero-3d-webgl-wrapper">
+            <canvas id="hero-three-canvas" aria-label="3D Interactive Cyber Core"></canvas>
+            <div class="hero-3d-badge">
+              <span class="hero-3d-dot"></span>
+              <span id="hero-3d-mesh-name">3D ICOSAHEDRON</span>
+              <button type="button" id="hero-3d-toggle-btn" class="hero-3d-toggle" title="สลับโหมด 3D: Icosahedron / Torus Knot" aria-label="สลับรูปทรง 3D">
+                <i data-lucide="refresh-cw" style="width: 12px; height: 12px;"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- Floating Badge 1 (Top Left) -->
+          <div class="floating-element float-top-left">
+            <div class="float-icon" style="background: linear-gradient(135deg, #00f2fe, #4facfe);">
+              <i data-lucide="code-2" style="width: 18px; height: 18px;"></i>
+            </div>
+            <div>
+              <div style="font-size: 0.75rem; color: var(--text-muted);">ประสบการณ์</div>
+              <div style="color: var(--neon-cyan); font-weight: 700;">Full-Stack 4+ ปี</div>
+            </div>
+          </div>
+
+          <!-- Central 3D Card -->
+          <div class="hero-3d-card" data-tilt>
+            <div class="hero-avatar-glow-ring">
+              <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=600&q=80" alt="Avatar" />
+            </div>
+            <h3 class="hero-card-name">กฤษณะ เกียรติอนันต์</h3>
+            <div class="hero-card-role">&lt;CREATIVE DEVELOPER /&gt;</div>
+            <div style="margin-top: 14px; font-size: 0.85rem; color: var(--text-muted);">
+              <i data-lucide="map-pin" style="width: 14px; height: 14px; display: inline-block; vertical-align: middle; color: var(--neon-pink);"></i>
+              กรุงเทพมหานคร, ประเทศไทย
+            </div>
+          </div>
+
+          <!-- Floating Badge 2 (Bottom Right) -->
+          <div class="floating-element float-bottom-right">
+            <div class="float-icon" style="background: linear-gradient(135deg, #ff007f, #8a2be2);">
+              <i data-lucide="sparkles" style="width: 18px; height: 18px;"></i>
+            </div>
+            <div>
+              <div style="font-size: 0.75rem; color: var(--text-muted);">โปรเจคสำเร็จ</div>
+              <div style="color: var(--neon-pink); font-weight: 700;">38+ Projects</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Scroll Indicator -->
+      <a href="#about" class="scroll-indicator" aria-label="เลื่อนลงดูเนื้อหา">
+        <div class="mouse-icon">
+          <div class="mouse-wheel"></div>
+        </div>
+        <span>SCROLL DOWN</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       2. ABOUT ME SECTION
+       ═══════════════════════════════════════════════════════════ -->
+  <section class="section" id="about">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-tag"><i data-lucide="user"></i> About Me</span>
+        <h2 class="section-title">เกี่ยวกับ<span class="gradient-text">ตัวผม</span></h2>
+        <p class="section-subtitle">
+          ทำความรู้จักตัวตน ประสบการณ์ และแรงบันดาลใจในการสร้างสรรค์ผลงานด้านซอฟต์แวร์
+        </p>
+      </div>
+
+      <!-- Stats Animated Counter Cards -->
+      <div class="stats-counter-grid reveal">
+        <div class="stat-box">
+          <div class="stat-num-wrapper">
+            <span class="stat-number" data-target="38">0</span>+
+          </div>
+          <div class="stat-label">โปรเจคที่พัฒนาแล้ว</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-num-wrapper">
+            <span class="stat-number" data-target="4">0</span>+
+          </div>
+          <div class="stat-label">ปีแห่งประสบการณ์</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-num-wrapper">
+            <span class="stat-number" data-target="24">0</span>+
+          </div>
+          <div class="stat-label">เทคโนโลยีที่เชี่ยวชาญ</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-num-wrapper">
+            <span class="stat-number" data-target="1420">0</span>+
+          </div>
+          <div class="stat-label">GitHub Commits</div>
+        </div>
+      </div>
+
+      <div class="about-grid">
+        <!-- Left: 3D Avatar Profile Card -->
+        <div class="glass-card about-avatar-card reveal-left" data-tilt>
+          <div class="about-avatar-wrapper">
+            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=600&q=80" alt="Kritsana Profile" />
+          </div>
+          <h3 style="font-size: 1.4rem; margin-bottom: 4px;">กฤษณะ เกียรติอนันต์</h3>
+          <p style="color: var(--neon-cyan); font-size: 0.9rem; font-family: var(--font-heading);">Full-Stack &amp; Creative Coder</p>
+
+          <div class="about-info-list">
+            <div class="about-info-item">
+              <div class="about-info-label">อายุ</div>
+              <div class="about-info-val">26 ปี</div>
+            </div>
+            <div class="about-info-item">
+              <div class="about-info-label">ตำแหน่ง</div>
+              <div class="about-info-val">Senior Developer</div>
+            </div>
+            <div class="about-info-item">
+              <div class="about-info-label">การศึกษา</div>
+              <div class="about-info-val">วท.บ. วิทยาการคอมฯ</div>
+            </div>
+            <div class="about-info-item">
+              <div class="about-info-label">ที่อยู่</div>
+              <div class="about-info-val">กรุงเทพมหานคร</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Animated Skill Bars & Chart.js Radar Chart -->
+        <div class="reveal-right">
+          <h3 style="font-size: 1.5rem; margin-bottom: 20px; display: flex; align-items: center; gap: 10px;">
+            <i data-lucide="bar-chart-2" style="color: var(--neon-cyan);"></i> ทักษะและความชำนาญหลัก (Core Skills)
+          </h3>
+
+          <div class="skills-dual-grid">
+            <div class="skill-bars-list">
+              <div class="skill-bar-item">
+                <div class="skill-bar-header">
+                  <span>Frontend: React, Next.js, Tailwind CSS</span>
+                  <span style="color: var(--neon-cyan);">95%</span>
+                </div>
+                <div class="skill-bar-track">
+                  <div class="skill-bar-fill" data-width="95%"></div>
+                </div>
+              </div>
+
+              <div class="skill-bar-item">
+                <div class="skill-bar-header">
+                  <span>Backend: Node.js, Express, Go, Python</span>
+                  <span style="color: var(--neon-cyan);">90%</span>
+                </div>
+                <div class="skill-bar-track">
+                  <div class="skill-bar-fill" data-width="90%"></div>
+                </div>
+              </div>
+
+              <div class="skill-bar-item">
+                <div class="skill-bar-header">
+                  <span>Database: PostgreSQL, MongoDB, Redis</span>
+                  <span style="color: var(--neon-cyan);">86%</span>
+                </div>
+                <div class="skill-bar-track">
+                  <div class="skill-bar-fill" data-width="86%"></div>
+                </div>
+              </div>
+
+              <div class="skill-bar-item">
+                <div class="skill-bar-header">
+                  <span>3D Web &amp; Creative: Three.js, WebGL, Canvas</span>
+                  <span style="color: var(--neon-cyan);">82%</span>
+                </div>
+                <div class="skill-bar-track">
+                  <div class="skill-bar-fill" data-width="82%"></div>
+                </div>
+              </div>
+
+              <div class="skill-bar-item">
+                <div class="skill-bar-header">
+                  <span>DevOps &amp; Cloud: Docker, AWS, CI/CD Actions</span>
+                  <span style="color: var(--neon-cyan);">84%</span>
+                </div>
+                <div class="skill-bar-track">
+                  <div class="skill-bar-fill" data-width="84%"></div>
+                </div>
+              </div>
+
+              <div class="skill-bar-item">
+                <div class="skill-bar-header">
+                  <span>AI &amp; Machine Learning: Python, FastAPI, PyTorch</span>
+                  <span style="color: var(--neon-cyan);">88%</span>
+                </div>
+                <div class="skill-bar-track">
+                  <div class="skill-bar-fill" data-width="88%"></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Interactive Chart.js Radar Chart Card -->
+            <div class="glass-card skill-radar-card" data-tilt>
+              <div class="radar-card-header">
+                <span class="radar-tag"><i data-lucide="sparkles" style="width: 13px; height: 13px;"></i> Live Metric</span>
+                <h4 class="radar-title">Skill Competency Radar</h4>
+                <p class="radar-sub">วิเคราะห์มิติความสามารถ (Chart.js)</p>
+              </div>
+              <div class="radar-chart-wrapper">
+                <canvas id="skills-radar-chart" aria-label="กราฟเรดาร์แสดงทักษะความชำนาญ"></canvas>
+              </div>
+              <div class="radar-legend-custom">
+                <span class="legend-item"><span class="legend-dot cyan"></span> Kritsana Level</span>
+                <span class="legend-item"><span class="legend-dot purple"></span> Senior Standard</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3D Timeline -->
+      <h3 class="timeline-section-title reveal">
+        <i data-lucide="milestone" style="color: var(--neon-purple); display: inline-block; vertical-align: middle;"></i>
+        ประวัติการทำงานและการศึกษา (Timeline)
+      </h3>
+
+      <div class="timeline-tree">
+        <!-- Item 1 -->
+        <div class="timeline-item left reveal-left">
+          <div class="timeline-dot"></div>
+          <div class="glass-card timeline-card" data-tilt>
+            <span class="timeline-tag">การทำงาน</span>
+            <div class="timeline-year">2024 - ปัจจุบัน</div>
+            <h4 class="timeline-role">Senior Full-Stack Developer</h4>
+            <div class="timeline-company">TechNova Studio</div>
+            <p class="timeline-desc">
+              ดูแลสถาปัตยกรรมระบบเว็บและโมบายล์แอปพลิเคชันสำหรับลูกค้าองค์กร ออกแบบโซลูชันระบบ AI และดูแลทีมพัฒนา
+            </p>
+          </div>
+        </div>
+
+        <!-- Item 2 -->
+        <div class="timeline-item right reveal-right">
+          <div class="timeline-dot"></div>
+          <div class="glass-card timeline-card" data-tilt>
+            <span class="timeline-tag">การทำงาน</span>
+            <div class="timeline-year">2022 - 2024</div>
+            <h4 class="timeline-role">Full-Stack Web Developer</h4>
+            <div class="timeline-company">Digital Horizon Agency</div>
+            <p class="timeline-desc">
+              พัฒนาเว็บแอปพลิเคชัน Interactive และระบบ E-Commerce สำหรับแบรนด์ชั้นนำมากกว่า 15 โครงการ
+            </p>
+          </div>
+        </div>
+
+        <!-- Item 3 -->
+        <div class="timeline-item left reveal-left">
+          <div class="timeline-dot"></div>
+          <div class="glass-card timeline-card" data-tilt>
+            <span class="timeline-tag">การศึกษา</span>
+            <div class="timeline-year">2018 - 2022</div>
+            <h4 class="timeline-role">วท.บ. วิทยาการคอมพิวเตอร์ (เกียรตินิยมอันดับ 1)</h4>
+            <div class="timeline-company">มหาวิทยาลัยเทคโนโลยีพระจอมเกล้าฯ</div>
+            <p class="timeline-desc">
+              วิทยานิพนธ์: 'ระบบตรวจจับและวิเคราะห์ภาพถ่ายทางการแพทย์ด้วย Deep Learning Vision'
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       3. PROJECTS SECTION (MAIN FEATURE ⭐)
+       ═══════════════════════════════════════════════════════════ -->
+  <section class="section" id="projects">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-tag"><i data-lucide="briefcase"></i> Featured Projects</span>
+        <h2 class="section-title">ผลงาน<span class="gradient-text">โปรเจคที่โดดเด่น</span></h2>
+        <p class="section-subtitle">
+          รวมผลงานจริงที่ครอบคลุมทั้ง Web App, Mobile App, AI/ML, Game และ Developer Tools
+        </p>
+      </div>
+
+      <!-- Screen Reader Live Announcer -->
+      <div id="search-announcer" class="sr-only" aria-live="polite" aria-atomic="true"></div>
+
+      <!-- Filter Buttons, Live Search & View Toolbar -->
+      <div class="projects-controls reveal">
+        <div class="projects-toolbar">
+          <!-- Real-time Search Input -->
+          <div class="search-bar-wrapper">
+            <i data-lucide="search" class="search-icon"></i>
+            <input 
+              type="text" 
+              id="project-search-input" 
+              class="search-input" 
+              placeholder="ค้นหาชื่อโปรเจค, เทคโนโลยี (กด / เพื่อค้นหา)..."
+              aria-label="ค้นหาผลงานโปรเจค"
+            />
+          </div>
+
+          <!-- Sort & View Controls -->
+          <div class="projects-toolbar-actions">
+            <!-- Sort Selector -->
+            <select id="project-sort-select" class="sort-select" onchange="window.projectsApp.setSort(this.value)" aria-label="เรียงลำดับผลงาน">
+              <option value="default">⚡ แนะนำ (Default)</option>
+              <option value="title">🔤 ชื่อโปรเจค (A-Z)</option>
+              <option value="date">📅 วันที่พัฒนา (ใหม่สุด)</option>
+              <option value="category">📂 ตามหมวดหมู่</option>
+            </select>
+
+            <!-- Grid / List View Toggle Group -->
+            <div class="view-mode-group" role="group" aria-label="สลับรูปแบบมุมมอง">
+              <button id="view-grid-btn" class="view-btn active" onclick="window.projectsApp.setViewMode('grid')" title="มุมมองตาราง (Grid - กด G)" aria-label="มุมมองตาราง">
+                <i data-lucide="layout-grid" style="width: 17px; height: 17px;"></i>
+              </button>
+              <button id="view-list-btn" class="view-btn" onclick="window.projectsApp.setViewMode('list')" title="มุมมองรายการ (List - กด G)" aria-label="มุมมองรายการ">
+                <i data-lucide="list" style="width: 17px; height: 17px;"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Category Filter Buttons -->
+        <div class="category-filter-list" role="group" aria-label="กรองผลงานตามหมวดหมู่">
+          <button class="filter-btn active" data-category="all" aria-pressed="true">
+            ทั้งหมด <span class="filter-count">8</span>
+          </button>
+          <button class="filter-btn" data-category="Web App" aria-pressed="false">
+            Web App <span class="filter-count">0</span>
+          </button>
+          <button class="filter-btn" data-category="Mobile App" aria-pressed="false">
+            Mobile App <span class="filter-count">0</span>
+          </button>
+          <button class="filter-btn" data-category="AI/ML" aria-pressed="false">
+            AI/ML <span class="filter-count">0</span>
+          </button>
+          <button class="filter-btn" data-category="Game" aria-pressed="false">
+            Game <span class="filter-count">0</span>
+          </button>
+          <button class="filter-btn" data-category="Tool" aria-pressed="false">
+            Tool <span class="filter-count">0</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Project Cards Grid (Populated dynamically via JS) -->
+      <div class="projects-grid" id="projects-grid">
+        <!-- Loading State Placeholder -->
+        <div style="grid-column: 1/-1; text-align: center; padding: 40px;">
+          <div class="loader-logo gradient-text">LOADING PROJECTS...</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       PROJECT DETAIL MODAL & CAROUSEL
+       ═══════════════════════════════════════════════════════════ -->
+  <div class="modal-backdrop" id="project-modal" role="dialog" aria-modal="true">
+    <div class="modal-container" id="project-modal-container">
+      <!-- Modal Content Populated dynamically by js/projects.js -->
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       4. TECH STACK SECTION (CAROUSEL & RUNNING TICKER)
+       ═══════════════════════════════════════════════════════════ -->
+  <section class="section" id="skills">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-tag"><i data-lucide="cpu"></i> Technologies</span>
+        <h2 class="section-title">เทคโนโลยี<span class="gradient-text">ที่เชี่ยวชาญ</span></h2>
+        <p class="section-subtitle">
+          เครื่องมือและสแต็กเทคโนโลยีสมัยใหม่ที่เลือกใช้เพื่อความเร็ว ความปลอดภัย และประสิทธิภาพสูงสุด
+        </p>
+      </div>
+
+      <!-- Infinite Marquee Ticker -->
+      <div class="marquee-container reveal">
+        <div class="marquee-content">
+          <div class="marquee-item"><i data-lucide="atom" style="color: #61DAFB;"></i> React 18 / Next.js 14</div>
+          <div class="marquee-item"><i data-lucide="file-code-2" style="color: #3178C6;"></i> TypeScript</div>
+          <div class="marquee-item"><i data-lucide="palette" style="color: #06B6D4;"></i> Tailwind CSS</div>
+          <div class="marquee-item"><i data-lucide="box" style="color: #9b51e0;"></i> Three.js / WebGL</div>
+          <div class="marquee-item"><i data-lucide="server" style="color: #339933;"></i> Node.js / Express</div>
+          <div class="marquee-item"><i data-lucide="cpu" style="color: #3776AB;"></i> Python / FastAPI</div>
+          <div class="marquee-item"><i data-lucide="zap" style="color: #00ADD8;"></i> Go (Golang)</div>
+          <div class="marquee-item"><i data-lucide="database" style="color: #4169E1;"></i> PostgreSQL</div>
+          <div class="marquee-item"><i data-lucide="hard-drive" style="color: #47A248;"></i> MongoDB / Redis</div>
+          <div class="marquee-item"><i data-lucide="container" style="color: #2496ED;"></i> Docker &amp; K8s</div>
+        </div>
+        <div class="marquee-content" aria-hidden="true">
+          <div class="marquee-item"><i data-lucide="atom" style="color: #61DAFB;"></i> React 18 / Next.js 14</div>
+          <div class="marquee-item"><i data-lucide="file-code-2" style="color: #3178C6;"></i> TypeScript</div>
+          <div class="marquee-item"><i data-lucide="palette" style="color: #06B6D4;"></i> Tailwind CSS</div>
+          <div class="marquee-item"><i data-lucide="box" style="color: #9b51e0;"></i> Three.js / WebGL</div>
+          <div class="marquee-item"><i data-lucide="server" style="color: #339933;"></i> Node.js / Express</div>
+          <div class="marquee-item"><i data-lucide="cpu" style="color: #3776AB;"></i> Python / FastAPI</div>
+          <div class="marquee-item"><i data-lucide="zap" style="color: #00ADD8;"></i> Go (Golang)</div>
+          <div class="marquee-item"><i data-lucide="database" style="color: #4169E1;"></i> PostgreSQL</div>
+          <div class="marquee-item"><i data-lucide="hard-drive" style="color: #47A248;"></i> MongoDB / Redis</div>
+          <div class="marquee-item"><i data-lucide="container" style="color: #2496ED;"></i> Docker &amp; K8s</div>
+        </div>
+      </div>
+
+      <!-- 3D Interactive Tech Cards with Tippy.js Tooltips -->
+      <div class="tech-cards-grid reveal">
+        <!-- Frontend -->
+        <div class="glass-card tech-card" data-tilt tabindex="0" role="region" aria-label="Frontend: React / Next.js 14"
+             title="React 18 / Next.js 14 (ความชำนาญ 95%): App Router, SSR, Server Actions, และ Optimistic UI"
+             data-tippy-tech="React 18 / Next.js 14" 
+             data-tippy-level="ความชำนาญ: 95% (Master)" 
+             data-tippy-detail="App Router, Server Actions, SSR/SSG, Zustand, Tailwind CSS, และ Optimistic UI Architecture">
+          <div class="tech-card-top">
+            <div class="tech-card-icon" style="color: #61DAFB;"><i data-lucide="atom"></i></div>
+            <span class="category-badge">Frontend</span>
+          </div>
+          <h4 class="tech-card-name">React / Next.js 14</h4>
+          <p class="tech-card-desc">App Router, SSR, Server Actions, และ Optimistic UI</p>
+          <div class="tech-meter-bar">
+            <div class="tech-meter-fill" style="width: 95%; background: var(--grad-primary);"></div>
+          </div>
+        </div>
+
+        <!-- TypeScript -->
+        <div class="glass-card tech-card" data-tilt tabindex="0" role="region" aria-label="Language: TypeScript / JavaScript"
+             title="TypeScript / ESNext (ความชำนาญ 92%): Type-Safe Architecture, Generic Types, และ ESNext"
+             data-tippy-tech="TypeScript / ESNext" 
+             data-tippy-level="ความชำนาญ: 92% (Expert)" 
+             data-tippy-detail="Type-Safe End-to-End, Generic Interfaces, Strict Null Checks, AST Analysis, และ Node.js/Browser Interop">
+          <div class="tech-card-top">
+            <div class="tech-card-icon" style="color: #3178C6;"><i data-lucide="file-code-2"></i></div>
+            <span class="category-badge">Language</span>
+          </div>
+          <h4 class="tech-card-name">TypeScript / JavaScript</h4>
+          <p class="tech-card-desc">Type-Safe Architecture, Generic Types, และ ESNext</p>
+          <div class="tech-meter-bar">
+            <div class="tech-meter-fill" style="width: 92%; background: var(--grad-primary);"></div>
+          </div>
+        </div>
+
+        <!-- 3D WebGL -->
+        <div class="glass-card tech-card" data-tilt tabindex="0" role="region" aria-label="3D Graphic: Three.js / WebGL"
+             title="Three.js / WebGL 3D (ความชำนาญ 82%): Custom GLSL Shaders, 3D Mesh, และ Canvas Physics"
+             data-tippy-tech="Three.js / WebGL 3D" 
+             data-tippy-level="ความชำนาญ: 82% (Advanced)" 
+             data-tippy-detail="Real-time WebGL Shaders, 3D Mesh Geometry, Particle Clouds, Canvas Physics, และ 60FPS Render Loop">
+          <div class="tech-card-top">
+            <div class="tech-card-icon" style="color: #9b51e0;"><i data-lucide="box"></i></div>
+            <span class="category-badge">3D Graphic</span>
+          </div>
+          <h4 class="tech-card-name">Three.js / WebGL</h4>
+          <p class="tech-card-desc">Custom GLSL Shaders, 3D Mesh, และ Canvas Physics</p>
+          <div class="tech-meter-bar">
+            <div class="tech-meter-fill" style="width: 82%; background: var(--grad-accent);"></div>
+          </div>
+        </div>
+
+        <!-- Backend Node -->
+        <div class="glass-card tech-card" data-tilt tabindex="0" role="region" aria-label="Backend: Node.js / Express"
+             title="Node.js / Express (ความชำนาญ 90%): High-throughput REST API, WebSockets, และ Microservices"
+             data-tippy-tech="Node.js / Express" 
+             data-tippy-level="ความชำนาญ: 90% (Expert)" 
+             data-tippy-detail="High-throughput REST API, WebSockets, JWT Authentication, Microservices, และ Redis Caching Strategy">
+          <div class="tech-card-top">
+            <div class="tech-card-icon" style="color: #339933;"><i data-lucide="server"></i></div>
+            <span class="category-badge">Backend</span>
+          </div>
+          <h4 class="tech-card-name">Node.js / Express</h4>
+          <p class="tech-card-desc">High-throughput REST API, WebSockets, และ Microservices</p>
+          <div class="tech-meter-bar">
+            <div class="tech-meter-fill" style="width: 90%; background: var(--grad-primary);"></div>
+          </div>
+        </div>
+
+        <!-- Python FastAPI -->
+        <div class="glass-card tech-card" data-tilt tabindex="0" role="region" aria-label="AI / Backend: Python / FastAPI"
+             title="Python / FastAPI / AI (ความชำนาญ 88%): Machine Learning Serving, PyTorch Inference, และ Data Pipelines"
+             data-tippy-tech="Python / FastAPI / AI" 
+             data-tippy-level="ความชำนาญ: 88% (Expert)" 
+             data-tippy-detail="Deep Learning Serving, PyTorch Inference, Async Request Handling, Data Pipelines, และ Pydantic V2">
+          <div class="tech-card-top">
+            <div class="tech-card-icon" style="color: #3776AB;"><i data-lucide="cpu"></i></div>
+            <span class="category-badge">AI / Backend</span>
+          </div>
+          <h4 class="tech-card-name">Python / FastAPI</h4>
+          <p class="tech-card-desc">Machine Learning Serving, PyTorch Inference, และ Data Pipelines</p>
+          <div class="tech-meter-bar">
+            <div class="tech-meter-fill" style="width: 88%; background: var(--grad-accent);"></div>
+          </div>
+        </div>
+
+        <!-- DevOps & Containers -->
+        <div class="glass-card tech-card" data-tilt tabindex="0" role="region" aria-label="DevOps: Docker & Kubernetes"
+             title="Docker & Kubernetes (ความชำนาญ 84%): Containerization, Multi-stage Builds, และ CI/CD Automation"
+             data-tippy-tech="Docker &amp; Kubernetes" 
+             data-tippy-level="ความชำนาญ: 84% (Advanced)" 
+             data-tippy-detail="Multi-stage Container Builds, Cluster Orchestration, Helm Charts, และ GitHub Actions CI/CD Pipeline">
+          <div class="tech-card-top">
+            <div class="tech-card-icon" style="color: #2496ED;"><i data-lucide="container"></i></div>
+            <span class="category-badge">DevOps</span>
+          </div>
+          <h4 class="tech-card-name">Docker &amp; Kubernetes</h4>
+          <p class="tech-card-desc">Containerization, Multi-stage Builds, และ CI/CD Automation</p>
+          <div class="tech-meter-bar">
+            <div class="tech-meter-fill" style="width: 84%; background: var(--grad-primary);"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       5. TESTIMONIALS SECTION
+       ═══════════════════════════════════════════════════════════ -->
+  <section class="section" id="testimonials">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-tag"><i data-lucide="message-square"></i> Testimonials</span>
+        <h2 class="section-title">เสียงตอบรับ<span class="gradient-text">จากผู้ร่วมงาน</span></h2>
+        <p class="section-subtitle">
+          ความคิดเห็นและความประทับใจจากลูกค้า, หัวหน้าทีม และพาร์ตเนอร์ที่เคยร่วมงานกัน
+        </p>
+      </div>
+
+      <!-- Swiper.js Touch-friendly Testimonials Slider -->
+      <div class="swiper testimonials-swiper reveal">
+        <div class="swiper-wrapper">
+          <!-- Slide 1 -->
+          <div class="swiper-slide">
+            <div class="glass-card testimonial-card" data-tilt>
+              <div class="testimonial-stars">
+                <i data-lucide="star" style="fill: #ffaa00; width: 18px; height: 18px;"></i>
+                <i data-lucide="star" style="fill: #ffaa00; width: 18px; height: 18px;"></i>
+                <i data-lucide="star" style="fill: #ffaa00; width: 18px; height: 18px;"></i>
+                <i data-lucide="star" style="fill: #ffaa00; width: 18px; height: 18px;"></i>
+                <i data-lucide="star" style="fill: #ffaa00; width: 18px; height: 18px;"></i>
+              </div>
+              <p class="testimonial-text">
+                "คุณกฤษณะมีความเชี่ยวชาญทั้ง Frontend และ Backend อย่างแท้จริง โค้ดสะอาด มีเอกสารครบถ้วน และส่งมอบงานระบบได้ตรงเวลาอย่างน่าทึ่ง การทำงานร่วมกันราบรื่นมากครับ"
+              </p>
+              <div class="testimonial-author">
+                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=200&q=80" alt="Client" class="testimonial-avatar" />
+                <div>
+                  <h4 class="testimonial-name">ดร. ธีรภัทร วัฒนพาณิชย์</h4>
+                  <div class="testimonial-role">Head of Engineering @ TechNova</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Slide 2 -->
+          <div class="swiper-slide">
+            <div class="glass-card testimonial-card" data-tilt>
+              <div class="testimonial-stars">
+                <i data-lucide="star" style="fill: #ffaa00; width: 18px; height: 18px;"></i>
+                <i data-lucide="star" style="fill: #ffaa00; width: 18px; height: 18px;"></i>
+                <i data-lucide="star" style="fill: #ffaa00; width: 18px; height: 18px;"></i>
+                <i data-lucide="star" style="fill: #ffaa00; width: 18px; height: 18px;"></i>
+                <i data-lucide="star" style="fill: #ffaa00; width: 18px; height: 18px;"></i>
+              </div>
+              <p class="testimonial-text">
+                "ประทับใจความสามารถในการสร้างสรรค์ 3D Web และ User Experience ที่ล้ำสมัย ลูกค้าของเราทุกคนชมว่าเว็บไซต์ทำงานได้รวดเร็ว ลื่นไหล และสวยสะดุดตามาก"
+              </p>
+              <div class="testimonial-author">
+                <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=200&q=80" alt="Client" class="testimonial-avatar" />
+                <div>
+                  <h4 class="testimonial-name">กมลวรรณ สุขประเสริฐ</h4>
+                  <div class="testimonial-role">Product Manager @ Digital Horizon</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Slide 3 -->
+          <div class="swiper-slide">
+            <div class="glass-card testimonial-card" data-tilt>
+              <div class="testimonial-stars">
+                <i data-lucide="star" style="fill: #ffaa00; width: 18px; height: 18px;"></i>
+                <i data-lucide="star" style="fill: #ffaa00; width: 18px; height: 18px;"></i>
+                <i data-lucide="star" style="fill: #ffaa00; width: 18px; height: 18px;"></i>
+                <i data-lucide="star" style="fill: #ffaa00; width: 18px; height: 18px;"></i>
+                <i data-lucide="star" style="fill: #ffaa00; width: 18px; height: 18px;"></i>
+              </div>
+              <p class="testimonial-text">
+                "Exceptional architecture sense and proactive communication. His Go &amp; Docker monitoring tool saved us hundreds of hours of debugging in our production clusters."
+              </p>
+              <div class="testimonial-author">
+                <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=200&q=80" alt="Client" class="testimonial-avatar" />
+                <div>
+                  <h4 class="testimonial-name">Alexandre Dupont</h4>
+                  <div class="testimonial-role">CTO @ CloudSync Global</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Slide 4 -->
+          <div class="swiper-slide">
+            <div class="glass-card testimonial-card" data-tilt>
+              <div class="testimonial-stars">
+                <i data-lucide="star" style="fill: #ffaa00; width: 18px; height: 18px;"></i>
+                <i data-lucide="star" style="fill: #ffaa00; width: 18px; height: 18px;"></i>
+                <i data-lucide="star" style="fill: #ffaa00; width: 18px; height: 18px;"></i>
+                <i data-lucide="star" style="fill: #ffaa00; width: 18px; height: 18px;"></i>
+                <i data-lucide="star" style="fill: #ffaa00; width: 18px; height: 18px;"></i>
+              </div>
+              <p class="testimonial-text">
+                "ระบบ Full-Stack และ Cloud Infrastructure ที่คุณกฤษณะวางโครงสร้างไว้มีความยืดหยุ่นและรองรับการขยายตัวได้ดีเยี่ยม การส่งมอบงานมีคุณภาพระดับมืออาชีพ"
+              </p>
+              <div class="testimonial-author">
+                <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=200&q=80" alt="Client" class="testimonial-avatar" />
+                <div>
+                  <h4 class="testimonial-name">ศิรวิชญ์ เมธาอนันต์</h4>
+                  <div class="testimonial-role">Lead Architect @ Synergy Solutions</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Slide 5 -->
+          <div class="swiper-slide">
+            <div class="glass-card testimonial-card" data-tilt>
+              <div class="testimonial-stars">
+                <i data-lucide="star" style="fill: #ffaa00; width: 18px; height: 18px;"></i>
+                <i data-lucide="star" style="fill: #ffaa00; width: 18px; height: 18px;"></i>
+                <i data-lucide="star" style="fill: #ffaa00; width: 18px; height: 18px;"></i>
+                <i data-lucide="star" style="fill: #ffaa00; width: 18px; height: 18px;"></i>
+                <i data-lucide="star" style="fill: #ffaa00; width: 18px; height: 18px;"></i>
+              </div>
+              <p class="testimonial-text">
+                "Working with Kritsana on our 3D interactive web product was a game-changer. The WebGL shaders and smooth animations blew our clients away. Highly recommended!"
+              </p>
+              <div class="testimonial-author">
+                <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=200&q=80" alt="Client" class="testimonial-avatar" />
+                <div>
+                  <h4 class="testimonial-name">Sarah Jenkins</h4>
+                  <div class="testimonial-role">Design Director @ CyberCraft Labs</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Swiper Navigation Arrows -->
+        <div class="swiper-button-prev testimonials-prev" aria-label="รีวิวก่อนหน้า"></div>
+        <div class="swiper-button-next testimonials-next" aria-label="รีวิวถัดไป"></div>
+
+        <!-- Swiper Pagination -->
+        <div class="swiper-pagination testimonials-pagination"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       6. BLOG / ARTICLES SECTION
+       ═══════════════════════════════════════════════════════════ -->
+  <section class="section" id="articles">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-tag"><i data-lucide="book-open"></i> Insights &amp; Articles</span>
+        <h2 class="section-title">บทความ<span class="gradient-text">และองค์ความรู้</span></h2>
+        <p class="section-subtitle">
+          แบ่งปันประสบการณ์ แนวคิดสถาปัตยกรรมระบบ และเทคนิคการเขียนโค้ดสำหรับนักพัฒนา
+        </p>
+      </div>
+
+      <div class="articles-grid reveal">
+        <!-- Article 1 -->
+        <article class="glass-card article-card" data-tilt>
+          <div class="article-thumb-wrapper">
+            <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=600&q=80" alt="Article 1" class="article-thumb" />
+          </div>
+          <div class="article-body">
+            <div class="article-meta">
+              <span><i data-lucide="calendar" style="width: 14px; height: 14px; display: inline-block; vertical-align: middle;"></i> 14 ก.พ. 2026</span>
+              <span>•</span>
+              <span><i data-lucide="clock" style="width: 14px; height: 14px; display: inline-block; vertical-align: middle;"></i> อ่าน 6 นาที</span>
+            </div>
+            <h3 class="article-title">เจาะลึก 3D Web ด้วย Three.js และ Shader สำหรับ Modern Web 2026</h3>
+            <p class="article-excerpt">
+              เรียนรู้เทคนิคการเรนเดอร์กราฟิก 3 มิติบนเบราว์เซอร์ให้ลื่นไหล 60FPS โดยไม่กินสเปกเครื่องผู้ใช้ พร้อมตัวอย่าง Particle Mesh
+            </p>
+            <div class="article-footer">
+              <span class="tech-chip">Three.js / WebGL</span>
+              <a href="#" class="article-read-more">อ่านต่อ <i data-lucide="arrow-up-right" style="width: 16px; height: 16px;"></i></a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Article 2 -->
+        <article class="glass-card article-card" data-tilt>
+          <div class="article-thumb-wrapper">
+            <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=600&q=80" alt="Article 2" class="article-thumb" />
+          </div>
+          <div class="article-body">
+            <div class="article-meta">
+              <span><i data-lucide="calendar" style="width: 14px; height: 14px; display: inline-block; vertical-align: middle;"></i> 28 ม.ค. 2026</span>
+              <span>•</span>
+              <span><i data-lucide="clock" style="width: 14px; height: 14px; display: inline-block; vertical-align: middle;"></i> อ่าน 8 นาที</span>
+            </div>
+            <h3 class="article-title">สถาปัตยกรรม Microservices บน Next.js 14 และ Docker ในการใช้งานจริง</h3>
+            <p class="article-excerpt">
+              แนวทางออกแบบระบบให้รองรับทราฟฟิกหลักล้าน การทำ Caching ด้วย Redis และจัดการ State แบบ Optimistic UI
+            </p>
+            <div class="article-footer">
+              <span class="tech-chip">Next.js / Docker</span>
+              <a href="#" class="article-read-more">อ่านต่อ <i data-lucide="arrow-up-right" style="width: 16px; height: 16px;"></i></a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Article 3 -->
+        <article class="glass-card article-card" data-tilt>
+          <div class="article-thumb-wrapper">
+            <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=600&q=80" alt="Article 3" class="article-thumb" />
+          </div>
+          <div class="article-body">
+            <div class="article-meta">
+              <span><i data-lucide="calendar" style="width: 14px; height: 14px; display: inline-block; vertical-align: middle;"></i> 10 ม.ค. 2026</span>
+              <span>•</span>
+              <span><i data-lucide="clock" style="width: 14px; height: 14px; display: inline-block; vertical-align: middle;"></i> อ่าน 10 นาที</span>
+            </div>
+            <h3 class="article-title">สร้าง AI Vision Diagnostic ด้วย PyTorch และ FastAPI Step-by-Step</h3>
+            <p class="article-excerpt">
+              จากโมเดล Deep Learning สู่ Web API ระดับ Production พร้อมเทคนิค Grad-CAM Heatmap สำหรับอธิบายการตัดสินใจของ AI
+            </p>
+            <div class="article-footer">
+              <span class="tech-chip">AI/ML / PyTorch</span>
+              <a href="#" class="article-read-more">อ่านต่อ <i data-lucide="arrow-up-right" style="width: 16px; height: 16px;"></i></a>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       7. CONTACT SECTION
+       ═══════════════════════════════════════════════════════════ -->
+  <section class="section" id="contact">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-tag"><i data-lucide="mail"></i> Get In Touch</span>
+        <h2 class="section-title">ติดต่อ<span class="gradient-text">และร่วมงานกัน</span></h2>
+        <p class="section-subtitle">
+          มีโปรเจคที่ต้องการพัฒนา หรือสนใจร่วมงาน สามารถส่งข้อความหรือติดต่อผ่านช่องทางด้านล่างได้ตลอดเวลาครับ
+        </p>
+      </div>
+
+      <div class="contact-grid">
+        <!-- Left: Interactive Contact Form -->
+        <div class="glass-card contact-form-card reveal-left">
+          <h3 style="font-size: 1.5rem; margin-bottom: 20px; display: flex; align-items: center; gap: 10px;">
+            <i data-lucide="send" style="color: var(--neon-cyan);"></i> ส่งข้อความถึงผม
+          </h3>
+
+          <form id="contact-form" novalidate>
+            <div class="form-group">
+              <label for="contact-name" class="form-label">ชื่อของคุณ *</label>
+              <input type="text" id="contact-name" class="form-input" placeholder="เช่น สมชาย ใจดี" required />
+            </div>
+
+            <div class="form-group">
+              <label for="contact-email" class="form-label">อีเมลของคุณ *</label>
+              <input type="email" id="contact-email" class="form-input" placeholder="name@example.com" required />
+            </div>
+
+            <div class="form-group">
+              <label for="contact-subject" class="form-label">หัวข้อเรื่อง</label>
+              <input type="text" id="contact-subject" class="form-input" placeholder="เช่น ปรึกษาพัฒนาโปรเจคใหม่" />
+            </div>
+
+            <div class="form-group">
+              <label for="contact-message" class="form-label">ข้อความรายละเอียด *</label>
+              <textarea id="contact-message" class="form-textarea" placeholder="ระบุรายละเอียดโปรเจคหรือข้อความที่ต้องการติดต่อ..." required></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-magnetic" style="width: 100%;">
+              <i data-lucide="sparkles" style="width: 18px; height: 18px;"></i> ส่งข้อความทันที
+            </button>
+
+            <!-- Success Alert -->
+            <div id="form-success-msg" class="form-success-msg">
+              <i data-lucide="check-circle" style="width: 20px; height: 20px; display: inline-block; vertical-align: middle; margin-right: 6px;"></i>
+              ข้อความของคุณถูกส่งเรียบร้อยแล้ว! ผมจะติดต่อกลับโดยเร็วที่สุดครับ 🎉
+            </div>
+          </form>
+        </div>
+
+        <!-- Right: Contact Sidebar & Social & QR Code -->
+        <div class="contact-sidebar reveal-right">
+          <div class="glass-card contact-info-card">
+            <h3 style="font-size: 1.3rem; margin-bottom: 20px;">ข้อมูลติดต่อโดยตรง</h3>
+
+            <div class="contact-info-list">
+              <div class="contact-info-item">
+                <div class="contact-icon-box">
+                  <i data-lucide="mail"></i>
+                </div>
+                <div>
+                  <div class="contact-item-title">อีเมล (Email)</div>
+                  <a href="mailto:contact@yourportfolio.dev" class="contact-item-val" style="color: var(--neon-cyan);">
+                    contact@yourportfolio.dev
+                  </a>
+                </div>
+              </div>
+
+              <div class="contact-info-item">
+                <div class="contact-icon-box">
+                  <i data-lucide="phone"></i>
+                </div>
+                <div>
+                  <div class="contact-item-title">เบอร์โทรศัพท์ (Phone)</div>
+                  <a href="tel:+66812345678" class="contact-item-val">
+                    +66 81 234 5678
+                  </a>
+                </div>
+              </div>
+
+              <div class="contact-info-item">
+                <div class="contact-icon-box">
+                  <i data-lucide="map-pin"></i>
+                </div>
+                <div>
+                  <div class="contact-item-title">สถานที่ทำงาน</div>
+                  <div class="contact-item-val">
+                    กรุงเทพมหานคร, ประเทศไทย (On-site &amp; Remote)
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Social Links 3D Icons -->
+            <div style="margin-bottom: 20px;">
+              <div style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 12px; font-weight: 600;">
+                ติดตามบน Social Media
+              </div>
+              <div class="social-buttons-grid">
+                <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="social-btn" title="GitHub" aria-label="GitHub">
+                  <i data-lucide="github"></i>
+                </a>
+                <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="social-btn" title="LinkedIn" aria-label="LinkedIn">
+                  <i data-lucide="linkedin"></i>
+                </a>
+                <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" class="social-btn" title="Twitter / X" aria-label="Twitter">
+                  <i data-lucide="twitter"></i>
+                </a>
+                <a href="https://line.me" target="_blank" rel="noopener noreferrer" class="social-btn" title="LINE" aria-label="LINE">
+                  <i data-lucide="message-circle"></i>
+                </a>
+                <a href="https://discord.com" target="_blank" rel="noopener noreferrer" class="social-btn" title="Discord" aria-label="Discord">
+                  <i data-lucide="gamepad-2"></i>
+                </a>
+              </div>
+            </div>
+
+            <!-- QR Code Card -->
+            <div class="qr-code-box">
+              <!-- SVG generated dynamic QR code icon / representation -->
+              <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://portfolio.example.com&color=0a0a1a&bgcolor=ffffff" alt="LINE / vCard QR Code" class="qr-code-img" />
+              <div style="font-size: 0.85rem; font-weight: 600; color: var(--neon-cyan);">
+                สแกนเพื่อเพิ่มเพื่อน LINE หรือดาวน์โหลด vCard
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       8. FOOTER
+       ═══════════════════════════════════════════════════════════ -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <span class="gradient-text">KRITSANA</span><span style="color: var(--neon-cyan);">.IO</span>
+          <p style="font-size: 0.85rem; color: var(--text-muted); font-family: var(--font-body); font-weight: 400; margin-top: 6px;">
+            Full-Stack Developer &amp; Creative Coder Portfolio 2026
+          </p>
+        </div>
+
+        <ul class="footer-links">
+          <li><a href="#hero" class="footer-link">หน้าแรก</a></li>
+          <li><a href="#about" class="footer-link">เกี่ยวกับผม</a></li>
+          <li><a href="#projects" class="footer-link">ผลงาน</a></li>
+          <li><a href="#skills" class="footer-link">ทักษะ</a></li>
+          <li><a href="#articles" class="footer-link">บทความ</a></li>
+          <li><a href="#contact" class="footer-link">ติดต่อ</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-bottom">
+        <div>
+          Copyright &copy; 2026 กฤษณะ เกียรติอนันต์. All rights reserved.
+        </div>
+        <div>
+          Made with <span style="color: var(--neon-pink);">❤️</span> and lots of <span style="color: #ffaa00;">☕</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Floating 3D Back to Top Button -->
+  <button class="back-to-top-btn" id="back-to-top-btn" title="กลับขึ้นด้านบน" aria-label="Back to Top">
+    <i data-lucide="chevron-up" style="width: 24px; height: 24px;"></i>
+  </button>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       KEYBOARD SHORTCUTS HUD MODAL
+       ═══════════════════════════════════════════════════════════ -->
+  <div class="modal-backdrop" id="shortcuts-modal" role="dialog" aria-modal="true" aria-labelledby="shortcuts-title">
+    <div class="shortcuts-card">
+      <button class="modal-close-btn" onclick="window.toggleShortcutsModal(false)" title="ปิดหน้าต่าง (ESC)" aria-label="ปิด">
+        <i data-lucide="x" style="width: 20px; height: 20px;"></i>
+      </button>
+      <h3 class="shortcuts-title" id="shortcuts-title">
+        <i data-lucide="terminal"></i> คีย์ลัดระบบ (Cyber HUD)
+      </h3>
+      <div class="shortcuts-list">
+        <div class="shortcut-row">
+          <span>ค้นหาผลงานโปรเจค</span>
+          <kbd>/</kbd>
+        </div>
+        <div class="shortcut-row">
+          <span>สลับธีม Dark / Light</span>
+          <kbd>T</kbd>
+        </div>
+        <div class="shortcut-row">
+          <span>เปิด/ปิดเสียง Cyber Audio</span>
+          <kbd>M</kbd>
+        </div>
+        <div class="shortcut-row">
+          <span>สลับมุมมอง Grid / List</span>
+          <kbd>G</kbd>
+        </div>
+        <div class="shortcut-row">
+          <span>สไลด์ภาพ / เลื่อนโปรเจค</span>
+          <div style="display: flex; gap: 4px;"><kbd>←</kbd> <kbd>→</kbd></div>
+        </div>
+        <div class="shortcut-row">
+          <span>ปิดหน้าต่าง Modal</span>
+          <kbd>Esc</kbd>
+        </div>
+        <div class="shortcut-row">
+          <span>เปิด/ปิดคู่มือคีย์ลัดนี้</span>
+          <kbd>?</kbd>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div id="toast-container" class="toast-container" aria-live="polite"></div>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       THIRD-PARTY HIGH PERFORMANCE LIBRARIES (CDN)
+       ═══════════════════════════════════════════════════════════ -->
+  <!-- Three.js (Real WebGL 3D Interactive Engine) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+  <!-- Chart.js (Interactive Skill Radar & Data Visualization) -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+
+  <!-- Swiper.js (Touch & Swipe Smooth Carousels) -->
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+  <!-- Vanilla-Tilt.js (3D Card Tilt & Specular Glare Physics) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.1/vanilla-tilt.min.js"></script>
+
+  <!-- Popper.js & Tippy.js (Interactive Cyber HUD Tooltips) -->
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2/dist/umd/popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/tippy.js@6/dist/tippy.umd.min.js"></script>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       APPLICATION JAVASCRIPT SCRIPTS
+       ═══════════════════════════════════════════════════════════ -->
+  <script src="js/data.js"></script>
+  <script src="js/particles.js"></script>
+  <script src="js/three-hero.js"></script>
+  <script src="js/projects.js"></script>
+  <script src="js/main.js"></script>
+
+  <!-- Lucide Icon Initialization -->
+  <script>
+    if (window.lucide) {
+      window.lucide.createIcons();
+    }
+  </script>
+</body>
+</html>

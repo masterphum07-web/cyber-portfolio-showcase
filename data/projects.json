@@ -1,0 +1,358 @@
+{
+  "portfolio_owner": {
+    "name": "กฤษณะ เกียรติอนันต์",
+    "title": "Full-Stack Developer & Creative Coder",
+    "bio": "ผู้พัฒนาเว็บไซต์และซอฟต์แวร์ที่หลงใหลใน 3D Interactive Web, AI Integration และ Modern UX/UI สรรค์สร้างผลงานดิจิทัลที่รวดเร็ว สวยงาม และตอบโจทย์ธุรกิจ",
+    "avatar": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=600&q=80",
+    "experience_years": 4,
+    "completed_projects": 38,
+    "technologies_count": 24,
+    "github_commits": 1420,
+    "email": "contact@yourportfolio.dev",
+    "phone": "+66 81 234 5678",
+    "location": "กรุงเทพมหานคร, ประเทศไทย",
+    "social": {
+      "github": "https://github.com",
+      "linkedin": "https://linkedin.com",
+      "twitter": "https://twitter.com",
+      "line": "https://line.me",
+      "discord": "https://discord.com"
+    }
+  },
+  "projects": [
+    {
+      "id": 1,
+      "title": "Nexus E-Commerce Platform",
+      "description_short": "ระบบร้านค้าออนไลน์ Next-Gen รองรับชำระเงิน Real-time และระบบจัดการคลังสินค้าอัจฉริยะ",
+      "description_full": "แพลตฟอร์ม E-Commerce เต็มรูปแบบที่สร้างด้วย Next.js 14 และ Node.js microservices มีระบบค้นหา ElasticSearch แนะนำสินค้าด้วย AI, ระบบตระกร้าสินค้าพร้อมคำนวณภาษีและค่าจัดส่งอัตโนมัติ และระบบชำระเงินผ่าน Stripe & PromptPay Webhook",
+      "thumbnail": "https://images.unsplash.com/photo-1556742049-0a67e5572293?auto=format&fit=crop&w=800&q=80",
+      "screenshots": [
+        "https://images.unsplash.com/photo-1556742049-0a67e5572293?auto=format&fit=crop&w=1200&q=80",
+        "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=80",
+        "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=80"
+      ],
+      "video_url": "https://www.youtube.com/embed/dQw4w9WgXcQ",
+      "category": "Web App",
+      "status": "completed",
+      "tech_stack": ["React", "Next.js", "Node.js", "MongoDB", "Stripe", "Tailwind CSS"],
+      "features": [
+        "ระบบตะกร้าสินค้าแบบ Optimistic UI อัปเดตทันที",
+        "เกตเวย์ชำระเงิน Stripe & QR PromptPay แบบ Real-time",
+        "แผงควบคุมหลังบ้าน (Admin Dashboard) วิเคราะห์ยอดขายสด",
+        "ระบบสิทธิ์สมาชิก และประวัติการสั่งซื้อพร้อมใบเสร็จ PDF",
+        "ระบบจัดการสต็อกสินค้าแบบแจ้งเตือนเมื่อสินค้าใกล้หมด"
+      ],
+      "architecture": "Microservices บน Docker พร้อม Nginx Reverse Proxy และ Redis Caching",
+      "author": "กฤษณะ เกียรติอนันต์ & Core Team",
+      "github_url": "https://github.com/example/nexus-ecommerce",
+      "live_url": "https://nexus-store-demo.vercel.app",
+      "docs_url": "https://docs.example.com/nexus",
+      "start_date": "2025-03",
+      "end_date": "2025-08"
+    },
+    {
+      "id": 2,
+      "title": "Synapse AI Medical Diagnostic",
+      "description_short": "ระบบช่วยวินิจฉัยภาพถ่ายรังสีและผลเอกซเรย์ปอดด้วย Deep Learning Vision",
+      "description_full": "เว็บแอปพลิเคชันทางการแพทย์สำหรับแพทย์และบุคลากรสาธารณสุข ประมวลผลภาพ X-ray ทรวงอกเพื่อตรวจหาความผิดปกติ เช่น ปอดอักเสบ หรือรอยโรค ด้วยโมเดล Vision Transformer ที่มีความแม่นยำ 97.4% พร้อม Explainable AI (Grad-CAM) ไฮไลท์จุดที่สงสัย",
+      "thumbnail": "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=800&q=80",
+      "screenshots": [
+        "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=1200&q=80",
+        "https://images.unsplash.com/photo-1584515979956-d9f6e5d09982?auto=format&fit=crop&w=1200&q=80",
+        "https://images.unsplash.com/photo-1516549655169-df83a0774514?auto=format&fit=crop&w=1200&q=80"
+      ],
+      "video_url": "https://www.youtube.com/embed/dQw4w9WgXcQ",
+      "category": "AI/ML",
+      "status": "completed",
+      "tech_stack": ["Python", "PyTorch", "FastAPI", "React", "Docker", "Grad-CAM"],
+      "features": [
+        "วิเคราะห์ภาพ X-Ray พร้อมให้คะแนนความน่าจะเป็นแบบจำแนก 14 อาการ",
+        "Grad-CAM Heatmap ชี้ตำแหน่งจุดเสี่ยงบนฟิล์มรังสี",
+        "สร้างรายงานสรุปการตรวจวินิจฉัยมาตรฐาน DICOM ออกเป็นไฟล์ PDF",
+        "ระบบรักษาความปลอดภัยข้อมูลเวชระเบียนสอดคล้องมาตรฐาน HIPAA"
+      ],
+      "architecture": "FastAPI Inference Backend + PyTorch TorchServe + React Frontend",
+      "author": "กฤษณะ เกียรติอนันต์",
+      "github_url": "https://github.com/example/synapse-ai-med",
+      "live_url": "https://synapse-med-demo.web.app",
+      "docs_url": "https://docs.example.com/synapse-ai",
+      "start_date": "2025-07",
+      "end_date": "2025-12"
+    },
+    {
+      "id": 3,
+      "title": "Zenith Crypto & Stock Portfolio",
+      "description_short": "แอปมือถือติดตามพอร์ตโฟลิโอสินทรัพย์และการเงินดิจิทัลแบบ Multi-Chain",
+      "description_full": "Cross-platform Mobile Application พัฒนาด้วย Flutter รองรับการเชื่อมต่อ Web3 Wallets (Ethereum, Solana) และตลาดหลักทรัพย์ทั่วโลก อัปเดตราคาแบบ Real-time WebSocket พร้อมคำนวณกำไร/ขาดทุน (P&L) และส่งสัญญาณแจ้งเตือนราคาแบบ Custom Alert",
+      "thumbnail": "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?auto=format&fit=crop&w=800&q=80",
+      "screenshots": [
+        "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?auto=format&fit=crop&w=1200&q=80",
+        "https://images.unsplash.com/photo-1642543492481-44e81e3914a7?auto=format&fit=crop&w=1200&q=80",
+        "https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f?auto=format&fit=crop&w=1200&q=80"
+      ],
+      "video_url": "https://www.youtube.com/embed/dQw4w9WgXcQ",
+      "category": "Mobile App",
+      "status": "completed",
+      "tech_stack": ["Flutter", "Dart", "Firebase", "Web3Dart", "WebSocket", "Riverpod"],
+      "features": [
+        "เชื่อมต่อ Web3 Wallet ได้อัตโนมัติ (MetaMask, Phantom)",
+        "ชาร์ตวิเคราะห์เทคนิค CandleStick และ Indicators สด (TradingView integration)",
+        "แจ้งเตือน Push Notification เมื่อราคาทะลุแนวรับ-แนวต้าน",
+        "ระบบบันทึกรายการภาษีคริปโตและคำนวณต้นทุน FIFO อัตโนมัติ"
+      ],
+      "architecture": "Clean Architecture + Riverpod State Management + Firebase Cloud Functions",
+      "author": "กฤษณะ เกียรติอนันต์",
+      "github_url": "https://github.com/example/zenith-crypto-app",
+      "live_url": "https://zenith-finance.app",
+      "docs_url": "https://docs.example.com/zenith",
+      "start_date": "2025-01",
+      "end_date": "2025-06"
+    },
+    {
+      "id": 4,
+      "title": "Neon Odyssey: Cyber Roguelike",
+      "description_short": "เกมแอ็กชัน 2.5D ไซเบอร์พังก์สไตล์ Roguelite รันบน WebGL 60FPS",
+      "description_full": "เกมมุมมอง Isometric สไตล์ Cyberpunk สร้างด้วย Unity C# และคอมไพล์ลง WebGL เพื่อเล่นผ่านเบราว์เซอร์ได้ทันทีโดยไม่ต้องติดตั้ง มีระบบ Procedural Level Generation สร้างด่านไม่ซ้ำกัน, แสงนีออนและระบบ Shader กราฟิกจัดเต็ม",
+      "thumbnail": "https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=800&q=80",
+      "screenshots": [
+        "https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=1200&q=80",
+        "https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=1200&q=80",
+        "https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=1200&q=80"
+      ],
+      "video_url": "https://www.youtube.com/embed/dQw4w9WgXcQ",
+      "category": "Game",
+      "status": "in_progress",
+      "tech_stack": ["Unity", "C#", "HLSL Shaders", "WebGL", "FMOD Sound Engine"],
+      "features": [
+        "ระบบ Procedural Map Generation สุ่มฉากและศัตรูไม่ซ้ำกันทุกการเล่น",
+        "ระบบการต่อสู้ Fast-Paced Hack & Slash พร้อมสกิลปรับแต่งได้กว่า 50 ชนิด",
+        "Post-Processing Bloom และ Neon Lighting ปรับให้ลื่นไหลบนเว็บ",
+        "ระบบ Global Leaderboard บันทึกสถิติคะแนนผู้เล่นทั่วโลก"
+      ],
+      "architecture": "Entity-Component-System (ECS) + WebGL Emscripten Runtime",
+      "author": "กฤษณะ เกียรติอนันต์ & Studio",
+      "github_url": "https://github.com/example/neon-odyssey-game",
+      "live_url": "https://neon-odyssey.itch.io",
+      "docs_url": "https://docs.example.com/neon-odyssey",
+      "start_date": "2025-09",
+      "end_date": "ปัจจุบัน (กำลังพัฒนา)"
+    },
+    {
+      "id": 5,
+      "title": "CloudPulse: Distributed DevOps Monitor",
+      "description_short": "เครื่องมือตรวจวัดประสิทธิภาพเซิร์ฟเวอร์และ Kubernetes Cluster แบบเรียลไทม์",
+      "description_full": "Open-source Monitoring CLI และ Web Dashboard ที่เบาเป็นพิเศษ พัฒนาด้วย Go สำหรับ Agent และ React + Go สำหรับ Web UI สามารถเก็บเมตริก CPU, RAM, Network I/O, Disk, และ Pod Health รายวินาที โดยกินทรัพยากรเครื่องไม่ถึง 15MB",
+      "thumbnail": "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=800&q=80",
+      "screenshots": [
+        "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=1200&q=80",
+        "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=1200&q=80",
+        "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=1200&q=80"
+      ],
+      "video_url": "https://www.youtube.com/embed/dQw4w9WgXcQ",
+      "category": "Tool",
+      "status": "completed",
+      "tech_stack": ["Go (Golang)", "React", "Docker", "Prometheus", "Tailwind CSS"],
+      "features": [
+        "Lightweight Go Daemon รวบรวมเมตริกระดับ OS Kernel ผ่าน eBPF",
+        "Real-time Dashboard กราฟแสดงสถานะเซิร์ฟเวอร์ด้วยความหน่วงต่ำกว่า 50ms",
+        "ระบบแจ้งเตือนผ่าน Slack, Discord Webhook และ Telegram เมื่อมีเหตุฉุกเฉิน",
+        "One-line curl script สำหรับติดตั้งอัตโนมัติบนเซิร์ฟเวอร์ Linux"
+      ],
+      "architecture": "eBPF Kernel Collector (Go) -> gRPC Streaming -> React UI",
+      "author": "กฤษณะ เกียรติอนันต์",
+      "github_url": "https://github.com/example/cloudpulse-monitor",
+      "live_url": "https://cloudpulse.io",
+      "docs_url": "https://docs.cloudpulse.io",
+      "start_date": "2025-04",
+      "end_date": "2025-08"
+    },
+    {
+      "id": 6,
+      "title": "AuraFlow: Generative UI AI Canvas",
+      "description_short": "เครื่องมือออกแบบ UI อัตโนมัติด้วยคำสั่ง Prompt ขับเคลื่อนด้วย LLM",
+      "description_full": "เว็บแอปพลิเคชันสาย AI Creative Tool ที่แปลง Text Prompt ให้กลายเป็นโค้ด React & Tailwind CSS แบบสดๆ บน Interactive Canvas มีระบบ Drag & Drop จัดตำแหน่ง และ Export เป็นโค้ด Production Ready ได้ในคลิกเดียว",
+      "thumbnail": "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=800&q=80",
+      "screenshots": [
+        "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1200&q=80",
+        "https://images.unsplash.com/photo-1620641788421-7a1c342ea42e?auto=format&fit=crop&w=1200&q=80",
+        "https://images.unsplash.com/photo-1634017839464-5c339ebe3cb4?auto=format&fit=crop&w=1200&q=80"
+      ],
+      "video_url": "https://www.youtube.com/embed/dQw4w9WgXcQ",
+      "category": "AI/ML",
+      "status": "in_progress",
+      "tech_stack": ["TypeScript", "Next.js", "Gemini API", "Tailwind CSS", "Monaco Editor"],
+      "features": [
+        "Prompt to Component: สร้าง UI Component ทันสมัยด้วย AI LLM",
+        "Live Code Editor พร้อม Syntax Highlighting (Monaco Editor)",
+        "Interactive Preview ปรับขนาดหน้าจอ Responsive ได้ในตัว",
+        "Export โค้ดออกมาเป็น React, Vue, หรือ Pure HTML"
+      ],
+      "architecture": "Next.js App Router + Server-Sent Events (SSE) AI Streaming",
+      "author": "กฤษณะ เกียรติอนันต์",
+      "github_url": "https://github.com/example/auraflow-ui",
+      "live_url": "https://auraflow.dev",
+      "docs_url": "https://docs.auraflow.dev",
+      "start_date": "2025-10",
+      "end_date": "ปัจจุบัน (กำลังพัฒนา)"
+    },
+    {
+      "id": 7,
+      "title": "OmniStream: 4K Peer-to-Peer Meeting",
+      "description_short": "ระบบประชุมและแชร์หน้าจอความละเอียดสูงไร้เซิร์ฟเวอร์คนกลาง (WebRTC P2P)",
+      "description_full": "ระบบการประชุมออนไลน์ผ่านเบราว์เซอร์ที่มีความปลอดภัยสูงด้วย End-to-End Encryption (E2EE) ส่งผ่านข้อมูลแบบ P2P ทำให้ภาพคมชัดระดับ 4K 60FPS ความหน่วงต่ำ พร้อมไวท์บอร์ดวาดร่วมกันแบบ Real-time",
+      "thumbnail": "https://images.unsplash.com/photo-1588196749597-9ff075ee6b5b?auto=format&fit=crop&w=800&q=80",
+      "screenshots": [
+        "https://images.unsplash.com/photo-1588196749597-9ff075ee6b5b?auto=format&fit=crop&w=1200&q=80",
+        "https://images.unsplash.com/photo-1531403009284-440f080d1e12?auto=format&fit=crop&w=1200&q=80",
+        "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=1200&q=80"
+      ],
+      "video_url": "https://www.youtube.com/embed/dQw4w9WgXcQ",
+      "category": "Web App",
+      "status": "archived",
+      "tech_stack": ["WebRTC", "JavaScript", "Node.js", "Socket.io", "Canvas API"],
+      "features": [
+        "วิดีโอคอลแบบ P2P Mesh และ Selective Forwarding Unit (SFU)",
+        "ไวท์บอร์ดวาดรูปร่วมกันแบบ Zero-Latency",
+        "ระบบตัดเสียงรบกวนรอบข้างด้วย Web Audio API Filters",
+        "เข้ารหัสข้อมูลการสนทนา E2EE ป้องกันการดักฟัง 100%"
+      ],
+      "architecture": "WebRTC Mesh Signaling Server via Node.js WebSockets",
+      "author": "กฤษณะ เกียรติอนันต์",
+      "github_url": "https://github.com/example/omnistream-p2p",
+      "live_url": "https://omnistream.example.com",
+      "docs_url": "https://docs.example.com/omnistream",
+      "start_date": "2024-05",
+      "end_date": "2024-11"
+    },
+    {
+      "id": 8,
+      "title": "HyperCLI: Terminal Productivity Suite",
+      "description_short": "ชุดเครื่องมือ CLI ภาษา Rust ยกระดับการจัดการไฟล์และ Git ให้รวดเร็ว 10 เท่า",
+      "description_full": "เครื่องมือบน Terminal ที่เขียนด้วย Rust สำหรับนักพัฒนา รวมคำสั่งค้นหาไฟล์แบบ Fuzzy Finder, แสดงประวัติ Git แบบ Interactive Graph, และวิเคราะห์ขนาดโฟลเดอร์แบบดิสเพลย์สีสันสวยงาม รองรับทั้ง macOS, Linux และ Windows",
+      "thumbnail": "https://images.unsplash.com/photo-1629654297299-c8506221ca97?auto=format&fit=crop&w=800&q=80",
+      "screenshots": [
+        "https://images.unsplash.com/photo-1629654297299-c8506221ca97?auto=format&fit=crop&w=1200&q=80",
+        "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=1200&q=80"
+      ],
+      "video_url": "https://www.youtube.com/embed/dQw4w9WgXcQ",
+      "category": "Tool",
+      "status": "completed",
+      "tech_stack": ["Rust", "Crossterm", "Tokio", "Git2-rs"],
+      "features": [
+        "ค้นหาไฟล์และข้อความความเร็วแสงด้วย Multi-threaded search",
+        "แสดง Git Log แบบต้นไม้อนิเมชัน Interactive พร้อม checkout ได้ทันที",
+        "วิเคราะห์การกินพื้นที่ดิสก์พร้อมแผนภาพสถิติแบบ CLI",
+        "รองรับการเชื่อมต่อ Extension ด้วย Lua Scripting"
+      ],
+      "architecture": "Async Rust Tokio Runtime + Zero Memory Allocations",
+      "author": "กฤษณะ เกียรติอนันต์",
+      "github_url": "https://github.com/example/hypercli-rust",
+      "live_url": "https://crates.io/crates/hypercli",
+      "docs_url": "https://hypercli.github.io",
+      "start_date": "2025-02",
+      "end_date": "2025-05"
+    }
+  ],
+  "skills": [
+    { "name": "React / Next.js", "category": "Frontend", "level": 95, "icon": "atom", "color": "#61DAFB" },
+    { "name": "TypeScript / JavaScript", "category": "Frontend", "level": 92, "icon": "file-code-2", "color": "#3178C6" },
+    { "name": "Tailwind CSS / Sass", "category": "Frontend", "level": 94, "icon": "palette", "color": "#06B6D4" },
+    { "name": "Three.js / WebGL", "category": "Frontend", "level": 82, "icon": "box", "color": "#9b51e0" },
+    { "name": "Node.js / Express", "category": "Backend", "level": 90, "icon": "server", "color": "#339933" },
+    { "name": "Python / FastAPI", "category": "Backend", "level": 88, "icon": "cpu", "color": "#3776AB" },
+    { "name": "Go (Golang)", "category": "Backend", "level": 80, "icon": "zap", "color": "#00ADD8" },
+    { "name": "PostgreSQL / MySQL", "category": "Database", "level": 86, "icon": "database", "color": "#4169E1" },
+    { "name": "MongoDB / Redis", "category": "Database", "level": 85, "icon": "hard-drive", "color": "#47A248" },
+    { "name": "Docker / Kubernetes", "category": "DevOps", "level": 82, "icon": "container", "color": "#2496ED" },
+    { "name": "AWS / Google Cloud", "category": "DevOps", "level": 80, "icon": "cloud", "color": "#FF9900" },
+    { "name": "Git / CI/CD Actions", "category": "DevOps", "level": 92, "icon": "git-branch", "color": "#F05032" }
+  ],
+  "timeline": [
+    {
+      "year": "2024 - ปัจจุบัน",
+      "role": "Senior Full-Stack Developer",
+      "company": "TechNova Studio",
+      "description": "ดูแลสถาปัตยกรรมระบบเว็บและโมบายล์แอปพลิเคชันสำหรับลูกค้าองค์กร ออกแบบโซลูชันระบบ AI และให้คำแนะนำทางเทคนิคแก่ทีมพัฒนา",
+      "tag": "การทำงาน"
+    },
+    {
+      "year": "2022 - 2024",
+      "role": "Full-Stack Web Developer",
+      "company": "Digital Horizon Agency",
+      "description": "พัฒนาเว็บแอปพลิเคชัน Interactive และระบบ E-Commerce สำหรับแบรนด์ชั้นนำมากกว่า 15 โครงการ ทั้งส่วนหน้าบ้านและหลังบ้าน",
+      "tag": "การทำงาน"
+    },
+    {
+      "year": "2020 - 2022",
+      "role": "Frontend Developer (Intern & Junior)",
+      "company": "InnovateX Lab",
+      "description": "พัฒนาระบบ Dashboard แสดงผลข้อมูลแบบ Real-time และโมดูล UI Responsive ด้วย React และ Three.js",
+      "tag": "การทำงาน"
+    },
+    {
+      "year": "2018 - 2022",
+      "role": "วิทยาศาสตรบัณฑิต (วิทยาการคอมพิวเตอร์)",
+      "company": "มหาวิทยาลัยเทคโนโลยีพระจอมเกล้าฯ",
+      "description": "เกียรตินิยมอันดับ 1 | ทำวิทยานิพนธ์หัวข้อ 'ระบบตรวจจับและวิเคราะห์ภาพถ่ายทางการแพทย์ด้วย Deep Learning'",
+      "tag": "การศึกษา"
+    }
+  ],
+  "testimonials": [
+    {
+      "id": 1,
+      "name": "ดร. ธีรภัทร วัฒนพาณิชย์",
+      "position": "Head of Engineering @ TechNova",
+      "avatar": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=200&q=80",
+      "rating": 5,
+      "text": "คุณกฤษณะมีความเชี่ยวชาญทั้ง Frontend และ Backend อย่างแท้จริง ผลงานโค้ดสะอาด มีเอกสารครบถ้วน และส่งมอบงานระบบได้ตรงเวลาอย่างน่าทึ่ง"
+    },
+    {
+      "id": 2,
+      "name": "กมลวรรณ สุขประเสริฐ",
+      "position": "Product Manager @ Digital Horizon",
+      "avatar": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=200&q=80",
+      "rating": 5,
+      "text": "ประทับใจความสามารถในการสร้างสรรค์ 3D Web และ User Experience ที่ล้ำสมัย ลูกค้าของเราทุกคนชมว่าเว็บไซต์ทำงานได้รวดเร็วและสวยงามมาก"
+    },
+    {
+      "id": 3,
+      "name": "Alexandre Dupont",
+      "position": "CTO @ CloudSync Global",
+      "avatar": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=200&q=80",
+      "rating": 5,
+      "text": "Great architecture sense and proactive communication. His Go & Docker monitoring tool saved us hours of debugging in production."
+    }
+  ],
+  "articles": [
+    {
+      "id": 1,
+      "title": "เจาะลึก 3D Web ด้วย Three.js และ Shader สำหรับ Modern Web 2026",
+      "excerpt": "เรียนรู้เทคนิคการเรนเดอร์กราฟิก 3 มิติบนเบราว์เซอร์ให้ลื่นไหล 60FPS โดยไม่กินสเปกเครื่องผู้ใช้ พร้อมตัวอย่าง Particle Mesh",
+      "date": "14 กุมภาพันธ์ 2026",
+      "read_time": "6 นาที",
+      "image": "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=600&q=80",
+      "tags": ["Three.js", "WebGL", "Creative Coding"],
+      "link": "#"
+    },
+    {
+      "id": 2,
+      "title": "สถาปัตยกรรม Microservices บน Next.js 14 และ Docker ในการใช้งานจริง",
+      "excerpt": "แนวทางออกแบบระบบให้รองรับทราฟฟิกหลักล้าน การทำ Caching ด้วย Redis และจัดการ State แบบ Optimistic UI",
+      "date": "28 มกราคม 2026",
+      "read_time": "8 นาที",
+      "image": "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=600&q=80",
+      "tags": ["Architecture", "Next.js", "Docker"],
+      "link": "#"
+    },
+    {
+      "id": 3,
+      "title": "สร้าง AI Vision Diagnostic ด้วย PyTorch และ FastAPI แบบ Step-by-Step",
+      "excerpt": "จากโมเดล Deep Learning สู่ Web API ระดับ Production พร้อมเทคนิค Grad-CAM Heatmap สำหรับอธิบายการตัดสินใจของ AI",
+      "date": "10 มกราคม 2026",
+      "read_time": "10 นาที",
+      "image": "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=600&q=80",
+      "tags": ["AI/ML", "PyTorch", "FastAPI"],
+      "link": "#"
+    }
+  ]
+}

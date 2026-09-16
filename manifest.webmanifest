@@ -1,0 +1,68 @@
+{
+  "name": "Kritsana | 3D Interactive Project Showcase Portfolio",
+  "short_name": "Kritsana 3D",
+  "description": "เว็บไซต์ Portfolio สำหรับโชว์ผลงานโปรเจค Full-Stack & Creative Coder พร้อมระบบ 3D Interactive, Glassmorphism และ Dark/Light Mode",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#0a0a1a",
+  "theme_color": "#0a0a1a",
+  "lang": "th",
+  "categories": ["portfolio", "developer", "technology", "productivity"],
+  "icons": [
+    {
+      "src": "assets/icons/icon-192.svg",
+      "sizes": "192x192",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "assets/icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "assets/icons/icon-512.svg",
+      "sizes": "512x512",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "assets/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "assets/icons/icon-maskable.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "ผลงานโปรเจค",
+      "short_name": "โปรเจค",
+      "description": "เปิดดูผลงานโปรเจคทั้งหมด",
+      "url": "./index.html#projects",
+      "icons": [{ "src": "assets/icons/icon-192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "เกี่ยวกับผม",
+      "short_name": "เกี่ยวกับ",
+      "description": "ข้อมูลประวัติและทักษะ",
+      "url": "./index.html#about",
+      "icons": [{ "src": "assets/icons/icon-192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "ติดต่อร่วมงาน",
+      "short_name": "ติดต่อ",
+      "description": "ส่งข้อความติดต่อโดยตรง",
+      "url": "./index.html#contact",
+      "icons": [{ "src": "assets/icons/icon-192.png", "sizes": "192x192" }]
+    }
+  ]
+}
