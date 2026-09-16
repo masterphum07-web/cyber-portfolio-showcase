@@ -102,6 +102,34 @@
       </nav>
 
       <div class="nav-actions">
+        <!-- Background FX Real-time Switcher -->
+        <div class="bg-fx-nav-switcher" id="bg-fx-nav-switcher" title="สลับเอฟเฟกต์พื้นหลัง (กด Alt + B)">
+          <button type="button" class="bg-fx-pill active" data-bg-fx="particles" onclick="window.particleNetwork?.setMode('particles')" title="ตาข่ายอนุภาค 3D (Particles)">
+            <i data-lucide="atom"></i>
+          </button>
+          <button type="button" class="bg-fx-pill" data-bg-fx="matrix" onclick="window.particleNetwork?.setMode('matrix')" title="Matrix Digital Rain">
+            <i data-lucide="binary"></i>
+          </button>
+          <button type="button" class="bg-fx-pill" data-bg-fx="starfield" onclick="window.particleNetwork?.setMode('starfield')" title="Warp Starfield">
+            <i data-lucide="sparkles"></i>
+          </button>
+        </div>
+
+        <!-- Command Palette Trigger Button (Ctrl + K) -->
+        <button class="theme-toggle-btn cmdk-trigger-btn" id="cmdk-nav-btn" onclick="window.openCommandPalette()" title="เปิด Command Palette (กด Ctrl + K)" aria-label="Command Palette">
+          <i data-lucide="command"></i>
+        </button>
+
+        <!-- Developer Cyber Terminal CLI Button -->
+        <button class="theme-toggle-btn terminal-trigger-btn" id="terminal-nav-btn" onclick="window.toggleTerminal()" title="เปิด Cyber Terminal CLI (กด Ctrl + `)" aria-label="Cyber Terminal">
+          <i data-lucide="terminal"></i>
+        </button>
+
+        <!-- Developer Resume / CV Viewer Button -->
+        <button class="theme-toggle-btn resume-trigger-btn" id="resume-nav-btn" onclick="window.openResumeModal()" title="ดูและพิมพ์เรซูเม่ Resume/CV (กด Alt + R)" aria-label="Developer Resume">
+          <i data-lucide="file-text"></i>
+        </button>
+
         <!-- Sound Toggle Button (Web Audio SFX) -->
         <button class="sound-toggle-btn" id="sound-toggle-btn" title="เปิด/ปิดเสียงเอฟเฟกต์ (กด M)" aria-label="Toggle Sound">
           <i data-lucide="volume-x"></i>
@@ -123,7 +151,7 @@
         </button>
 
         <!-- CTA Resume / Quick Contact Button -->
-        <a href="#contact" class="btn btn-primary btn-sm" style="display: none; @media(min-width: 768px){ display: inline-flex; }">
+        <a href="#contact" class="btn btn-primary btn-sm nav-contact-btn">
           <i data-lucide="send" style="width: 15px; height: 15px;"></i> ร่วมงานกัน
         </a>
 
@@ -166,6 +194,9 @@
             <a href="#projects" class="btn btn-primary btn-magnetic">
               <i data-lucide="layers" style="width: 18px; height: 18px;"></i> ดูผลงานทั้งหมด
             </a>
+            <button type="button" class="btn btn-secondary btn-magnetic resume-trigger-btn" onclick="window.openResumeModal()">
+              <i data-lucide="file-text" style="width: 18px; height: 18px;"></i> ดูเรซูเม่ / CV
+            </button>
             <a href="#contact" class="btn btn-secondary btn-magnetic">
               <i data-lucide="mail" style="width: 18px; height: 18px;"></i> ติดต่อผม
             </a>
@@ -1126,6 +1157,22 @@
       </h3>
       <div class="shortcuts-list">
         <div class="shortcut-row">
+          <span>Command Palette (ค้นหาคำสั่งด่วน)</span>
+          <div style="display: flex; gap: 4px;"><kbd>Ctrl</kbd> <kbd>K</kbd></div>
+        </div>
+        <div class="shortcut-row">
+          <span>เปิด Cyber Terminal (CLI)</span>
+          <div style="display: flex; gap: 4px;"><kbd>Ctrl</kbd> <kbd>`</kbd></div>
+        </div>
+        <div class="shortcut-row">
+          <span>ดูและพิมพ์เรซูเม่ (Resume / CV)</span>
+          <div style="display: flex; gap: 4px;"><kbd>Alt</kbd> <kbd>R</kbd></div>
+        </div>
+        <div class="shortcut-row">
+          <span>สลับเอฟเฟกต์พื้นหลัง (FX Switcher)</span>
+          <div style="display: flex; gap: 4px;"><kbd>Alt</kbd> <kbd>B</kbd></div>
+        </div>
+        <div class="shortcut-row">
           <span>ค้นหาผลงานโปรเจค</span>
           <kbd>/</kbd>
         </div>
@@ -1480,6 +1527,220 @@
   <div id="toast-container" class="toast-container" aria-live="polite"></div>
 
   <!-- ═══════════════════════════════════════════════════════════
+       COMMAND PALETTE MODAL (CTRL + K / CMD + K)
+       ═══════════════════════════════════════════════════════════ -->
+  <div class="modal-backdrop cmdk-backdrop" id="command-palette-modal" role="dialog" aria-modal="true" aria-labelledby="cmdk-search-label">
+    <div class="cmdk-card">
+      <div class="cmdk-header">
+        <i data-lucide="search" class="cmdk-search-icon"></i>
+        <label for="cmdk-input" id="cmdk-search-label" class="sr-only">ค้นหาคำสั่งหรือผลงาน</label>
+        <input type="text" id="cmdk-input" class="cmdk-input" placeholder="พิมพ์คำสั่ง ค้นหาหน้าเว็บ โปรเจค หรือเทคโนโลยี... (กด Esc เพื่อออก)" autocomplete="off" spellcheck="false" />
+        <button type="button" class="cmdk-esc-badge" onclick="window.closeCommandPalette()" aria-label="ปิด Command Palette">Esc</button>
+      </div>
+      <div class="cmdk-results" id="cmdk-results" role="listbox" aria-label="ผลการค้นหาคำสั่ง">
+        <!-- Populated dynamically by js/command-palette.js -->
+      </div>
+      <div class="cmdk-footer">
+        <div class="cmdk-hint-item"><kbd>↑</kbd><kbd>↓</kbd><span>เลื่อนเลือก</span></div>
+        <div class="cmdk-hint-item"><kbd>↵</kbd><span>ดำเนินการ</span></div>
+        <div class="cmdk-hint-item"><kbd>ESC</kbd><span>ปิด</span></div>
+        <div class="cmdk-footer-brand">
+          <i data-lucide="sparkles" style="width: 12px; height: 12px; color: var(--neon-cyan);"></i>
+          <span>Cyber Command v2.4</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       INTERACTIVE DEVELOPER CYBER TERMINAL (CLI MODE)
+       ═══════════════════════════════════════════════════════════ -->
+  <div class="cyber-terminal-container" id="cyber-terminal-modal">
+    <div class="cyber-terminal-window" id="cyber-terminal-window" role="region" aria-label="Cyber Terminal CLI">
+      <div class="term-titlebar">
+        <div class="term-traffic-lights">
+          <button type="button" class="term-light close" onclick="window.closeTerminal()" title="ปิดเทอร์มินัล (Esc)" aria-label="Close"></button>
+          <button type="button" class="term-light minimize" onclick="window.cyberTerminal?.minimize()" title="ย่อหน้าต่าง" aria-label="Minimize"></button>
+          <button type="button" class="term-light maximize" onclick="window.cyberTerminal?.maximize()" title="ขยายเต็มจอ" aria-label="Maximize"></button>
+        </div>
+        <div class="term-title">
+          <i data-lucide="terminal" style="width: 14px; height: 14px; color: var(--neon-cyan);"></i>
+          <span>bash - guest@kritsana-dev: ~ (Interactive CLI)</span>
+        </div>
+        <div class="term-status-badge">ONLINE</div>
+      </div>
+      <div class="term-body" id="terminal-output">
+        <!-- Rendered dynamically by js/terminal.js -->
+      </div>
+      <div class="term-prompt-line">
+        <span class="term-prompt-user">guest</span><span class="term-prompt-at">@</span><span class="term-prompt-host">kritsana-dev</span><span class="term-prompt-colon">:</span><span class="term-prompt-path">~</span><span class="term-prompt-symbol">$</span>
+        <input type="text" id="terminal-input" class="term-input" autocomplete="off" spellcheck="false" aria-label="Command Line Input" />
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       DEVELOPER RESUME / CV VIEWER & PRINT MODAL (ATS READY)
+       ═══════════════════════════════════════════════════════════ -->
+  <div class="modal-backdrop" id="resume-modal" role="dialog" aria-modal="true" aria-labelledby="resume-doc-title">
+    <div class="resume-modal-container">
+      <!-- Resume Actions Toolbar (Hidden on print) -->
+      <div class="resume-toolbar">
+        <div class="resume-toolbar-left">
+          <h3 class="resume-toolbar-title" id="resume-doc-title">
+            <i data-lucide="file-text" style="color: var(--neon-cyan);"></i> Developer Resume / CV
+          </h3>
+          <span class="resume-badge-ats">ATS-Optimized</span>
+        </div>
+        <div class="resume-toolbar-actions">
+          <button type="button" class="btn btn-sm btn-primary" onclick="window.printResume()" title="พิมพ์หรือบันทึกเป็น PDF มาตรฐาน A4">
+            <i data-lucide="printer" style="width: 15px; height: 15px;"></i> สั่งพิมพ์ A4 / PDF
+          </button>
+          <button type="button" class="btn btn-sm btn-secondary" onclick="window.copyResumeText()" title="คัดลอกข้อความ Plain Text เข้าคลิปบอร์ด">
+            <i data-lucide="copy" style="width: 15px; height: 15px;"></i> คัดลอก ATS Text
+          </button>
+          <button type="button" class="btn btn-sm btn-secondary" onclick="window.resumeViewer?.downloadMarkdown()" title="ดาวน์โหลดไฟล์ Markdown">
+            <i data-lucide="download" style="width: 15px; height: 15px;"></i> ดาวน์โหลด .MD
+          </button>
+          <button type="button" class="modal-close-btn resume-close-btn" onclick="window.closeResumeModal()" title="ปิดหน้าต่าง (Esc)" aria-label="ปิด">
+            <i data-lucide="x" style="width: 20px; height: 20px;"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Printable Resume Document Body -->
+      <article class="resume-document" id="resume-printable-area">
+        <!-- Resume Header -->
+        <header class="resume-header">
+          <h1 class="resume-name">กฤษณะ เกียรติอนันต์</h1>
+          <div class="resume-title">Senior Full-Stack Developer &amp; Creative Web Engineer</div>
+          <div class="resume-contact-bar">
+            <span><i data-lucide="mail"></i> contact@kritsana.dev</span>
+            <span><i data-lucide="phone"></i> +66 89-123-4567</span>
+            <span><i data-lucide="map-pin"></i> กรุงเทพมหานคร, ประเทศไทย</span>
+            <span><i data-lucide="github"></i> github.com/kritsana-dev</span>
+            <span><i data-lucide="linkedin"></i> linkedin.com/in/kritsana-dev</span>
+          </div>
+        </header>
+
+        <!-- 1. Executive Summary -->
+        <section class="resume-section">
+          <h2 class="resume-section-title"><i data-lucide="user"></i> บทคัดย่อประวัติการทำงาน (Executive Summary)</h2>
+          <p class="resume-text">
+            Senior Full-Stack Developer ผู้มีประสบการณ์กว่า 5 ปีในการออกแบบ สถาปัตยกรรม และพัฒนาซอฟต์แวร์ระดับ Enterprise ระบบ Cloud Microservices ประสิทธิภาพสูง และส่วนติดต่อผู้ใช้ 3D WebGL ที่มีความซับซ้อน เชี่ยวชาญการใช้ Next.js, React, TypeScript, Node.js, Python และ Three.js มีความมุ่งมั่นในการสร้างสรรค์ระบบที่รองรับการขยายตัว (Scalability) ความปลอดภัยระดับสูง และประสบการณ์ผู้ใช้ที่โดดเด่น
+          </p>
+        </section>
+
+        <!-- 2. Technical Skills Matrix -->
+        <section class="resume-section">
+          <h2 class="resume-section-title"><i data-lucide="cpu"></i> ทักษะความเชี่ยวชาญด้านเทคโนโลยี (Technical Skills)</h2>
+          <div class="resume-skills-grid">
+            <div class="resume-skill-group">
+              <strong>Frontend:</strong> React 18, Next.js 14, TypeScript, Vue.js, Tailwind CSS, Three.js, WebGL, Canvas API, HTML5/CSS3
+            </div>
+            <div class="resume-skill-group">
+              <strong>Backend &amp; APIs:</strong> Node.js, Express, Python (FastAPI/Django), Go (Golang), RESTful APIs, GraphQL, WebSockets, gRPC
+            </div>
+            <div class="resume-skill-group">
+              <strong>Database &amp; Cloud:</strong> PostgreSQL, MongoDB, Redis, Docker, Kubernetes, AWS, Google Cloud Platform, Supabase
+            </div>
+            <div class="resume-skill-group">
+              <strong>DevOps &amp; Tools:</strong> CI/CD (GitHub Actions), Jest, Git, Linux/Unix, Vite, Webpack, Agile/Scrum
+            </div>
+          </div>
+        </section>
+
+        <!-- 3. Work Experience -->
+        <section class="resume-section">
+          <h2 class="resume-section-title"><i data-lucide="briefcase"></i> ประวัติการทำงาน (Work Experience)</h2>
+          <div class="resume-timeline">
+            <div class="resume-job">
+              <div class="resume-job-header">
+                <div>
+                  <h3 class="resume-job-title">Lead / Senior Full-Stack Developer</h3>
+                  <div class="resume-job-company">CyberTech Studio, Bangkok</div>
+                </div>
+                <div class="resume-job-date">2023 - ปัจจุบัน</div>
+              </div>
+              <ul class="resume-job-bullets">
+                <li>เป็นผู้นำทีมวิศวกรในการพัฒนา Enterprise Cloud Platform ด้วย Next.js 14, TypeScript และ Go Microservices รองรับทราฟฟิกกว่า 2 ล้านคำขอต่อเดือน</li>
+                <li>ออกแบบและพัฒนาระบบ Interactive 3D WebGL Dashboard ช่วยลดระยะเวลา Onboarding ลูกค้าใหม่ลง 45%</li>
+                <li>ปรับปรุงสถาปัตยกรรมฐานข้อมูล PostgreSQL และ Redis Cache ทำให้อัตรา Query Response เร็วขึ้นกว่า 60%</li>
+                <li>วางระบบ Automated CI/CD Pipeline ผ่าน GitHub Actions รองรับการ Deploy อัตโนมัติแบบ Zero-Downtime</li>
+              </ul>
+            </div>
+
+            <div class="resume-job">
+              <div class="resume-job-header">
+                <div>
+                  <h3 class="resume-job-title">Full-Stack Developer</h3>
+                  <div class="resume-job-company">NextGen Creative Solutions</div>
+                </div>
+                <div class="resume-job-date">2021 - 2023</div>
+              </div>
+              <ul class="resume-job-bullets">
+                <li>พัฒนาและดูแล RESTful และ GraphQL APIs บน Node.js และ Express ให้มีค่าความหน่วงต่ำกว่า 100ms</li>
+                <li>เพิ่มประสิทธิภาพ Web Vitals และโครงสร้าง Front-end จนได้คะแนน Google Lighthouse 98+ ทุกหน้า</li>
+                <li>จัดทำ Unit Testing และ Integration Testing ด้วย Jest ครอบคลุม Test Coverage สูงกว่า 85%</li>
+              </ul>
+            </div>
+
+            <div class="resume-job">
+              <div class="resume-job-header">
+                <div>
+                  <h3 class="resume-job-title">Frontend Engineer</h3>
+                  <div class="resume-job-company">Digital Frontier Labs</div>
+                </div>
+                <div class="resume-job-date">2019 - 2021</div>
+              </div>
+              <ul class="resume-job-bullets">
+                <li>สร้าง Responsive Single Page Applications (SPA) ด้วย React, Redux Toolkit และ Tailwind CSS</li>
+                <li>เชื่อมต่อระบบชำระเงินออนไลน์ (Payment Gateway) และระบบ Authentications ปลอดภัยตามมาตรฐาน OAuth 2.0</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <!-- 4. Featured Projects -->
+        <section class="resume-section">
+          <h2 class="resume-section-title"><i data-lucide="folder-git-2"></i> ผลงานโปรเจคเด่น (Selected Featured Projects)</h2>
+          <div class="resume-proj-list">
+            <div class="resume-proj-entry">
+              <strong>Nexus 3D Cyber Store:</strong> แพลตฟอร์มอีคอมเมิร์ซเสมือนจริงแบบ 3D WebGL เชื่อมต่อระบบชำระเงิน Real-time (React, Three.js, Node.js)
+            </div>
+            <div class="resume-proj-entry">
+              <strong>Quantum Cloud Analytics:</strong> ระบบแดชบอร์ดวิเคราะห์สถิติคลาวด์ขนาดใหญ่ ประมวลผลข้อมูลกราฟิกแบบเรียลไทม์ (Next.js 14, TypeScript, Go)
+            </div>
+            <div class="resume-proj-entry">
+              <strong>NeuroVision AI Suite:</strong> แอปพลิเคชันตรวจจับและวิเคราะห์ภาพด้วย AI Computer Vision ความแม่นยำสูง 98% (Python, FastAPI, PyTorch)
+            </div>
+          </div>
+        </section>
+
+        <!-- 5. Education & Certifications -->
+        <div class="resume-grid-2col">
+          <section class="resume-section">
+            <h2 class="resume-section-title"><i data-lucide="graduation-cap"></i> ประวัติการศึกษา (Education)</h2>
+            <div class="resume-edu-item">
+              <strong>วท.บ. วิทยาการคอมพิวเตอร์ (เกียรตินิยมอันดับ 1)</strong>
+              <div class="resume-dim">มหาวิทยาลัยเทคโนโลยีพระจอมเกล้า (2015 - 2019)</div>
+            </div>
+          </section>
+
+          <section class="resume-section">
+            <h2 class="resume-section-title"><i data-lucide="award"></i> ใบประกาศนียบัตร (Certifications)</h2>
+            <ul class="resume-cert-list">
+              <li>AWS Certified Solutions Architect – Associate</li>
+              <li>Google Cloud Certified Professional Cloud Developer</li>
+              <li>Meta Front-End Developer Professional Certificate</li>
+            </ul>
+          </section>
+        </div>
+      </article>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════════
        THIRD-PARTY HIGH PERFORMANCE LIBRARIES (CDN)
        ═══════════════════════════════════════════════════════════ -->
   <!-- Three.js (Real WebGL 3D Interactive Engine) -->
@@ -1507,6 +1768,9 @@
   <script src="js/projects.js"></script>
   <script src="js/main.js"></script>
   <script src="js/admin.js"></script>
+  <script src="js/command-palette.js"></script>
+  <script src="js/terminal.js"></script>
+  <script src="js/resume.js"></script>
 
   <!-- Lucide Icon Initialization -->
   <script>

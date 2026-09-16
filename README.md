@@ -19,14 +19,18 @@
 │   └── animations.css      # Keyframes, 3D Tilt, Floating Badges, Toasts, HUD, Reduced-Motion
 ├── js/
 │   ├── data.js             # Data Store (โปรเจค, ข้อมูลส่วนตัว, สกิล, ไทม์ไลน์, บทความ)
-│   ├── particles.js        # Interactive 2D Canvas Particle Mesh พร้อมโหมดประหยัดพลังงาน
+│   ├── particles.js        # Background FX Engine (3-in-1: Particles, Matrix Rain, Starfield)
 │   ├── three-hero.js       # Three.js WebGL 3D Interactive Hero Core & Orbiting Neon Cloud
-│   ├── projects.js         # Vanilla-Tilt 3D Glare Engine, Swiper Modal, Focus Trap, Filtering
-│   └── main.js             # Chart.js Radar, Swiper Testimonials, Tippy HUD, Web Audio, PWA
+│   ├── projects.js         # Vanilla-Tilt 3D Glare Engine, Device Simulator, Swiper, Filtering
+│   ├── main.js             # Chart.js Radar, Swiper Testimonials, Tippy HUD, Web Audio, PWA
+│   ├── admin.js            # In-Place Live CMS & Admin CRUD Backoffice Suite
+│   ├── command-palette.js  # Command Palette (Ctrl+K) inspired by cmdk & Raycast
+│   ├── terminal.js         # Interactive Developer Cyber Terminal (CLI Mode) with history & auto-complete
+│   └── resume.js           # Developer Resume / CV Viewer & Print Engine (ATS A4 Optimized)
 ├── data/
 │   └── projects.json       # ไฟล์ JSON เก็บข้อมูลโปรเจคทั้งหมดสำหรับเชื่อมต่อ API / Fetch
 └── tests/
-    ├── verify-portfolio.js # Automated Test Suite ตรวจสอบความถูกต้องครบ 146 จุด
+    ├── verify-portfolio.js # Automated Test Suite ตรวจสอบความถูกต้องครบ 259 จุด
     └── server-check.js     # Script ทดสอบ HTTP Serving & MIME Types
 ```
 
@@ -83,6 +87,17 @@
    - 📱 **Swiper.js** (`swiper-bundle.min.js`): Touch-Friendly Carousel ทั้งใน Project Modal (ดูภาพสไลด์และวิดีโอ) และ Testimonials Slider พร้อมปุ่ม Navigation และ Pagination Bullets
    - 🧲 **Vanilla-Tilt.js** (`vanilla-tilt.min.js`): 3D Card Parallax & Glare Specular Physics บนการ์ดโปรเจคและบริการ รองรับ Gyroscope บนมือถือ
    - 💡 **Tippy.js & Popper.js** (`tippy-bundle.umd.min.js`): Cyber HUD Tooltips เรืองแสงนีออน แสดงระดับความชำนาญ (Mastered / Advanced) และรายละเอียดบนการ์ด Tech Stack เมื่อ Hover/Focus
+
+9. **⚡ 5 Advanced Open-Source Trending Features (Next-Level Upgrade)**
+   - ⌨️ **Command Palette (`Ctrl + K` / `Cmd + K`)**: แผงสั่งการแบบ Glassmorphism แรงบันดาลใจจาก `cmdk` และ Raycast ค้นหาเมนู คำสั่งระบบ โปรเจค และกรองสแต็กเทคโนโลยีแบบเรียลไทม์ พร้อมการเลื่อนเลือกด้วยคีย์บอร์ด
+   - 💻 **Interactive Developer Cyber Terminal (CLI Mode)**: หน้าต่างเทอร์มินัลอินเทอร์แอคทีฟสไตล์ Hacker CLI รองรับคำสั่ง `help`, `projects`, `open <id>`, `skills`, `bio`, `contact`, `theme`, `fx`, `matrix`, `starfield`, `particles`, `resume`, `stats`, `clear` พร้อม Command History (`↑`/`↓`) และ Tab Auto-completion
+   - 📱 **Interactive Device Viewport Simulator**: แท็บจำลองหน้าจอใน Project Modal รองรับการพรีวิวผลงานแบบตอบสนองบน **Desktop** (1920×1080), **Tablet** (iPad 768×1024) และ **Mobile** (iPhone 390×844) พร้อม Mockup Browser URL bar, Dynamic Island, Home indicator และ Live iframe loading
+   - 📄 **Developer Resume / CV Viewer & Print Modal**: หน้าต่างเรซูเม่ฉบับสมบูรณ์มาตรฐาน ATS แสดงผลประวัติการทำงาน สกิล ผลงานเด่น และการศึกษา พร้อมฟังก์ชัน **สั่งพิมพ์ A4 / บันทึก PDF** ผ่านเบราว์เซอร์ และคัดลอก Plain Text ATS-Ready
+   - 🌌 **Interactive Background FX Real-time Switcher**: สลับแคนวาสพื้นหลัง 3 โหมดได้แบบเรียลไทม์:
+     1. `particles`: 3D Particle Mesh & Constellation ตอบสนองตำแหน่งเมาส์
+     2. `matrix`: Matrix Digital Rain ฝนโค้ดดิจิทัลสีเขียว/ฟ้าเรืองแสง
+     3. `starfield`: Cyber Warp Starfield ท่องอวกาศ 3D ไฮเปอร์สเปซ
+     พร้อมปุ่มสลับบน Navbar, คีย์ลัด `Alt + B` และบันทึกสถานะลง `localStorage` อัตโนมัติ
 
 ---
 

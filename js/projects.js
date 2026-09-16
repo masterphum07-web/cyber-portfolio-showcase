@@ -235,7 +235,8 @@ class ProjectsManager {
     this.currentView = localStorage.getItem('portfolio-view-mode') || 'grid';
     this.activeProjectId = null;
     this.currentSlideIndex = 0;
-    this.activeModalTab = 'images'; // 'images' | 'video'
+    this.activeModalTab = 'images'; // 'images' | 'video' | 'simulator'
+    this.activeSimulatorDevice = 'desktop'; // 'desktop' | 'tablet' | 'mobile'
     this.lastFocusedElement = null;
     this.searchDebounceTimer = null;
 
@@ -668,19 +669,22 @@ class ProjectsManager {
         <i data-lucide="x" style="width: 22px; height: 22px;"></i>
       </button>
 
-      <!-- Modal Media Section (Carousel or Video Player) -->
+      <!-- Modal Media Section (Carousel, Video Player, or Device Simulator) -->
       <div class="modal-media-container">
-        <!-- Media Type Selector Switch (If video exists) -->
-        ${embedVideoUrl ? `
-          <div class="modal-media-tabs">
-            <button class="modal-tab-btn ${this.activeModalTab === 'images' ? 'active' : ''}" id="tab-images-btn" onclick="window.projectsApp.switchModalMedia('images')">
-              <i data-lucide="image" style="width: 14px; height: 14px;"></i> แกลเลอรีภาพ (${screenshots.length})
-            </button>
-            <button class="modal-tab-btn ${this.activeModalTab === 'video' ? 'active' : ''}" id="tab-video-btn" onclick="window.projectsApp.switchModalMedia('video')">
+        <!-- Media Type Selector Switch -->
+        <div class="modal-media-tabs">
+          <button type="button" class="modal-tab-btn ${this.activeModalTab === 'images' ? 'active' : ''}" id="tab-images-btn" onclick="window.projectsApp.switchModalMedia('images')">
+            <i data-lucide="image" style="width: 14px; height: 14px;"></i> แกลเลอรีภาพ (${screenshots.length})
+          </button>
+          ${embedVideoUrl ? `
+            <button type="button" class="modal-tab-btn ${this.activeModalTab === 'video' ? 'active' : ''}" id="tab-video-btn" onclick="window.projectsApp.switchModalMedia('video')">
               <i data-lucide="play-circle" style="width: 14px; height: 14px;"></i> วิดีโอเดโม (Video)
             </button>
-          </div>
-        ` : ''}
+          ` : ''}
+          <button type="button" class="modal-tab-btn ${this.activeModalTab === 'simulator' ? 'active' : ''}" id="tab-simulator-btn" onclick="window.projectsApp.switchModalMedia('simulator')">
+            <i data-lucide="smartphone" style="width: 14px; height: 14px;"></i> จำลองอุปกรณ์ (Live Simulator)
+          </button>
+        </div>
 
         <!-- Carousel View with Swiper.js & Fallback -->
         <div class="modal-carousel-wrapper" id="modal-carousel-wrapper" style="display: ${this.activeModalTab === 'images' ? 'block' : 'none'};">
@@ -728,6 +732,73 @@ class ProjectsManager {
             ></iframe>
           </div>
         ` : ''}
+
+        <!-- Device Viewport Simulator View -->
+        <div class="modal-simulator-wrapper" id="modal-simulator-wrapper" style="display: ${this.activeModalTab === 'simulator' ? 'block' : 'none'};">
+          <div class="simulator-control-bar">
+            <div class="simulator-device-toggles">
+              <button type="button" class="sim-device-btn ${this.activeSimulatorDevice === 'desktop' ? 'active' : ''}" id="sim-btn-desktop" onclick="window.projectsApp.setSimulatorDevice('desktop')">
+                <i data-lucide="monitor" style="width: 14px; height: 14px;"></i> Desktop (1920×1080)
+              </button>
+              <button type="button" class="sim-device-btn ${this.activeSimulatorDevice === 'tablet' ? 'active' : ''}" id="sim-btn-tablet" onclick="window.projectsApp.setSimulatorDevice('tablet')">
+                <i data-lucide="tablet" style="width: 14px; height: 14px;"></i> Tablet (768×1024)
+              </button>
+              <button type="button" class="sim-device-btn ${this.activeSimulatorDevice === 'mobile' ? 'active' : ''}" id="sim-btn-mobile" onclick="window.projectsApp.setSimulatorDevice('mobile')">
+                <i data-lucide="smartphone" style="width: 14px; height: 14px;"></i> Mobile (390×844)
+              </button>
+            </div>
+            <div class="simulator-url-bar">
+              <i data-lucide="lock" style="width: 12px; height: 12px; color: var(--neon-cyan);"></i>
+              <span class="simulator-url-text">${this.escapeHtml(project.live_url || 'https://demo.example.com')}</span>
+              <button type="button" class="sim-icon-btn" onclick="window.projectsApp.reloadSimulator()" title="โหลดหน้าเดโมใหม่">
+                <i data-lucide="rotate-cw" style="width: 13px; height: 13px;"></i>
+              </button>
+              ${project.live_url ? `
+                <a href="${project.live_url}" target="_blank" rel="noopener noreferrer" class="sim-icon-btn" title="เปิดเดโมในหน้าต่างใหม่">
+                  <i data-lucide="external-link" style="width: 13px; height: 13px;"></i>
+                </a>
+              ` : ''}
+            </div>
+          </div>
+
+          <div class="simulator-stage">
+            <div class="simulator-frame frame-${this.activeSimulatorDevice || 'desktop'}" id="simulator-frame">
+              <div class="sim-frame-header" id="sim-frame-header">
+                <div class="sim-frame-dots">
+                  <span class="sim-dot red"></span>
+                  <span class="sim-dot yellow"></span>
+                  <span class="sim-dot green"></span>
+                </div>
+                <div class="sim-frame-notch" id="sim-frame-notch"></div>
+                <div class="sim-frame-title">${this.escapeHtml(project.title)}</div>
+              </div>
+
+              <div class="sim-screen-container">
+                <iframe 
+                  id="modal-simulator-iframe"
+                  src="" 
+                  data-sim-src="${project.live_url || ''}"
+                  title="${this.escapeHtml(project.title)} Viewport Simulator"
+                  sandbox="allow-scripts allow-same-origin allow-forms allow-popups"
+                  loading="lazy"
+                ></iframe>
+                ${!project.live_url ? `
+                  <div class="sim-fallback-notice">
+                    <i data-lucide="monitor-off" style="width: 36px; height: 36px; color: var(--text-muted); margin-bottom: 8px;"></i>
+                    <div style="font-weight: 700; color: var(--text-main);">ไม่มี Live URL สำหรับโปรเจคนี้</div>
+                    <div style="font-size: 0.8rem; color: var(--text-muted); margin-top: 4px;">ดูภาพแกลเลอรีหรือซอร์สโค้ดบน GitHub แทนได้</div>
+                  </div>
+                ` : `
+                  <div class="sim-xframe-hint">
+                    <span>💡 หากเว็บไซต์บล็อกการแสดงผลใน iframe (X-Frame-Options)</span>
+                    <a href="${project.live_url}" target="_blank" rel="noopener noreferrer" class="sim-xframe-link">คลิกที่นี่เพื่อเปิดเดโมจริง ↗</a>
+                  </div>
+                `}
+              </div>
+              <div class="sim-home-indicator" id="sim-home-indicator"></div>
+            </div>
+          </div>
+        </div>
       </div>
 
       <!-- Modal Body -->
@@ -910,7 +981,7 @@ class ProjectsManager {
     }
   }
 
-  // สลับแท็บมีเดียระหว่าง Images และ Video
+  // สลับแท็บมีเดียระหว่าง Images, Video และ Device Simulator
   switchModalMedia(tab) {
     this.activeModalTab = tab;
     const project = this.projects.find(p => p.id === this.activeProjectId);
@@ -918,26 +989,80 @@ class ProjectsManager {
 
     const imgWrapper = document.getElementById('modal-carousel-wrapper');
     const vidWrapper = document.getElementById('modal-video-wrapper');
+    const simWrapper = document.getElementById('modal-simulator-wrapper');
     const vidIframe = document.getElementById('modal-video-iframe');
+    const simIframe = document.getElementById('modal-simulator-iframe');
     const tabImgBtn = document.getElementById('tab-images-btn');
     const tabVidBtn = document.getElementById('tab-video-btn');
+    const tabSimBtn = document.getElementById('tab-simulator-btn');
 
     if (tabImgBtn) tabImgBtn.classList.toggle('active', tab === 'images');
     if (tabVidBtn) tabVidBtn.classList.toggle('active', tab === 'video');
+    if (tabSimBtn) tabSimBtn.classList.toggle('active', tab === 'simulator');
 
-    if (tab === 'images') {
-      if (imgWrapper) imgWrapper.style.display = 'block';
-      if (vidWrapper) vidWrapper.style.display = 'none';
-      if (vidIframe) vidIframe.src = ''; // หยุดวิดีโอ
-    } else {
-      if (imgWrapper) imgWrapper.style.display = 'none';
-      if (vidWrapper) vidWrapper.style.display = 'block';
+    if (imgWrapper) imgWrapper.style.display = tab === 'images' ? 'block' : 'none';
+    if (vidWrapper) vidWrapper.style.display = tab === 'video' ? 'block' : 'none';
+    if (simWrapper) simWrapper.style.display = tab === 'simulator' ? 'block' : 'none';
+
+    if (tab === 'video') {
       if (vidIframe) {
         const embedUrl = vidIframe.getAttribute('data-video-src') || normalizeEmbedUrl(project.video_url);
         if (embedUrl) vidIframe.src = embedUrl;
       }
+      if (simIframe) simIframe.src = '';
+    } else if (tab === 'simulator') {
+      if (simIframe) {
+        const simUrl = simIframe.getAttribute('data-sim-src');
+        if (simUrl && !simIframe.src) {
+          simIframe.src = simUrl;
+        }
+      }
+      if (vidIframe) vidIframe.src = '';
+    } else {
+      if (vidIframe) vidIframe.src = '';
+      if (simIframe) simIframe.src = '';
     }
+
+    if (window.lucide) window.lucide.createIcons();
     window.soundFx?.click();
+  }
+
+  // ปรับเปลี่ยนอุปกรณ์จำลองใน Device Simulator (desktop, tablet, mobile)
+  setSimulatorDevice(device) {
+    if (!['desktop', 'tablet', 'mobile'].includes(device)) return;
+    this.activeSimulatorDevice = device;
+
+    const frame = document.getElementById('simulator-frame');
+    if (frame) {
+      frame.classList.remove('frame-desktop', 'frame-tablet', 'frame-mobile');
+      frame.classList.add(`frame-${device}`);
+    }
+
+    const btns = {
+      desktop: document.getElementById('sim-btn-desktop'),
+      tablet: document.getElementById('sim-btn-tablet'),
+      mobile: document.getElementById('sim-btn-mobile')
+    };
+
+    Object.keys(btns).forEach(k => {
+      if (btns[k]) btns[k].classList.toggle('active', k === device);
+    });
+
+    window.soundFx?.click();
+  }
+
+  // รีโหลดหน้าจอจำลอง
+  reloadSimulator() {
+    const simIframe = document.getElementById('modal-simulator-iframe');
+    if (simIframe) {
+      const src = simIframe.getAttribute('data-sim-src');
+      if (src) {
+        simIframe.src = '';
+        setTimeout(() => { simIframe.src = src; }, 100);
+        window.soundFx?.click();
+        window.showToast?.('รีโหลดหน้าจอจำลองสำเร็จ', 'info', 'rotate-cw');
+      }
+    }
   }
 
   // คัดลอกลิงก์แชร์โปรเจค
@@ -979,9 +1104,11 @@ class ProjectsManager {
       this.modalSwiper = null;
     }
 
-    // ล้าง iframe วิดีโอเพื่อหยุดเสียง
+    // ล้าง iframe วิดีโอและ simulator เพื่อหยุดเสียงและประหยัด RAM
     const vidIframe = document.getElementById('modal-video-iframe');
     if (vidIframe) vidIframe.src = '';
+    const simIframe = document.getElementById('modal-simulator-iframe');
+    if (simIframe) simIframe.src = '';
 
     // ล้าง hash โดยใช้ replaceState เพื่อไม่ให้ประวัติ browser เกิด loop
     history.replaceState('', document.title, window.location.pathname + window.location.search);

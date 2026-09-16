@@ -42,7 +42,10 @@ server.listen(8199, '127.0.0.1', async () => {
     '/assets/icons/icon-192.png',
     '/css/style.css',
     '/js/three-hero.js',
-    '/js/projects.js'
+    '/js/projects.js',
+    '/js/command-palette.js',
+    '/js/terminal.js',
+    '/js/resume.js'
   ];
 
   let successCount = 0;

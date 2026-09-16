@@ -35,6 +35,9 @@ const requiredFiles = [
   'js/projects.js',
   'js/main.js',
   'js/admin.js',
+  'js/command-palette.js',
+  'js/terminal.js',
+  'js/resume.js',
   'data/projects.json',
   'assets/icons/favicon.svg',
   'assets/icons/icon-192.svg',
@@ -59,6 +62,9 @@ const jsFiles = [
   'js/projects.js',
   'js/main.js',
   'js/admin.js',
+  'js/command-palette.js',
+  'js/terminal.js',
+  'js/resume.js',
   'sw.js'
 ];
 
@@ -329,6 +335,68 @@ assert(dataJsFile.includes('if (Array.isArray(parsed))'), `js/data.js allows emp
 assert(adminJs.includes('Array.isArray(importedData)'), `AdminBackofficeCMS supports importing raw JSON project arrays`);
 assert(threeHeroJs.includes('camera.position.z = 7.0'), `js/three-hero.js positions camera at z=7.0 for optimal 3D core framing`);
 
+console.log('\n🔍 [11/11] VALIDATING 5 ADVANCED OPEN-SOURCE POWER FEATURES...');
+
+// 1. COMMAND PALETTE (Ctrl + K / Cmd + K)
+assert(html.includes('id="command-palette-modal"'), `index.html includes #command-palette-modal`);
+assert(html.includes('id="cmdk-input"'), `index.html includes #cmdk-input`);
+assert(html.includes('id="cmdk-results"'), `index.html includes #cmdk-results`);
+assert(html.includes('id="cmdk-nav-btn"'), `Navbar includes #cmdk-nav-btn trigger`);
+const cmdkJs = fs.readFileSync('js/command-palette.js', 'utf8');
+assert(cmdkJs.includes('class CommandPalette'), `js/command-palette.js defines CommandPalette class`);
+assert(cmdkJs.includes('getAllCommands') && cmdkJs.includes('filterCommands'), `CommandPalette implements command extraction and query filtering`);
+assert(cmdkJs.includes('ArrowUp') && cmdkJs.includes('ArrowDown') && cmdkJs.includes('Enter'), `CommandPalette supports keyboard navigation`);
+assert(cmdkJs.includes('Ctrl') || cmdkJs.includes('ctrlKey'), `CommandPalette implements Ctrl+K shortcut`);
+assert(css.includes('.cmdk-backdrop') && css.includes('.cmdk-card'), `css/style.css defines Command Palette glassmorphic styles`);
+
+// 2. INTERACTIVE DEVELOPER CYBER TERMINAL (CLI Mode)
+assert(html.includes('id="cyber-terminal-modal"'), `index.html includes #cyber-terminal-modal`);
+assert(html.includes('id="cyber-terminal-window"'), `index.html includes #cyber-terminal-window`);
+assert(html.includes('id="terminal-output"'), `index.html includes #terminal-output`);
+assert(html.includes('id="terminal-input"'), `index.html includes #terminal-input`);
+assert(html.includes('id="terminal-nav-btn"'), `Navbar includes #terminal-nav-btn trigger`);
+const terminalJs = fs.readFileSync('js/terminal.js', 'utf8');
+assert(terminalJs.includes('class CyberTerminal'), `js/terminal.js defines CyberTerminal class`);
+const reqCmds = ['help', 'projects', 'skills', 'bio', 'contact', 'theme', 'clear', 'stats', 'matrix', 'admin', 'resume'];
+reqCmds.forEach(cmd => {
+  assert(terminalJs.includes(`'${cmd}'`) || terminalJs.includes(`"${cmd}"`), `CyberTerminal supports command '${cmd}'`);
+});
+assert(terminalJs.includes('history') && terminalJs.includes('ArrowUp'), `CyberTerminal supports command history navigation`);
+assert(terminalJs.includes('Tab') && terminalJs.includes('startsWith'), `CyberTerminal supports Tab autocompletion`);
+assert(css.includes('.cyber-terminal-container') && css.includes('.term-prompt-line'), `css/style.css defines Cyber Terminal window styles`);
+
+// 3. INTERACTIVE DEVICE VIEWPORT SIMULATOR IN PROJECT MODAL
+assert(projectsJs.includes('modal-simulator-wrapper'), `js/projects.js defines modal-simulator-wrapper`);
+assert(projectsJs.includes('frame-desktop') && projectsJs.includes('frame-tablet') && projectsJs.includes('frame-mobile'), `js/projects.js implements Desktop, Tablet, and Mobile viewports`);
+assert(projectsJs.includes('setSimulatorDevice'), `js/projects.js defines setSimulatorDevice`);
+assert(projectsJs.includes('reloadSimulator'), `js/projects.js defines reloadSimulator`);
+assert(projectsJs.includes('modal-simulator-iframe'), `js/projects.js implements live viewport simulator iframe`);
+assert(css.includes('.modal-simulator-wrapper') && css.includes('.simulator-frame'), `css/style.css defines Device Simulator frame styling`);
+assert(css.includes('.frame-desktop') && css.includes('.frame-tablet') && css.includes('.frame-mobile'), `css/style.css defines responsive frame aspect ratios`);
+
+// 4. DEVELOPER RESUME / CV VIEWER & PRINT MODAL (ATS READY)
+assert(html.includes('id="resume-modal"'), `index.html includes #resume-modal`);
+assert(html.includes('id="resume-printable-area"'), `index.html includes #resume-printable-area`);
+assert(html.includes('id="resume-nav-btn"'), `Navbar includes #resume-nav-btn trigger`);
+const resumeJs = fs.readFileSync('js/resume.js', 'utf8');
+assert(resumeJs.includes('class ResumeViewer'), `js/resume.js defines ResumeViewer class`);
+assert(resumeJs.includes('printResume') && resumeJs.includes('window.print'), `ResumeViewer implements window.print() trigger`);
+assert(resumeJs.includes('copyPlainText'), `ResumeViewer implements ATS plain text clipboard copy`);
+assert(resumeJs.includes('downloadMarkdown'), `ResumeViewer implements Markdown download`);
+assert(html.includes('Executive Summary') || html.includes('บทคัดย่อประวัติการทำงาน'), `Resume contains Executive Summary section`);
+assert(html.includes('Technical Skills') || html.includes('ทักษะความเชี่ยวชาญ'), `Resume contains Technical Skills section`);
+assert(html.includes('Work Experience') || html.includes('ประวัติการทำงาน'), `Resume contains Work Experience section`);
+assert(css.includes('#resume-modal') && css.includes('@page'), `css/style.css defines A4 print stylesheet for resume`);
+
+// 5. INTERACTIVE BACKGROUND FX SWITCHER (PARTICLES, MATRIX, STARFIELD)
+assert(html.includes('id="bg-fx-nav-switcher"'), `Navbar includes #bg-fx-nav-switcher`);
+assert(html.includes('data-bg-fx="particles"') && html.includes('data-bg-fx="matrix"') && html.includes('data-bg-fx="starfield"'), `Background FX switcher includes all 3 modes`);
+const particlesJs = fs.readFileSync('js/particles.js', 'utf8');
+assert(particlesJs.includes('setMode') && particlesJs.includes('getMode') && particlesJs.includes('toggleMode'), `Background FX Engine defines setMode, getMode, and toggleMode`);
+assert(particlesJs.includes('matrixDrops') && particlesJs.includes('renderMatrixFrame'), `Background FX Engine implements Matrix Digital Rain`);
+assert(particlesJs.includes('renderStarfieldFrame') && particlesJs.includes('numStars'), `Background FX Engine implements Cyber Warp Starfield`);
+assert(particlesJs.includes('portfolio_bg_fx'), `Background FX Engine persists state in localStorage portfolio_bg_fx`);
+assert(css.includes('.bg-fx-nav-switcher') && css.includes('.bg-fx-pill'), `css/style.css defines Background FX switcher styling`);
 
 console.log('\n' + '='.repeat(50));
 console.log(`TOTAL TESTS: ${passedTests + failedTests}`);
