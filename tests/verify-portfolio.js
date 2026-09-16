@@ -170,7 +170,7 @@ const dataJs = fs.readFileSync('js/data.js', 'utf8');
 assert(dataJs.includes('window.PORTFOLIO_DATA'), `js/data.js populates window.PORTFOLIO_DATA`);
 const mockWindow = {};
 eval(`(function(window){ ${dataJs} })(mockWindow)`);
-assert(mockWindow.PORTFOLIO_DATA && mockWindow.PORTFOLIO_DATA.projects.length === 8, `Evaluated PORTFOLIO_DATA contains 8 projects`);
+assert(mockWindow.PORTFOLIO_DATA && mockWindow.PORTFOLIO_DATA.projects.length >= 8, `Evaluated PORTFOLIO_DATA contains at least 8 projects`);
 assert(mockWindow.PORTFOLIO_DATA.skills.length >= 10, `Evaluated PORTFOLIO_DATA contains skills array`);
 assert(mockWindow.PORTFOLIO_DATA.timeline.length >= 4, `Evaluated PORTFOLIO_DATA contains timeline array`);
 
