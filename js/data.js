@@ -257,8 +257,9 @@ window.PORTFOLIO_DATA = {
       "title": "MT5 Expert Advisor: Price Action Breakout & Two-way Telegram Controller",
       "description_short": "ระบบเทรดอัตโนมัติ MetaTrader 5 พร้อมบอท Python สั่งการและแจ้งเตือนผ่าน Telegram แบบ 2 ทาง",
       "description_full": "ระบบซื้อขายอัตโนมัติบนแพลตฟอร์ม MetaTrader 5 (MQL5) พัฒนาขึ้นเพื่อเทรดตามกลยุทธ์ Market Structure Breakout บน Timeframe M1 มีระบบ Trailing Stop เลื่อนตาม Swing High/Low, ระบบบริหารจัดการความเสี่ยง Hard Cut Drawdown 15% พร้อมโปรแกรมควบคุมระยะไกลด้วยภาษา Python เชื่อมต่อ Telegram Bot เพื่อสั่งการ เปิด/ปิดออเดอร์ และรับรายงานสรุปพอร์ตได้ทุกที่",
-      "thumbnail": "assets/projects/mt5-ea.png",
+      "thumbnail": "assets/projects/mt5-ea-graphic-banner.jpg",
       "screenshots": [
+        "assets/projects/mt5-ea-graphic-banner.jpg",
         "assets/projects/mt5-ea.png"
       ],
       "video_url": "https://www.youtube.com/embed/dQw4w9WgXcQ",
@@ -285,8 +286,9 @@ window.PORTFOLIO_DATA = {
       "docs_url": "",
       "start_date": "2025-07",
       "end_date": "2025-09",
-      "image": "assets/projects/mt5-ea.png",
+      "image": "assets/projects/mt5-ea-graphic-banner.jpg",
       "gallery": [
+        "assets/projects/mt5-ea-graphic-banner.jpg",
         "assets/projects/mt5-ea.png"
       ]
     },
@@ -412,8 +414,9 @@ window.PORTFOLIO_DATA = {
       "title": "Freshy Badminton Scoreboard & Tournament Manager",
       "description_short": "ระบบนับแต้มและกระดานคะแนนการแข่งขันแบดมินตันเฟรชชี่แบบ Real-time เชื่อมต่อ Google Sheets",
       "description_full": "ระบบดิจิทัลสกอร์บอร์ดสำหรับการแข่งขันกีฬาแบดมินตัน แสดงคะแนนขนาดใหญ่ที่มองเห็นชัดเจนในสนามแข่งขัน ควบคุมการเพิ่ม/ลดคะแนน สลับฝั่งเสิร์ฟ และบันทึกผลการแข่งขันลง Google Sheets อัตโนมัติ พร้อมแสดงตารางสายการแข่งขัน (Tournament Bracket)",
-      "thumbnail": "assets/projects/badminton-scoreboard.png",
+      "thumbnail": "assets/projects/badminton-graphic-banner.jpg",
       "screenshots": [
+        "assets/projects/badminton-graphic-banner.jpg",
         "assets/projects/badminton-scoreboard.png"
       ],
       "video_url": "https://www.youtube.com/embed/dQw4w9WgXcQ",
@@ -439,8 +442,9 @@ window.PORTFOLIO_DATA = {
       "docs_url": "https://github.com/masterphum07-web/Batminton#readme",
       "start_date": "2025-08",
       "end_date": "2025-08",
-      "image": "assets/projects/badminton-scoreboard.png",
+      "image": "assets/projects/badminton-graphic-banner.jpg",
       "gallery": [
+        "assets/projects/badminton-graphic-banner.jpg",
         "assets/projects/badminton-scoreboard.png"
       ]
     },
