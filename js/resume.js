@@ -86,11 +86,11 @@ class ResumeViewer {
   // คัดลอกเนื้อหา Plain Text สำหรับส่งระบบ ATS
   copyPlainText() {
     const text = `
-KRITSANA KIAT-ANAN (กฤษณะ เกียรติอนันต์)
-Senior Full-Stack Developer & Creative Web Engineer
-Bangkok, Thailand | contact@kritsana.dev | +66 89-123-4567
+PHUMPHAT SAWANGWIANG (ภูมิภัทร สว่างเวียง)
+Full-Stack Developer & Radiologic Technology Innovator
+Bangkok / Nonthaburi, Thailand | contact@phumshop.dev | +66 81-234-5678
 Portfolio: https://masterphum07-web.github.io/cyber-portfolio-showcase/
-GitHub: https://github.com/kritsana-dev | LinkedIn: https://linkedin.com/in/kritsana-dev
+GitHub: https://github.com/masterphum07-web
 
 PROFESSIONAL SUMMARY
 Senior Full-Stack Developer with 5+ years of experience designing and architecting high-performance web applications, scalable cloud microservices, and interactive 3D WebGL experiences. Proven track record in improving system throughput, optimizing SEO and web vitals, and leading cross-functional engineering teams.
@@ -161,9 +161,9 @@ LANGUAGES
 
   // ดาวน์โหลดไฟล์ Markdown (.md)
   downloadMarkdown() {
-    const mdContent = `# Kritsana Kiat-anan (กฤษณะ เกียรติอนันต์)
-**Senior Full-Stack Developer & Creative Web Engineer**
-- Email: contact@kritsana.dev | Phone: +66 89-123-4567 | Bangkok, Thailand
+    const mdContent = `# Phumphat Sawangwiang (ภูมิภัทร สว่างเวียง)
+**Full-Stack Developer & Radiologic Technology Innovator**
+- Email: contact@phumshop.dev | Phone: +66 81-234-5678 | Bangkok / Nonthaburi, Thailand
 - Portfolio: https://masterphum07-web.github.io/cyber-portfolio-showcase/
 
 ---
@@ -194,14 +194,14 @@ Senior Full-Stack Developer with 5+ years of experience in architecting scalable
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
-    a.download = 'Kritsana-Developer-Resume.md';
+    a.download = 'Phumphat-Developer-Resume.md';
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
     URL.revokeObjectURL(url);
 
     window.soundFx?.click?.();
-    window.showToast?.('ดาวน์โหลดไฟล์ Kritsana-Developer-Resume.md สำเร็จ', 'success', 'download');
+    window.showToast?.('ดาวน์โหลดไฟล์ Phumphat-Developer-Resume.md สำเร็จ', 'success', 'download');
   }
 }
 

@@ -365,14 +365,18 @@ assert(terminalJs.includes('history') && terminalJs.includes('ArrowUp'), `CyberT
 assert(terminalJs.includes('Tab') && terminalJs.includes('startsWith'), `CyberTerminal supports Tab autocompletion`);
 assert(css.includes('.cyber-terminal-container') && css.includes('.term-prompt-line'), `css/style.css defines Cyber Terminal window styles`);
 
-// 3. INTERACTIVE DEVICE VIEWPORT SIMULATOR IN PROJECT MODAL
-assert(projectsJs.includes('modal-simulator-wrapper'), `js/projects.js defines modal-simulator-wrapper`);
-assert(projectsJs.includes('frame-desktop') && projectsJs.includes('frame-tablet') && projectsJs.includes('frame-mobile'), `js/projects.js implements Desktop, Tablet, and Mobile viewports`);
-assert(projectsJs.includes('setSimulatorDevice'), `js/projects.js defines setSimulatorDevice`);
-assert(projectsJs.includes('reloadSimulator'), `js/projects.js defines reloadSimulator`);
-assert(projectsJs.includes('modal-simulator-iframe'), `js/projects.js implements live viewport simulator iframe`);
-assert(css.includes('.modal-simulator-wrapper') && css.includes('.simulator-frame'), `css/style.css defines Device Simulator frame styling`);
-assert(css.includes('.frame-desktop') && css.includes('.frame-tablet') && css.includes('.frame-mobile'), `css/style.css defines responsive frame aspect ratios`);
+// 3. CLEAN REMOVAL OF SIMULATOR & VERIFICATION OF 100% AUTHENTIC REAL PROJECT ASSETS
+assert(!projectsJs.includes('modal-simulator-wrapper'), `js/projects.js cleanly removes Device Simulator from active modal as requested`);
+assert(!projectsJs.includes('modal-simulator-iframe'), `js/projects.js removes simulated viewport iframe`);
+assert(fs.existsSync('assets/profile-phum.jpg'), `Real profile portrait assets/profile-phum.jpg exists`);
+assert(html.includes('src="assets/profile-phum.jpg"'), `index.html uses authentic profile portrait in avatars`);
+const projectFiles = fs.readdirSync('assets/projects');
+assert(projectFiles.length >= 14, `assets/projects contains authentic harvested project screenshots (found ${projectFiles.length})`);
+const projectsData = JSON.parse(fs.readFileSync('data/projects.json', 'utf8'));
+projectsData.projects.forEach(p => {
+  assert(p.thumbnail && (p.thumbnail.startsWith('assets/projects/') || fs.existsSync(p.thumbnail)), `Project #${p.id} (${p.title}) uses real screenshot for thumbnail`);
+  assert(fs.existsSync(p.thumbnail), `Project #${p.id} thumbnail file exists on disk: ${p.thumbnail}`);
+});
 
 // 4. DEVELOPER RESUME / CV VIEWER & PRINT MODAL (ATS READY)
 assert(html.includes('id="resume-modal"'), `index.html includes #resume-modal`);

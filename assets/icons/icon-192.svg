@@ -31,5 +31,5 @@
     <path d="M305 165 L218 256 L308 348" fill="none" stroke="url(#neonGrad)" stroke-width="26" stroke-linecap="round" stroke-linejoin="round"/>
     <circle cx="218" cy="256" r="10" fill="#00ff88"/>
   </g>
-  <text x="256" y="420" text-anchor="middle" fill="#00f2fe" font-family="'Orbitron', sans-serif" font-weight="800" font-size="30" letter-spacing="8">KRITSANA</text>
+  <text x="256" y="420" text-anchor="middle" fill="#00f2fe" font-family="'Orbitron', sans-serif" font-weight="800" font-size="30" letter-spacing="8">PHUM</text>
 </svg>

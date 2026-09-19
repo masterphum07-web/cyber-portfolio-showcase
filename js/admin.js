@@ -479,9 +479,9 @@ class AdminBackofficeCMS {
       if (el) el.value = val !== undefined ? val : '';
     };
 
-    setVal('prof-name', owner.name || 'กฤษณะ เกียรติอนันต์');
-    setVal('prof-english-name', owner.english_name || 'Kritsana Kiat-anan');
-    setVal('prof-title', owner.title || '<CREATIVE DEVELOPER />');
+    setVal('prof-name', owner.name || 'ภูมิภัทร สว่างเวียง');
+    setVal('prof-english-name', owner.english_name || 'Phumphat Sawangwiang');
+    setVal('prof-title', owner.title || '<FULL-STACK DEVELOPER & INNOVATOR />');
     setVal('prof-roles', Array.isArray(owner.roles) ? owner.roles.join('\n') : 'Full-Stack Developer\nCreative Coder & 3D Web');
     setVal('prof-bio', owner.bio || '');
     setVal('prof-avatar', owner.avatar || '');

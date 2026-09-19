@@ -73,7 +73,7 @@ class CyberTerminal {
   ╚═╝  ╚═╝╚═╝  ╚═╝╚═╝   ╚═╝   ╚══════╝╚═╝  ╚═╝╚═╝  ╚═══╝╚═╝  ╚═╝
 </span>
 <span class="term-dim">══════════════════════════════════════════════════════════════════════</span>
-<span class="term-highlight">CYBER TERMINAL v2.4.0 (x86_64-kritsana-dev-webos)</span>
+<span class="term-highlight">CYBER TERMINAL v2.4.0 (x86_64-phum-dev-webos)</span>
 <span class="term-info">ยินดีต้อนรับสู่ Interactive CLI Portfolio! พิมพ์ <span class="term-cmd">'help'</span> เพื่อดูคำสั่งทั้งหมด</span>
 <span class="term-info">หรือพิมพ์ <span class="term-cmd">'projects'</span> เพื่อเปิดดูผลงานโปรเจค และ <span class="term-cmd">'matrix'</span> เพื่อดูเอฟเฟกต์</span>
 <span class="term-dim">══════════════════════════════════════════════════════════════════════</span>
@@ -178,7 +178,7 @@ class CyberTerminal {
       if (matches.length === 1) {
         this.inputEl.value = matches[0] + ' ';
       } else if (matches.length > 1) {
-        this.printLine(`<span class="term-prompt">guest@kritsana-dev:~$</span> ${val}`);
+        this.printLine(`<span class="term-prompt">guest@phum-dev:~$</span> ${val}`);
         this.printLine(`<span class="term-dim">${matches.join('   ')}</span>`);
       }
       return;
@@ -196,7 +196,7 @@ class CyberTerminal {
 
   executeCommand(rawCmd) {
     const trimmed = rawCmd.trim();
-    this.printLine(`<span class="term-prompt">guest@kritsana-dev:~$</span> <span class="term-user-input">${this.escapeHtml(trimmed)}</span>`);
+    this.printLine(`<span class="term-prompt">guest@phum-dev:~$</span> <span class="term-user-input">${this.escapeHtml(trimmed)}</span>`);
 
     if (!trimmed) return;
 
@@ -271,7 +271,7 @@ class CyberTerminal {
         window.adminCMS?.openLoginModal?.();
         break;
       case 'sudo':
-        this.printLine(`<span class="term-error">🚫 Permission denied: User 'guest' is not in the sudoers file. This incident will be reported to Kritsana. 😎</span>`);
+        this.printLine(`<span class="term-error">🚫 Permission denied: User 'guest' is not in the sudoers file. This incident will be reported to Phumphat. 😎</span>`);
         break;
       case 'clear':
       case 'cls':
@@ -387,10 +387,10 @@ class CyberTerminal {
   cmdBio() {
     const bioText = `
 <div class="term-bio-box">
-  <div class="term-highlight">👤 KRITSANA KIAT-ANAN (กฤษณะ เกียรติอนันต์)</div>
-  <div class="term-dim">Role: Senior Full-Stack Developer & Creative Web Engineer</div>
-  <div class="term-dim">Location: Bangkok, Thailand (Open for Remote Worldwide)</div>
-  <div class="term-dim">Experience: 5+ Years in Full-Stack & 3D Web Systems</div>
+  <div class="term-highlight">👤 PHUMPHAT SAWANGWIANG (ภูมิภัทร สว่างเวียง)</div>
+  <div class="term-dim">Role: Full-Stack Developer & Radiologic Technology Innovator</div>
+  <div class="term-dim">Location: Bangkok / Nonthaburi (วทก.)</div>
+  <div class="term-dim">Experience: 3+ Years in Full-Stack, 3D Web & Medical Tech</div>
   <p style="margin-top: 8px; color: var(--text-main);">
     ผู้พัฒนาเว็บแอปพลิเคชันและซอฟต์แวร์ระดับมืออาชีพที่หลงใหลในการผสมผสานสถาปัตยกรรมระบบที่มั่นคง 
     (High Performance & Clean Code) เข้ากับประสบการณ์ 3D Interactive Graphics ล้ำสมัย
@@ -403,10 +403,10 @@ class CyberTerminal {
   cmdContact() {
     const contactText = `
 <div class="term-table">
-  <div class="term-row"><span class="term-highlight">Email:</span><span><a href="mailto:contact@kritsana.dev" class="term-link">contact@kritsana.dev</a></span></div>
-  <div class="term-row"><span class="term-highlight">GitHub:</span><span><a href="https://github.com" target="_blank" class="term-link">github.com/kritsana-dev</a></span></div>
-  <div class="term-row"><span class="term-highlight">LinkedIn:</span><span><a href="https://linkedin.com" target="_blank" class="term-link">linkedin.com/in/kritsana-dev</a></span></div>
-  <div class="term-row"><span class="term-highlight">LINE / Phone:</span><span>+66 89-123-4567</span></div>
+  <div class="term-row"><span class="term-highlight">Email:</span><span><a href="mailto:contact@phumshop.dev" class="term-link">contact@phumshop.dev</a></span></div>
+  <div class="term-row"><span class="term-highlight">GitHub:</span><span><a href="https://github.com/masterphum07-web" target="_blank" class="term-link">github.com/masterphum07-web</a></span></div>
+  <div class="term-row"><span class="term-highlight">Portfolio:</span><span><a href="https://masterphum07-web.github.io/cyber-portfolio-showcase/" target="_blank" class="term-link">masterphum07-web.github.io</a></span></div>
+  <div class="term-row"><span class="term-highlight">LINE / Phone:</span><span>+66 81-234-5678</span></div>
 </div>
 `;
     this.printLine(contactText);
@@ -469,9 +469,9 @@ class CyberTerminal {
 
     const fn = filename.toLowerCase();
     if (fn === 'readme.md' || fn === 'readme') {
-      this.printLine(`<span class="term-dim"># Kritsana 3D Showcase Portfolio\nModern Interactive Full-Stack Portfolio with WebGL 3D, Terminal CLI, Command Palette, and Device Simulator.</span>`);
+      this.printLine(`<span class="term-dim"># PHUM.IO 3D Showcase Portfolio\nModern Interactive Full-Stack Portfolio with WebGL 3D, Terminal CLI, Command Palette, and Admin CMS.</span>`);
     } else if (fn === 'package.json') {
-      this.printLine(`<span class="term-dim">{\n  "name": "cyber-3d-portfolio",\n  "version": "2.4.0",\n  "author": "Kritsana Kiat-anan",\n  "license": "MIT"\n}</span>`);
+      this.printLine(`<span class="term-dim">{\n  "name": "cyber-3d-portfolio",\n  "version": "2.4.0",\n  "author": "Phumphat Sawangwiang",\n  "license": "MIT"\n}</span>`);
     } else if (fn === 'secrets.txt' || fn === '.env') {
       this.printLine(`<span class="term-error">🔒 Access Denied: Nice try, hacker! 😉 All secrets are encrypted in the quantum vault.</span>`);
     } else {

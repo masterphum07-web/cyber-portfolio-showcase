@@ -1017,7 +1017,7 @@ function initSkillsRadarChart() {
     ],
     datasets: [
       {
-        label: 'กฤษณะ (Kritsana Level)',
+        label: 'ภูมิภัทร (Phumphat Level)',
         data: [95, 90, 86, 82, 84, 88],
         fill: true,
         backgroundColor: 'rgba(0, 242, 254, 0.22)',

@@ -1,7 +1,7 @@
 {
-  "name": "Kritsana | 3D Interactive Project Showcase Portfolio",
-  "short_name": "Kritsana 3D",
-  "description": "เว็บไซต์ Portfolio สำหรับโชว์ผลงานโปรเจค Full-Stack & Creative Coder พร้อมระบบ 3D Interactive, Glassmorphism และ Dark/Light Mode",
+  "name": "ภูมิภัทร สว่างเวียง (Phumphat) | 3D Interactive Portfolio",
+  "short_name": "PHUM.IO",
+  "description": "เว็บไซต์ Portfolio โชว์ผลงานโปรเจค Full-Stack Developer & Radiologic Technology Innovator พร้อมระบบ 3D Interactive",
   "start_url": "./index.html",
   "scope": "./",
   "display": "standalone",

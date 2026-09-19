@@ -1,7 +1,7 @@
 {
   "portfolio_owner": {
-    "name": "ภูมิภัทร (Phumphat)",
-    "english_name": "Phumphat Kiat-anan",
+    "name": "ภูมิภัทร สว่างเวียง (Phumphat Sawangwiang)",
+    "english_name": "Phumphat Sawangwiang",
     "title": "Full-Stack Developer & Radiologic Technology Innovator",
     "roles": [
       "Full-Stack Developer",
@@ -10,7 +10,7 @@
       "Trading Bot & Tool Developer"
     ],
     "bio": "นักศึกษาและนักพัฒนาซอฟต์แวร์ผู้หลงใหลใน 3D Interactive Web, นวัตกรรมเทคโนโลยีทางการแพทย์และรังสีวิทยา (Medical & Radiologic Tech) รวมถึงระบบอัตโนมัติ สรรค์สร้างผลงานจริงที่ใช้งานได้จริงในองค์กรและสถาบันการศึกษา",
-    "avatar": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=600&q=80",
+    "avatar": "assets/profile-phum.jpg",
     "experience_years": 3,
     "completed_projects": 14,
     "technologies_count": 22,
@@ -32,10 +32,12 @@
       "title": "RadPose 3D: Patient Positioning & Radiographic Anatomy Simulator",
       "description_short": "โปรแกรมจำลองท่าถ่ายเอกซเรย์ผู้ป่วย 3 มิติ และกายวิภาคศาสตร์ทางรังสีวิทยาสำหรับนักศึกษารังสีเทคนิค",
       "description_full": "เว็บแอปพลิเคชัน 3 มิติ Interactive จำลองการจัดท่าผู้ป่วยในการตรวจทางรังสีวิทยา (Radiographic Patient Positioning) และการทำงานของหลอดเอกซเรย์ตามมาตรฐาน ACR และตำรากายวิภาคศาสตร์ ผู้ใช้สามารถหมุนดูมุม 360 องศา, ปรับมุมหลอด X-ray (Central Ray), และศึกษาจุด Landmark ร่างกายแบบเสมือนจริง",
-      "thumbnail": "https://images.unsplash.com/photo-1516549655169-df83a0774514?auto=format&fit=crop&w=800&q=80",
+      "thumbnail": "assets/projects/radpose-3d-ui.png",
       "screenshots": [
-        "https://images.unsplash.com/photo-1516549655169-df83a0774514?auto=format&fit=crop&w=1200&q=80",
-        "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=1200&q=80"
+        "assets/projects/radpose-3d-ui.png",
+        "assets/projects/radpose-chest.jpg",
+        "assets/projects/radpose-abdomen.jpg",
+        "assets/projects/radpose-cspine.jpg"
       ],
       "video_url": "https://www.youtube.com/embed/dQw4w9WgXcQ",
       "category": "Web App",
@@ -60,17 +62,25 @@
       "live_url": "https://masterphum07-web.github.io/radpose-3d/",
       "docs_url": "https://github.com/masterphum07-web/radpose-3d#readme",
       "start_date": "2025-06",
-      "end_date": "2025-09"
+      "end_date": "2025-09",
+      "image": "assets/projects/radpose-3d-ui.png",
+      "gallery": [
+        "assets/projects/radpose-3d-ui.png",
+        "assets/projects/radpose-chest.jpg",
+        "assets/projects/radpose-abdomen.jpg",
+        "assets/projects/radpose-cspine.jpg"
+      ]
     },
     {
       "id": 2,
       "title": "WTK Music Studio: ระบบจองห้องซ้อมดนตรี ชมรมดนตรี วทก.",
       "description_short": "ระบบจองห้องซ้อมดนตรีออนไลน์แบบ Zero-Cost พร้อมระบบป้องกันการจองชนกัน และแจ้งเตือนอีเมลอัตโนมัติ",
       "description_full": "ระบบจองห้องซ้อมดนตรีออนไลน์สำหรับชมรมดนตรี วิทยาลัยเทคโนโลยีทางการแพทย์และสาธารณสุข กาญจนาภิเษก (วทก.) พัฒนาด้วยสถาปัตยกรรมไร้ค่าใช้จ่ายเซิร์ฟเวอร์ (Zero-Cost Architecture) มีระบบ LockService ป้องกันการจองช่วงเวลาชนกัน, ระบบแจ้งเตือนทางอีเมลอัตโนมัติถึงนักศึกษาและอาจารย์, แดชบอร์ดตรวจสอบสถิติการใช้งาน และหน้าต่างจัดการหลังบ้าน Admin Console",
-      "thumbnail": "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=800&q=80",
+      "thumbnail": "assets/projects/wtk-music-site.png",
       "screenshots": [
-        "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=1200&q=80",
-        "https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?auto=format&fit=crop&w=1200&q=80"
+        "assets/projects/wtk-music-site.png",
+        "assets/projects/wtk-music-banner.png",
+        "assets/projects/wtk-music-info.png"
       ],
       "video_url": "https://www.youtube.com/embed/dQw4w9WgXcQ",
       "category": "Web App",
@@ -95,17 +105,24 @@
       "live_url": "https://masterphum07-web.github.io/MUSIC-PI/",
       "docs_url": "https://github.com/masterphum07-web/MUSIC-PI#readme",
       "start_date": "2025-08",
-      "end_date": "2025-09"
+      "end_date": "2025-09",
+      "image": "assets/projects/wtk-music-site.png",
+      "gallery": [
+        "assets/projects/wtk-music-site.png",
+        "assets/projects/wtk-music-banner.png",
+        "assets/projects/wtk-music-info.png"
+      ]
     },
     {
       "id": 3,
       "title": "RTPI: ศูนย์รวมตารางสอบ ตารางสอน และกิจกรรม สาขารังสีเทคนิค วทก.",
       "description_short": "เว็บพอร์ทัลค้นหาตารางสอบ ตารางเรียน และกิจกรรมประจำสาขาวิชารังสีเทคนิค วทก. เชื่อมต่อ Google Sheets",
       "description_full": "เว็บแอปพลิเคชันสำหรับนักศึกษาและคณาจารย์สาขาวิชารังสีเทคนิค วทก. รวมตารางสอบ ตารางสอน ข่าวสารกิจกรรม และระบบค้นหาห้องสอบ/วิชาเรียนแบบเรียลไทม์ เชื่อมโยงฐานข้อมูลสดจาก Google Sheets พร้อมระบบผู้ดูแลสำหรับอัปโหลดเอกสารและรูปภาพตารางสอบโดยตรงผ่านหน้าเว็บ",
-      "thumbnail": "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&fit=crop&w=800&q=80",
+      "thumbnail": "assets/projects/rtpi-schedule.png",
       "screenshots": [
-        "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&fit=crop&w=1200&q=80",
-        "https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?auto=format&fit=crop&w=1200&q=80"
+        "assets/projects/rtpi-schedule.png",
+        "assets/projects/rtpi-exam.png",
+        "assets/projects/rtpi-logo.png"
       ],
       "video_url": "https://www.youtube.com/embed/dQw4w9WgXcQ",
       "category": "Web App",
@@ -130,17 +147,22 @@
       "live_url": "https://masterphum07-web.github.io/RTPI/",
       "docs_url": "https://github.com/masterphum07-web/RTPI#readme",
       "start_date": "2025-07",
-      "end_date": "2025-08"
+      "end_date": "2025-08",
+      "image": "assets/projects/rtpi-schedule.png",
+      "gallery": [
+        "assets/projects/rtpi-schedule.png",
+        "assets/projects/rtpi-exam.png",
+        "assets/projects/rtpi-logo.png"
+      ]
     },
     {
       "id": 4,
       "title": "Phumtify: Self-Hosted Personal Music Web App",
       "description_short": "เว็บแอปพลิเคชันสตรีมมิ่งเพลงส่วนตัว สไตล์ Spotify พัฒนาด้วย Next.js 14, Zustand และ Supabase",
       "description_full": "แพลตฟอร์มฟังเพลงออนไลน์แบบ Self-hosted ดีไซน์ Modern Dark Theme สไตล์ Spotify มีระบบเล่นเพลงพร้อมแถบความคืบหน้า (Audio Progress Bar), จัดการเพลย์ลิสต์ส่วนตัว, ปรับระดับเสียง, ระบบควบคุมคิวเพลงผ่าน Zustand State Management และจัดเก็บข้อมูลเพลงด้วย Supabase Database",
-      "thumbnail": "https://images.unsplash.com/photo-1470225620780-dba8ba36b745?auto=format&fit=crop&w=800&q=80",
+      "thumbnail": "assets/projects/phumtify-logo.png",
       "screenshots": [
-        "https://images.unsplash.com/photo-1470225620780-dba8ba36b745?auto=format&fit=crop&w=1200&q=80",
-        "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=1200&q=80"
+        "assets/projects/phumtify-logo.png"
       ],
       "video_url": "https://www.youtube.com/embed/dQw4w9WgXcQ",
       "category": "Web App",
@@ -165,17 +187,20 @@
       "live_url": "https://github.com/masterphum07-web/Phumtify",
       "docs_url": "https://github.com/masterphum07-web/Phumtify#readme",
       "start_date": "2025-08",
-      "end_date": "2025-09"
+      "end_date": "2025-09",
+      "image": "assets/projects/phumtify-logo.png",
+      "gallery": [
+        "assets/projects/phumtify-logo.png"
+      ]
     },
     {
       "id": 5,
       "title": "Bloom & Care: ระบบติดตามรอบเดือนเพื่อคู่รัก & เชื่อมต่อ LINE OA",
       "description_short": "เว็บแอปติดตามรอบเดือนตามหลักสูตินารีแพทย์ (ACOG) ออกแบบพิเศษเพื่อให้คู่รักดูแลกันได้ดีขึ้น",
       "description_full": "เว็บแอปพลิเคชันสำหรับคำนวณและคาดการณ์รอบเดือน ระยะตกไข่ และช่วงเจริญพันธุ์ตามมาตรฐานวิทยาลัยสูตินรีแพทย์แห่งสหรัฐอเมริกา (ACOG) พร้อมโหมดจับคู่สำหรับคู่รัก (Couple Sync Mode) แจ้งเตือนการเปลี่ยนแปลงทางอารมณ์และร่างกาย พร้อมระบบส่งข้อความแจ้งเตือนผ่าน LINE Official Account และ Supabase",
-      "thumbnail": "https://images.unsplash.com/photo-1518152006812-edab29b069ac?auto=format&fit=crop&w=800&q=80",
+      "thumbnail": "assets/projects/bloom-care.png",
       "screenshots": [
-        "https://images.unsplash.com/photo-1518152006812-edab29b069ac?auto=format&fit=crop&w=1200&q=80",
-        "https://images.unsplash.com/photo-1584515979956-d9f6e5d09982?auto=format&fit=crop&w=1200&q=80"
+        "assets/projects/bloom-care.png"
       ],
       "video_url": "https://www.youtube.com/embed/dQw4w9WgXcQ",
       "category": "Mobile App",
@@ -200,17 +225,20 @@
       "live_url": "https://github.com/masterphum07-web/fang001",
       "docs_url": "https://github.com/masterphum07-web/fang001#readme",
       "start_date": "2025-08",
-      "end_date": "2025-09"
+      "end_date": "2025-09",
+      "image": "assets/projects/bloom-care.png",
+      "gallery": [
+        "assets/projects/bloom-care.png"
+      ]
     },
     {
       "id": 6,
       "title": "MT5 Expert Advisor: Price Action Breakout & Two-way Telegram Controller",
       "description_short": "ระบบเทรดอัตโนมัติ MetaTrader 5 พร้อมบอท Python สั่งการและแจ้งเตือนผ่าน Telegram แบบ 2 ทาง",
       "description_full": "ระบบซื้อขายอัตโนมัติบนแพลตฟอร์ม MetaTrader 5 (MQL5) พัฒนาขึ้นเพื่อเทรดตามกลยุทธ์ Market Structure Breakout บน Timeframe M1 มีระบบ Trailing Stop เลื่อนตาม Swing High/Low, ระบบบริหารจัดการความเสี่ยง Hard Cut Drawdown 15% พร้อมโปรแกรมควบคุมระยะไกลด้วยภาษา Python เชื่อมต่อ Telegram Bot เพื่อสั่งการ เปิด/ปิดออเดอร์ และรับรายงานสรุปพอร์ตได้ทุกที่",
-      "thumbnail": "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?auto=format&fit=crop&w=800&q=80",
+      "thumbnail": "assets/projects/mt5-ea.png",
       "screenshots": [
-        "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?auto=format&fit=crop&w=1200&q=80",
-        "https://images.unsplash.com/photo-1642543492481-44e81e3914a7?auto=format&fit=crop&w=1200&q=80"
+        "assets/projects/mt5-ea.png"
       ],
       "video_url": "https://www.youtube.com/embed/dQw4w9WgXcQ",
       "category": "Tool",
@@ -235,17 +263,20 @@
       "live_url": "",
       "docs_url": "",
       "start_date": "2025-07",
-      "end_date": "2025-09"
+      "end_date": "2025-09",
+      "image": "assets/projects/mt5-ea.png",
+      "gallery": [
+        "assets/projects/mt5-ea.png"
+      ]
     },
     {
       "id": 7,
       "title": "RadiAR-XR: ระบบจำลองการฝึกอบรมความปลอดภัยทางรังสีด้วย WebXR & Pose Tracking",
       "description_short": "ระบบจำลองการฝึกอบรมความปลอดภัยทางรังสีในห้องเอกซเรย์เสมือนจริง ตรวจจับท่าทางด้วย MediaPipe",
       "description_full": "งานวิจัยและนวัตกรรมการศึกษาเพื่อความปลอดภัยทางรังสีวิทยา จำลองห้องเอกซเรย์แบบ 3 มิติบนเว็บเบราว์เซอร์ พร้อมระบบวิเคราะห์ความปลอดภัยในการรับรังสีของบุคลากร มีโมเดลตรวจจับท่าทางและตำแหน่งของร่างกายแบบ Real-time (Pose Tracker) เพื่อประเมินระยะห่างและมุมการกระเจิงของรังสี (Radiation Scatter Angle)",
-      "thumbnail": "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=800&q=80",
+      "thumbnail": "assets/projects/radiar-xr.png",
       "screenshots": [
-        "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=1200&q=80",
-        "https://images.unsplash.com/photo-1584515979956-d9f6e5d09982?auto=format&fit=crop&w=1200&q=80"
+        "assets/projects/radiar-xr.png"
       ],
       "video_url": "https://www.youtube.com/embed/dQw4w9WgXcQ",
       "category": "AI/ML",
@@ -270,16 +301,21 @@
       "live_url": "",
       "docs_url": "",
       "start_date": "2025-08",
-      "end_date": "ปัจจุบัน (กำลังวิจัยและพัฒนา)"
+      "end_date": "ปัจจุบัน (กำลังวิจัยและพัฒนา)",
+      "image": "assets/projects/radiar-xr.png",
+      "gallery": [
+        "assets/projects/radiar-xr.png"
+      ]
     },
     {
       "id": 8,
       "title": "Election Live: ระบบถ่ายทอดสดผลการเลือกตั้งสโมสรนักศึกษาแบบ Real-time",
       "description_short": "ระบบแสดงผลคะแนนการเลือกตั้งแบบเรียลไทม์ พร้อมห้องควบคุมแอดมินสำหรับจัดการการปล่อยคะแนน",
       "description_full": "เว็บแอปพลิเคชันสำหรับถ่ายทอดผลการนับคะแนนการเลือกตั้งคณะกรรมการสโมสรนักศึกษาแบบสดๆ หน้าจอแสดงผลแบบ Glassmorphism สวยงาม พร้อมระบบค่อยๆ ปล่อยคะแนนจำลอง (Animated Vote Releasing) และหน้าจอแอดมินสำหรับควบคุมตัวเลข ผลการนับ และเปอร์เซ็นต์ผู้มาใช้สิทธิ",
-      "thumbnail": "https://images.unsplash.com/photo-1540910419892-4a36d2c3266c?auto=format&fit=crop&w=800&q=80",
+      "thumbnail": "assets/projects/election-live.png",
       "screenshots": [
-        "https://images.unsplash.com/photo-1540910419892-4a36d2c3266c?auto=format&fit=crop&w=1200&q=80"
+        "assets/projects/election-live.png",
+        "assets/projects/smo-logo.png"
       ],
       "video_url": "https://www.youtube.com/embed/dQw4w9WgXcQ",
       "category": "Web App",
@@ -303,16 +339,21 @@
       "live_url": "https://github.com/masterphum07-web/SMO",
       "docs_url": "https://github.com/masterphum07-web/SMO#readme",
       "start_date": "2025-07",
-      "end_date": "2025-08"
+      "end_date": "2025-08",
+      "image": "assets/projects/election-live.png",
+      "gallery": [
+        "assets/projects/election-live.png",
+        "assets/projects/smo-logo.png"
+      ]
     },
     {
       "id": 9,
       "title": "Photobooth Pro: ตู้ถ่ายภาพออนไลน์พร้อมฟิลเตอร์ สติกเกอร์ และกรอบภาพ",
       "description_short": "เว็บแอปพลิเคชันตู้ถ่ายภาพ Photobooth ในเบราว์เซอร์ พร้อมระบบแต่งภาพ สติกเกอร์ และสแกน QR Code",
       "description_full": "แอปพลิเคชันตู้ถ่ายภาพ Photobooth แบบดิจิทัลที่ใช้งานได้บนคอมพิวเตอร์และแท็บเล็ต ถ่ายภาพผ่านเว็บแคม มีตัวนับเวลาถอยหลัง (Countdown Timer), เลือกสไตล์กรอบภาพ 4 ช่อง (Photo Strip), เพิ่มฟิลเตอร์สีวินเทจและไซเบอร์, วางสติกเกอร์ตกแต่ง และดาวน์โหลดรูปภาพหรือสร้าง QR Code เพื่อแชร์ไปยังสมาร์ทโฟน",
-      "thumbnail": "https://images.unsplash.com/photo-1516035069371-29a1b244cc32?auto=format&fit=crop&w=800&q=80",
+      "thumbnail": "assets/projects/photobooth-strip.png",
       "screenshots": [
-        "https://images.unsplash.com/photo-1516035069371-29a1b244cc32?auto=format&fit=crop&w=1200&q=80"
+        "assets/projects/photobooth-strip.png"
       ],
       "video_url": "https://www.youtube.com/embed/dQw4w9WgXcQ",
       "category": "Web App",
@@ -337,16 +378,20 @@
       "live_url": "",
       "docs_url": "",
       "start_date": "2025-08",
-      "end_date": "2025-09"
+      "end_date": "2025-09",
+      "image": "assets/projects/photobooth-strip.png",
+      "gallery": [
+        "assets/projects/photobooth-strip.png"
+      ]
     },
     {
       "id": 10,
       "title": "Freshy Badminton Scoreboard & Tournament Manager",
       "description_short": "ระบบนับแต้มและกระดานคะแนนการแข่งขันแบดมินตันเฟรชชี่แบบ Real-time เชื่อมต่อ Google Sheets",
       "description_full": "ระบบดิจิทัลสกอร์บอร์ดสำหรับการแข่งขันกีฬาแบดมินตัน แสดงคะแนนขนาดใหญ่ที่มองเห็นชัดเจนในสนามแข่งขัน ควบคุมการเพิ่ม/ลดคะแนน สลับฝั่งเสิร์ฟ และบันทึกผลการแข่งขันลง Google Sheets อัตโนมัติ พร้อมแสดงตารางสายการแข่งขัน (Tournament Bracket)",
-      "thumbnail": "https://images.unsplash.com/photo-1626224583764-f87db24ac4ea?auto=format&fit=crop&w=800&q=80",
+      "thumbnail": "assets/projects/badminton-scoreboard.png",
       "screenshots": [
-        "https://images.unsplash.com/photo-1626224583764-f87db24ac4ea?auto=format&fit=crop&w=1200&q=80"
+        "assets/projects/badminton-scoreboard.png"
       ],
       "video_url": "https://www.youtube.com/embed/dQw4w9WgXcQ",
       "category": "Web App",
@@ -370,16 +415,20 @@
       "live_url": "https://github.com/masterphum07-web/Batminton",
       "docs_url": "https://github.com/masterphum07-web/Batminton#readme",
       "start_date": "2025-08",
-      "end_date": "2025-08"
+      "end_date": "2025-08",
+      "image": "assets/projects/badminton-scoreboard.png",
+      "gallery": [
+        "assets/projects/badminton-scoreboard.png"
+      ]
     },
     {
       "id": 11,
       "title": "DOC HUB: ระบบคลังเอกสารและคลาวด์ไดรฟ์สำหรับองค์กร",
       "description_short": "ระบบคลังเอกสารออนไลน์ ค้นหาและอัปโหลดไฟล์สะดวกรวดเร็ว เชื่อมต่อ Google Drive & Sheets",
       "description_full": "ระบบจัดการเอกสารอิเล็กทรอนิกส์และคลังไฟล์ดิจิทัลที่ใช้งานง่าย รองรับการอัปโหลดไฟล์ PDF, รูปภาพ, ไฟล์นำเสนอ และเอกสารงานวิจัย จัดหมวดหมู่ตามปีการศึกษาและแผนกงาน พร้อมระบบค้นหาเอกสารแบบทันใจ (Instant Search) และกำหนดสิทธิ์การดาวน์โหลด",
-      "thumbnail": "https://images.unsplash.com/photo-1544396821-4dd40b938ad3?auto=format&fit=crop&w=800&q=80",
+      "thumbnail": "assets/projects/doc-hub.png",
       "screenshots": [
-        "https://images.unsplash.com/photo-1544396821-4dd40b938ad3?auto=format&fit=crop&w=1200&q=80"
+        "assets/projects/doc-hub.png"
       ],
       "video_url": "https://www.youtube.com/embed/dQw4w9WgXcQ",
       "category": "Tool",
@@ -403,16 +452,20 @@
       "live_url": "",
       "docs_url": "",
       "start_date": "2025-06",
-      "end_date": "2025-07"
+      "end_date": "2025-07",
+      "image": "assets/projects/doc-hub.png",
+      "gallery": [
+        "assets/projects/doc-hub.png"
+      ]
     },
     {
       "id": 12,
       "title": "Lucky Wheel Pro: วงล้อสุ่มผู้โชคดี & สุ่มรหัสนักศึกษาพร้อมเสียงประกอบ",
       "description_short": "วงล้อสุ่มดิจิทัลปรับแต่งรายชื่อได้อิสระ หมุนด้วยฟิสิกส์ลื่นไหล พร้อมระบบเสียงสังเคราะห์ Web Audio",
       "description_full": "เว็บแอปพลิเคชันวงล้อสุ่มชื่อและรหัสนักศึกษาสำหรับกิจกรรมจับรางวัล กิจกรรมสัมมนา และการเรียนการสอน มีระบบฟิสิกส์การหมุนแบบแรงเฉื่อย (Inertial Spin Physics), ปรับแต่งสีและสัดส่วนของแต่ละช่องได้อิสระ, เสียงสังเคราะห์เวลาวงล้อหมุนกระทบหมุด (Tick Audio) และเอฟเฟกต์พลุกระดาษเมื่อหยุดที่ผู้ชนะ",
-      "thumbnail": "https://images.unsplash.com/photo-1518609878373-06d740f60d8b?auto=format&fit=crop&w=800&q=80",
+      "thumbnail": "assets/projects/lucky-wheel.png",
       "screenshots": [
-        "https://images.unsplash.com/photo-1518609878373-06d740f60d8b?auto=format&fit=crop&w=1200&q=80"
+        "assets/projects/lucky-wheel.png"
       ],
       "video_url": "https://www.youtube.com/embed/dQw4w9WgXcQ",
       "category": "Tool",
@@ -436,16 +489,21 @@
       "live_url": "",
       "docs_url": "",
       "start_date": "2025-07",
-      "end_date": "2025-08"
+      "end_date": "2025-08",
+      "image": "assets/projects/lucky-wheel.png",
+      "gallery": [
+        "assets/projects/lucky-wheel.png"
+      ]
     },
     {
       "id": 13,
       "title": "PhumShop: ร้านค้าออนไลน์และระบบเรนเดอร์กราฟิก 16:9 อัตโนมัติ",
       "description_short": "ร้านค้าสินค้าดิจิทัลและระบบเจนเนอเรตภาพแบนเนอร์อัตโนมัติความละเอียดสูง 8K",
       "description_full": "ระบบ E-Commerce ร้านค้าออนไลน์สำหรับจำหน่ายสินค้าและบริการดิจิทัล พร้อมโมดูลสร้างกราฟิกโปรโมตแบบ 16:9 ในตัว สามารถใส่โลโก้ จัดข้อความ และส่งออกเป็นรูปภาพความละเอียดสูงระดับ 8K ด้วย Canvas HTML5 แบบอัตโนมัติเพื่อนำไปโปรโมตบนโซเชียลมีเดียได้ทันที",
-      "thumbnail": "https://images.unsplash.com/photo-1556742049-0a67e5572293?auto=format&fit=crop&w=800&q=80",
+      "thumbnail": "assets/projects/phumshop-banner.png",
       "screenshots": [
-        "https://images.unsplash.com/photo-1556742049-0a67e5572293?auto=format&fit=crop&w=1200&q=80"
+        "assets/projects/phumshop-banner.png",
+        "assets/projects/phumshop-menu.png"
       ],
       "video_url": "https://www.youtube.com/embed/dQw4w9WgXcQ",
       "category": "Web App",
@@ -468,32 +526,37 @@
       "live_url": "https://github.com/masterphum07-web/phumshop",
       "docs_url": "https://github.com/masterphum07-web/phumshop#readme",
       "start_date": "2025-05",
-      "end_date": "2025-07"
+      "end_date": "2025-07",
+      "image": "assets/projects/phumshop-banner.png",
+      "gallery": [
+        "assets/projects/phumshop-banner.png",
+        "assets/projects/phumshop-menu.png"
+      ]
     },
     {
       "id": 14,
-      "title": "Virtual Lab 5—6: ห้องปฏิบัติการจำลองวงจรไฟฟ้าและดิจิทัลลอจิก",
-      "description_short": "เว็บแอปพลิเคชันจำลองการทดลองวงจรอิเล็กทรอนิกส์กำลังและดิจิทัลลอจิกแบบ Interactive ภาษาไทย",
+      "title": "ระบบเช็คชื่อสโมสรนักศึกษาปี 69 (SMO Attendance System)",
+      "description_short": "ระบบบันทึกเวลาและตรวจสอบการเข้าร่วมกิจกรรมองค์ประชุมสโมสรนักศึกษา วทก. เชื่อมต่อ Google Sheets API อัตโนมัติ",
       "description_full": "เว็บจำลองการทดลองเสมือนจริงสำหรับการเรียนการสอนวิชาปฏิบัติการอิเล็กทรอนิกส์ ครอบคลุมการทดลองที่ 5 (อุปกรณ์สารกึ่งตัวนำกำลัง SCR / TRIAC / SSR) และการทดลองที่ 6 (ดิจิทัลลอจิกเกต, วงจร Tri-state, และ Flip-Flop) ผู้เรียนสามารถต่อวงจรเสมือน, ปรับค่าสัญญาณ, และสังเกตพฤติกรรมของวงจรผ่านกราฟรูปคลื่นแบบ Real-time",
-      "thumbnail": "https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=800&q=80",
+      "thumbnail": "assets/projects/smo-attendance.png",
       "screenshots": [
-        "https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=1200&q=80"
+        "assets/projects/smo-attendance.png",
+        "assets/projects/smo-logo.png"
       ],
       "video_url": "https://www.youtube.com/embed/dQw4w9WgXcQ",
-      "category": "Tool",
+      "category": "Web App",
       "status": "completed",
       "tech_stack": [
-        "React",
-        "Vite",
-        "Interactive Circuit Canvas",
+        "Google Apps Script",
         "Tailwind CSS",
-        "JavaScript"
+        "JavaScript",
+        "Google Sheets API"
       ],
       "features": [
-        "จำลองพฤติกรรมของ SCR, TRIAC และ Solid State Relay พร้อมสโคปวัดสัญญาณ",
-        "จำลองเกตดิจิทัล (AND, OR, NOT, NAND, NOR) และการทำงานของ Flip-Flop",
-        "แบบบันทึกผลการทดลองและเฉลยการคำนวณแบบ Interactive",
-        "ภาษาไทยทั้งระบบ เข้าใจง่าย เหมาะสำหรับการเรียนรู้ด้วยตนเอง"
+        "สรุปผลการเข้าประชุม Leaderboard รายชื่อผู้เข้าร่วมประชุมแบบเรียลไทม์",
+        "ระบบคำนวณแต้มคะแนนกิจกรรม สถิติมาสาย ขอลา และขาดกิจกรรมอัตโนมัติ",
+        "ระบบล็อกอินความปลอดภัยสำหรับแอดมินและผู้บันทึกสโมสรนักศึกษา",
+        "เชื่อมต่อฐานข้อมูล Google Sheets และคลาวด์ไดรฟ์ของวิทยาลัยโดยตรง"
       ],
       "architecture": "React Virtual Circuit Simulator Engine",
       "author": "ภูมิภัทร (masterphum07)",
@@ -501,7 +564,12 @@
       "live_url": "",
       "docs_url": "",
       "start_date": "2025-06",
-      "end_date": "2025-08"
+      "end_date": "2025-08",
+      "image": "assets/projects/smo-attendance.png",
+      "gallery": [
+        "assets/projects/smo-attendance.png",
+        "assets/projects/smo-logo.png"
+      ]
     }
   ],
   "skills": [
