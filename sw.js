@@ -4,7 +4,7 @@
  * Employs Stale-While-Revalidate for dynamic assets and Cache-First for shell.
  */
 
-const CACHE_NAME = 'portfolio-cache-v2.2';
+const CACHE_NAME = 'portfolio-cache-v2.3';
 const CORE_ASSETS = [
   './',
   './index.html',
@@ -36,6 +36,8 @@ const CORE_ASSETS = [
   './assets/projects/radpose-graphic-banner.jpg',
   './assets/projects/wtk-music-graphic-banner.jpg',
   './assets/projects/rtpi-graphic-banner.jpg',
+  './assets/projects/phumtify-graphic-banner.jpg',
+  './assets/projects/bloom-care-graphic-banner.jpg',
   './assets/projects/live-phumshop02.png',
   './assets/projects/live-radpose3d.png',
   './assets/projects/live-music-pi.png',

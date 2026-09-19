@@ -172,8 +172,9 @@
       "title": "Phumtify: Self-Hosted Personal Music Web App",
       "description_short": "เว็บแอปพลิเคชันสตรีมมิ่งเพลงส่วนตัว สไตล์ Spotify พัฒนาด้วย Next.js 14, Zustand และ Supabase",
       "description_full": "แพลตฟอร์มฟังเพลงออนไลน์แบบ Self-hosted ดีไซน์ Modern Dark Theme สไตล์ Spotify มีระบบเล่นเพลงพร้อมแถบความคืบหน้า (Audio Progress Bar), จัดการเพลย์ลิสต์ส่วนตัว, ปรับระดับเสียง, ระบบควบคุมคิวเพลงผ่าน Zustand State Management และจัดเก็บข้อมูลเพลงด้วย Supabase Database",
-      "thumbnail": "assets/projects/phumtify-logo.png",
+      "thumbnail": "assets/projects/phumtify-graphic-banner.jpg",
       "screenshots": [
+        "assets/projects/phumtify-graphic-banner.jpg",
         "assets/projects/phumtify-logo.png"
       ],
       "video_url": "https://www.youtube.com/embed/dQw4w9WgXcQ",
@@ -200,8 +201,9 @@
       "docs_url": "https://github.com/masterphum07-web/Phumtify#readme",
       "start_date": "2025-08",
       "end_date": "2025-09",
-      "image": "assets/projects/phumtify-logo.png",
+      "image": "assets/projects/phumtify-graphic-banner.jpg",
       "gallery": [
+        "assets/projects/phumtify-graphic-banner.jpg",
         "assets/projects/phumtify-logo.png"
       ]
     },
@@ -210,8 +212,9 @@
       "title": "Bloom & Care: ระบบติดตามรอบเดือนเพื่อคู่รัก & เชื่อมต่อ LINE OA",
       "description_short": "เว็บแอปติดตามรอบเดือนตามหลักสูตินารีแพทย์ (ACOG) ออกแบบพิเศษเพื่อให้คู่รักดูแลกันได้ดีขึ้น",
       "description_full": "เว็บแอปพลิเคชันสำหรับคำนวณและคาดการณ์รอบเดือน ระยะตกไข่ และช่วงเจริญพันธุ์ตามมาตรฐานวิทยาลัยสูตินรีแพทย์แห่งสหรัฐอเมริกา (ACOG) พร้อมโหมดจับคู่สำหรับคู่รัก (Couple Sync Mode) แจ้งเตือนการเปลี่ยนแปลงทางอารมณ์และร่างกาย พร้อมระบบส่งข้อความแจ้งเตือนผ่าน LINE Official Account และ Supabase",
-      "thumbnail": "assets/projects/bloom-care.png",
+      "thumbnail": "assets/projects/bloom-care-graphic-banner.jpg",
       "screenshots": [
+        "assets/projects/bloom-care-graphic-banner.jpg",
         "assets/projects/bloom-care.png"
       ],
       "video_url": "https://www.youtube.com/embed/dQw4w9WgXcQ",
@@ -238,8 +241,9 @@
       "docs_url": "https://github.com/masterphum07-web/fang001#readme",
       "start_date": "2025-08",
       "end_date": "2025-09",
-      "image": "assets/projects/bloom-care.png",
+      "image": "assets/projects/bloom-care-graphic-banner.jpg",
       "gallery": [
+        "assets/projects/bloom-care-graphic-banner.jpg",
         "assets/projects/bloom-care.png"
       ]
     },
