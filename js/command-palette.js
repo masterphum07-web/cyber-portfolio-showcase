@@ -75,6 +75,7 @@ class CommandPalette {
     const navItems = [
       { id: 'nav-hero', title: 'ไปที่หน้าแรก (Hero)', section: 'hero', icon: 'home', category: 'Navigation', keywords: 'home hero start top' },
       { id: 'nav-about', title: 'เกี่ยวกับผม (About Me)', section: 'about', icon: 'user', category: 'Navigation', keywords: 'about bio profile me' },
+      { id: 'nav-xray', title: 'ศูนย์จำลองภาพรังสี (X-Ray & DICOM Lab)', section: 'xray-lab', icon: 'activity', category: 'Navigation', keywords: 'xray medical dicom pacs chest radiation lab radiologic' },
       { id: 'nav-projects', title: 'ผลงานโปรเจค (Projects Showcase)', section: 'projects', icon: 'folder-git-2', category: 'Navigation', keywords: 'projects work portfolio showcase' },
       { id: 'nav-skills', title: 'เทคโนโลยีที่เชี่ยวชาญ (Skills & Tech)', section: 'skills', icon: 'cpu', category: 'Navigation', keywords: 'skills tech stack tools' },
       { id: 'nav-testimonials', title: 'รีวิวและความประทับใจ (Testimonials)', section: 'testimonials', icon: 'message-square', category: 'Navigation', keywords: 'reviews testimonials clients' },
@@ -100,6 +101,20 @@ class CommandPalette {
 
     // 2. QUICK ACTIONS
     commands.push(
+      {
+        id: 'act-coverflow',
+        title: 'เปิดมุมมองโปรเจค 3D Coverflow (Coverflow 3D Mode)',
+        subtitle: 'สลับแสดงผลงานแบบหมุน 3 มิติในอวกาศ (กด 3)',
+        category: 'คำสั่งระบบ (System Actions)',
+        icon: 'box',
+        badge: '3D',
+        keywords: 'coverflow 3d space carousel rotate card view projects',
+        action: () => {
+          const sec = document.getElementById('projects');
+          if (sec) sec.scrollIntoView({ behavior: 'smooth' });
+          window.projectsApp?.setViewMode('3d');
+        }
+      },
       {
         id: 'act-terminal',
         title: 'เปิด Cyber Terminal (CLI Mode)',

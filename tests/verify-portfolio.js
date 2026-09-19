@@ -33,6 +33,8 @@ const requiredFiles = [
   'js/particles.js',
   'js/three-hero.js',
   'js/projects.js',
+  'js/coverflow-3d.js',
+  'js/xray-viewer.js',
   'js/main.js',
   'js/admin.js',
   'js/command-palette.js',
@@ -44,7 +46,10 @@ const requiredFiles = [
   'assets/icons/icon-512.svg',
   'assets/icons/icon-192.png',
   'assets/icons/icon-512.png',
-  'assets/icons/icon-maskable.png'
+  'assets/icons/icon-maskable.png',
+  'assets/projects/radpose-chest.jpg',
+  'assets/projects/radpose-abdomen.jpg',
+  'assets/projects/radpose-cspine.jpg'
 ];
 
 requiredFiles.forEach(file => {
@@ -60,6 +65,8 @@ const jsFiles = [
   'js/particles.js',
   'js/three-hero.js',
   'js/projects.js',
+  'js/coverflow-3d.js',
+  'js/xray-viewer.js',
   'js/main.js',
   'js/admin.js',
   'js/command-palette.js',
@@ -401,6 +408,48 @@ assert(particlesJs.includes('matrixDrops') && particlesJs.includes('renderMatrix
 assert(particlesJs.includes('renderStarfieldFrame') && particlesJs.includes('numStars'), `Background FX Engine implements Cyber Warp Starfield`);
 assert(particlesJs.includes('portfolio_bg_fx'), `Background FX Engine persists state in localStorage portfolio_bg_fx`);
 assert(css.includes('.bg-fx-nav-switcher') && css.includes('.bg-fx-pill'), `css/style.css defines Background FX switcher styling`);
+
+// 6. 3D SPATIAL COVERFLOW SHOWCASE & MEDICAL X-RAY DICOM LAB
+console.log('\n🔍 [12/12] VALIDATING 3D COVERFLOW & MEDICAL X-RAY DICOM LAB...');
+// 3D Coverflow checks
+assert(html.includes('id="view-3d-btn"'), `Projects toolbar includes #view-3d-btn`);
+assert(html.includes('id="projects-3d-stage"'), `Projects section includes #projects-3d-stage`);
+const coverflowJs = fs.readFileSync('js/coverflow-3d.js', 'utf8');
+assert(coverflowJs.includes('class Coverflow3D'), `js/coverflow-3d.js defines Coverflow3D class`);
+assert(coverflowJs.includes('coverflow-viewport'), `Coverflow3D renders .coverflow-viewport element`);
+assert(coverflowJs.includes('coverflow-stage'), `Coverflow3D renders .coverflow-stage element`);
+assert(coverflowJs.includes('coverflow-hud'), `Coverflow3D renders .coverflow-hud element`);
+assert(coverflowJs.includes('rotateY') && coverflowJs.includes('translateZ'), `Coverflow3D applies 3D spatial transforms`);
+assert(coverflowJs.includes('handleDragStart') && coverflowJs.includes('handleDragMove') && coverflowJs.includes('handleDragEnd'), `Coverflow3D implements touch/pointer drag physics`);
+assert(coverflowJs.includes('wheel') && coverflowJs.includes('ArrowLeft') && coverflowJs.includes('ArrowRight'), `Coverflow3D supports wheel and keyboard navigation`);
+assert(projectsJs.includes("mode === '3d'") && projectsJs.includes('coverflowApp'), `js/projects.js syncs 3D view mode with coverflowApp`);
+assert(mainJs.includes('initCoverflow3D'), `js/main.js initializes 3D Coverflow on DOM load`);
+assert(css.includes('.projects-3d-stage') && css.includes('.coverflow-card') && css.includes('perspective: 1200px'), `css/style.css defines 3D Coverflow perspective styles`);
+
+// Medical X-Ray Lab checks
+assert(html.includes('id="xray-lab"'), `index.html includes #xray-lab section`);
+assert(html.includes('id="xray-canvas"'), `index.html includes #xray-canvas viewport`);
+assert(html.includes('id="xray-canvas-wrapper"'), `index.html includes #xray-canvas-wrapper element`);
+assert(html.includes('id="xray-contrast-slider"'), `index.html includes Window Width (Contrast) slider`);
+assert(html.includes('id="xray-brightness-slider"'), `index.html includes Window Level (Brightness) slider`);
+assert(html.includes('data-preset="invert"'), `index.html includes Invert mode preset button`);
+assert(html.includes('id="xray-toggle-loupe-btn"'), `index.html includes Loupe 2.4x lens toggle button`);
+assert(html.includes('id="xray-toggle-grid-btn"'), `index.html includes Collimator CR grid toggle button`);
+assert(html.includes('id="xray-toggle-landmarks-btn"'), `index.html includes Landmark pins toggle button`);
+assert(html.includes('data-dataset="chest"') && html.includes('data-dataset="abdomen"') && html.includes('data-dataset="cspine"'), `index.html includes tabs for Chest PA, Abdomen KUB, and C-Spine datasets`);
+const xrayJs = fs.readFileSync('js/xray-viewer.js', 'utf8');
+assert(xrayJs.includes('class XRayViewer'), `js/xray-viewer.js defines XRayViewer class`);
+assert(xrayJs.includes('contrast(') && xrayJs.includes('brightness(') && xrayJs.includes('grayscale(100%)'), `XRayViewer applies hardware-accelerated 60 FPS canvas filters`);
+assert(xrayJs.includes('setPreset') && xrayJs.includes('toggleLoupe') && xrayJs.includes('toggleGrid') && xrayJs.includes('toggleLandmarks'), `XRayViewer provides full diagnostic workstation controls`);
+assert(xrayJs.includes('renderLoupe') && xrayJs.includes('renderCollimatorGrid') && xrayJs.includes('renderLandmarks'), `XRayViewer implements Canvas 2D Loupe lens, CR grid, and anatomy pins`);
+assert(xrayJs.includes('chest') && xrayJs.includes('abdomen') && xrayJs.includes('cspine'), `XRayViewer includes complete medical radiograph datasets`);
+assert(mainJs.includes('initXRayViewer'), `js/main.js initializes X-Ray Viewer on DOM load`);
+assert(css.includes('.xray-station-card') && css.includes('.xray-canvas-wrapper') && css.includes('.xray-screen-scanline'), `css/style.css defines Medical X-Ray PACS Station styles`);
+
+// Terminal & Command Palette Integration checks
+assert(terminalJs.includes('cmdXRay') && terminalJs.includes('cmdCoverflow'), `js/terminal.js implements cmdXRay and cmdCoverflow methods`);
+assert(terminalJs.includes("'xray'") && terminalJs.includes("'coverflow'"), `js/terminal.js commands list includes xray and coverflow`);
+assert(cmdkJs.includes('nav-xray') && cmdkJs.includes('act-coverflow'), `js/command-palette.js includes X-Ray lab navigation and 3D Coverflow action`);
 
 console.log('\n' + '='.repeat(50));
 console.log(`TOTAL TESTS: ${passedTests + failedTests}`);

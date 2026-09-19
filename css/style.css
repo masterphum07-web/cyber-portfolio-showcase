@@ -4758,3 +4758,528 @@ img {
   }
 }
 
+/* ═══════════════════════════════════════════════════════════
+   12. INTERACTIVE RADIOLOGIC TECHNOLOGY & MEDICAL X-RAY LAB
+   ═══════════════════════════════════════════════════════════ */
+.xray-station-card {
+  padding: 28px;
+  background: rgba(10, 14, 30, 0.85);
+  border: 1px solid rgba(0, 242, 254, 0.28);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  position: relative;
+  overflow: hidden;
+}
+
+.xray-station-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid rgba(0, 242, 254, 0.15);
+  margin-bottom: 24px;
+}
+
+.xray-station-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.xray-status-pulse {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #00ff88;
+  box-shadow: 0 0 12px #00ff88;
+  animation: pulseLive 2s infinite ease-in-out;
+}
+
+.xray-brand-title {
+  font-family: var(--font-heading);
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--neon-cyan);
+  letter-spacing: 1px;
+}
+
+.xray-brand-sub {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  margin-top: 2px;
+}
+
+.xray-dataset-tabs {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.xray-dataset-tab {
+  padding: 8px 16px;
+  border-radius: var(--radius-full);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: var(--text-muted);
+  font-family: var(--font-heading);
+  font-size: 0.85rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: var(--transition-smooth);
+}
+
+.xray-dataset-tab:hover {
+  color: var(--text-main);
+  border-color: var(--neon-cyan);
+}
+
+.xray-dataset-tab.active {
+  background: rgba(0, 242, 254, 0.15);
+  border-color: var(--neon-cyan);
+  color: var(--neon-cyan);
+  box-shadow: 0 0 14px rgba(0, 242, 254, 0.3);
+}
+
+.xray-station-grid {
+  display: grid;
+  grid-template-columns: 1.25fr 0.75fr;
+  gap: 28px;
+  align-items: start;
+}
+
+.xray-canvas-wrapper {
+  position: relative;
+  border-radius: 12px;
+  background: #060713;
+  border: 2px solid rgba(0, 242, 254, 0.3);
+  box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.8), 0 8px 24px rgba(0, 0, 0, 0.6);
+  overflow: hidden;
+  cursor: crosshair;
+}
+
+#xray-canvas {
+  display: block;
+  width: 100%;
+  height: auto;
+  min-height: 380px;
+}
+
+.xray-screen-scanline {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    to bottom,
+    transparent 0px,
+    transparent 3px,
+    rgba(0, 0, 0, 0.2) 3px,
+    rgba(0, 0, 0, 0.2) 4px
+  );
+  opacity: 0.6;
+}
+
+.xray-controls-panel {
+  padding: 20px;
+  background: rgba(14, 18, 40, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.xray-panel-title {
+  font-size: 1.1rem;
+  color: var(--text-main);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  padding-bottom: 10px;
+}
+
+.xray-control-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.xray-control-label {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.88rem;
+  color: var(--text-main);
+  font-weight: 500;
+}
+
+.xray-val-badge {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--neon-cyan);
+  background: rgba(0, 242, 254, 0.12);
+  padding: 2px 8px;
+  border-radius: 4px;
+}
+
+.cyber-slider {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 6px;
+  border-radius: 3px;
+  background: rgba(255, 255, 255, 0.12);
+  outline: none;
+  cursor: pointer;
+}
+
+.cyber-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--neon-cyan);
+  box-shadow: 0 0 10px var(--neon-cyan);
+  cursor: pointer;
+  transition: transform 0.15s ease;
+}
+
+.cyber-slider::-webkit-slider-thumb:hover {
+  transform: scale(1.2);
+}
+
+.xray-control-hint {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.xray-presets-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.xray-preset-btn {
+  padding: 8px 10px;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: var(--text-muted);
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: var(--transition-smooth);
+  text-align: center;
+}
+
+.xray-preset-btn:hover {
+  color: var(--text-main);
+  border-color: var(--neon-cyan);
+}
+
+.xray-preset-btn.active {
+  background: rgba(0, 242, 254, 0.12);
+  border-color: var(--neon-cyan);
+  color: var(--neon-cyan);
+}
+
+.xray-toggles-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.xray-toggle-btn {
+  padding: 9px 14px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transition: var(--transition-smooth);
+}
+
+.xray-toggle-btn:hover {
+  color: var(--text-main);
+  border-color: var(--neon-cyan);
+}
+
+.xray-toggle-btn.active {
+  background: rgba(255, 0, 127, 0.12);
+  border-color: var(--neon-pink);
+  color: #fff;
+  box-shadow: 0 0 12px rgba(255, 0, 127, 0.25);
+}
+
+.xray-toggle-btn.active i {
+  color: var(--neon-pink);
+}
+
+.xray-technique-card {
+  padding: 12px 14px;
+  border-radius: 8px;
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(0, 242, 254, 0.15);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 0.8rem;
+}
+
+.xray-tech-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.xray-tech-label {
+  color: var(--text-muted);
+}
+
+.xray-tech-value {
+  font-weight: 500;
+  color: var(--text-main);
+}
+
+@media (max-width: 992px) {
+  .xray-station-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════
+   13. 3D COVERFLOW PROJECT SHOWCASE STAGE
+   ═══════════════════════════════════════════════════════════ */
+.projects-3d-stage {
+  margin-top: 32px;
+  position: relative;
+  width: 100%;
+}
+
+.coverflow-viewport {
+  position: relative;
+  width: 100%;
+  height: 480px;
+  perspective: 1200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  user-select: none;
+  touch-action: pan-y;
+  outline: none;
+}
+
+.coverflow-stage {
+  position: relative;
+  width: 100%;
+  height: 380px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform-style: preserve-3d;
+}
+
+.coverflow-card {
+  position: absolute;
+  width: 320px;
+  height: 360px;
+  cursor: pointer;
+  transform-style: preserve-3d;
+  transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.45s ease, filter 0.45s ease;
+  will-change: transform, opacity;
+}
+
+.coverflow-card-inner {
+  width: 100%;
+  height: 100%;
+  border-radius: 18px;
+  background: rgba(14, 18, 38, 0.92);
+  border: 1.5px solid rgba(0, 242, 254, 0.25);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.6);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  -webkit-box-reflect: below 8px linear-gradient(to bottom, transparent 65%, rgba(0, 242, 254, 0.25) 100%);
+}
+
+.coverflow-card.active .coverflow-card-inner {
+  border-color: var(--neon-cyan);
+  box-shadow: 0 16px 50px rgba(0, 242, 254, 0.4), 0 0 25px rgba(0, 242, 254, 0.25);
+}
+
+.coverflow-card.side .coverflow-card-inner {
+  filter: brightness(0.7);
+}
+
+.coverflow-card-media {
+  position: relative;
+  width: 100%;
+  height: 250px;
+  overflow: hidden;
+  background: #0a0a1a;
+}
+
+.coverflow-card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.coverflow-card.active:hover .coverflow-card-img {
+  transform: scale(1.06);
+}
+
+.coverflow-card-glow-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(10, 10, 26, 0.9) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+.coverflow-card-footer {
+  padding: 14px 18px;
+  background: rgba(10, 10, 26, 0.95);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.coverflow-card-category {
+  font-family: var(--font-heading);
+  font-size: 0.75rem;
+  color: var(--neon-pink);
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.coverflow-card-title {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text-main);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.coverflow-nav-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: rgba(10, 14, 30, 0.85);
+  border: 1px solid rgba(0, 242, 254, 0.4);
+  color: var(--neon-cyan);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 200;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
+  transition: var(--transition-smooth);
+}
+
+.coverflow-nav-btn:hover {
+  background: rgba(0, 242, 254, 0.2);
+  transform: translateY(-50%) scale(1.1);
+  box-shadow: 0 0 20px rgba(0, 242, 254, 0.5);
+}
+
+.coverflow-nav-btn.prev {
+  left: 20px;
+}
+
+.coverflow-nav-btn.next {
+  right: 20px;
+}
+
+.coverflow-hud {
+  margin-top: 24px;
+  padding: 24px;
+  background: rgba(10, 14, 30, 0.85);
+  border: 1px solid rgba(0, 242, 254, 0.2);
+  border-radius: var(--radius-lg);
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.coverflow-hud-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.coverflow-counter-badge {
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+  padding: 4px 10px;
+  border-radius: 6px;
+  background: rgba(0, 242, 254, 0.12);
+  color: var(--neon-cyan);
+  font-weight: 700;
+}
+
+.coverflow-hud-title {
+  font-size: 1.35rem;
+  color: var(--text-main);
+  margin: 0;
+}
+
+.coverflow-hud-desc {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+  margin: 0;
+}
+
+.coverflow-hud-tech {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.coverflow-hud-actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 6px;
+}
+
+@media (max-width: 768px) {
+  .coverflow-viewport {
+    height: 420px;
+  }
+  .coverflow-card {
+    width: 270px;
+    height: 320px;
+  }
+  .coverflow-card-media {
+    height: 210px;
+  }
+  .coverflow-nav-btn {
+    width: 40px;
+    height: 40px;
+  }
+  .coverflow-nav-btn.prev {
+    left: 8px;
+  }
+  .coverflow-nav-btn.next {
+    right: 8px;
+  }
+}
+
+

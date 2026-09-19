@@ -92,6 +92,7 @@
         <ul class="nav-menu" id="nav-menu">
           <li><a href="#hero" class="nav-link active">หน้าแรก</a></li>
           <li><a href="#about" class="nav-link">เกี่ยวกับผม</a></li>
+          <li><a href="#xray-lab" class="nav-link">แล็บรังสี 3D</a></li>
           <li><a href="#projects" class="nav-link">ผลงานโปรเจค</a></li>
           <li><a href="#skills" class="nav-link">เทคโนโลยี</a></li>
           <li><a href="#testimonials" class="nav-link">รีวิว</a></li>
@@ -503,6 +504,138 @@
   </section>
 
   <!-- ═══════════════════════════════════════════════════════════
+       2.5 INTERACTIVE RADIOLOGIC TECHNOLOGY & MEDICAL IMAGING LAB
+       ═══════════════════════════════════════════════════════════ -->
+  <section class="section" id="xray-lab">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-tag"><i data-lucide="activity"></i> Radiologic Technology Innovation</span>
+        <h2 class="section-title">ศูนย์จำลองภาพรังสีวินิจฉัย <span class="gradient-text">(X-Ray &amp; DICOM Lab)</span></h2>
+        <p class="section-subtitle">
+          นวัตกรรมเฉพาะตัวที่ผสานความเชี่ยวชาญรังสีเทคนิค (วทก.) เข้ากับ Web Engineering — ปรับ Window/Level, ส่องแว่นขยาย Loupe 2.4x, และสำรวจจุดกายวิภาคบนภาพรังสีจริง
+        </p>
+      </div>
+
+      <div class="glass-card xray-station-card reveal">
+        <!-- PACS Station Cyber Header -->
+        <div class="xray-station-header">
+          <div class="xray-station-brand">
+            <span class="xray-status-pulse"></span>
+            <div>
+              <div class="xray-brand-title">MED-VISION PACSTATION v2.4 • RTPI วทก.</div>
+              <div class="xray-brand-sub" id="xray-info-position">ท่ายืน หายใจเข้าเต็มที่ (Erect PA Insp.) — การตรวจประเมินภาวะปอดและเส้นขอบหัวใจ</div>
+            </div>
+          </div>
+
+          <!-- Dataset Switcher Tabs -->
+          <div class="xray-dataset-tabs" role="tablist" aria-label="เลือกชุดภาพรังสีตรวจ">
+            <button type="button" role="tab" aria-selected="true" class="xray-dataset-tab active" data-dataset="chest" onclick="window.xrayViewer?.setDataset('chest')">
+              <i data-lucide="file-text"></i> ทรวงอก (Chest PA)
+            </button>
+            <button type="button" role="tab" aria-selected="false" class="xray-dataset-tab" data-dataset="abdomen" onclick="window.xrayViewer?.setDataset('abdomen')">
+              <i data-lucide="file-text"></i> ช่องท้อง (Abdomen KUB)
+            </button>
+            <button type="button" role="tab" aria-selected="false" class="xray-dataset-tab" data-dataset="cspine" onclick="window.xrayViewer?.setDataset('cspine')">
+              <i data-lucide="file-text"></i> กระดูกคอ (C-Spine)
+            </button>
+          </div>
+        </div>
+
+        <!-- Main Station Body: Canvas Viewer + Control Panel -->
+        <div class="xray-station-grid">
+          <!-- Canvas Viewer Area -->
+          <div class="xray-canvas-wrapper" id="xray-canvas-wrapper">
+            <canvas id="xray-canvas" role="img" aria-label="ภาพถ่ายรังสีวินิจฉัย Interactive"></canvas>
+            <div class="xray-screen-scanline"></div>
+          </div>
+
+          <!-- Clinical Tools & Controls Panel -->
+          <div class="xray-controls-panel">
+            <h3 class="xray-panel-title">
+              <i data-lucide="sliders" style="width: 18px; height: 18px; color: var(--neon-cyan);"></i> เครื่องมือปรับแต่งภาพรังสี (PACS Tools)
+            </h3>
+
+            <!-- 1. Window Width (Contrast) -->
+            <div class="xray-control-group">
+              <div class="xray-control-label">
+                <span>Window Width (Contrast)</span>
+                <span class="xray-val-badge" id="xray-contrast-val">100%</span>
+              </div>
+              <input type="range" id="xray-contrast-slider" min="30" max="250" value="100" class="cyber-slider" aria-label="Window Width Contrast" />
+              <div class="xray-control-hint">ปรับแยกความแตกต่างระหว่างเนื้อเยื่ออ่อนและกระดูก</div>
+            </div>
+
+            <!-- 2. Window Level (Brightness) -->
+            <div class="xray-control-group">
+              <div class="xray-control-label">
+                <span>Window Level (Brightness)</span>
+                <span class="xray-val-badge" id="xray-brightness-val">100%</span>
+              </div>
+              <input type="range" id="xray-brightness-slider" min="30" max="200" value="100" class="cyber-slider" aria-label="Window Level Brightness" />
+              <div class="xray-control-hint">ปรับระดับความสว่างรวมของภาพฟิล์มเอกซเรย์</div>
+            </div>
+
+            <!-- 3. Presets Quick Windows -->
+            <div class="xray-control-group">
+              <div class="xray-control-label">
+                <span>Preset Windows (โหมดสำเร็จรูป)</span>
+              </div>
+              <div class="xray-presets-grid">
+                <button type="button" class="xray-preset-btn active" data-preset="reset" aria-pressed="true" onclick="window.xrayViewer?.setPreset('reset')">
+                  ⚡ ค่ามาตรฐาน
+                </button>
+                <button type="button" class="xray-preset-btn" data-preset="bone" aria-pressed="false" onclick="window.xrayViewer?.setPreset('bone')">
+                  🦴 เน้นกระดูก (Bone)
+                </button>
+                <button type="button" class="xray-preset-btn" data-preset="soft" aria-pressed="false" onclick="window.xrayViewer?.setPreset('soft')">
+                  🫁 เนื้อเยื่ออ่อน (Soft)
+                </button>
+                <button type="button" class="xray-preset-btn" data-preset="invert" aria-pressed="false" onclick="window.xrayViewer?.setPreset('invert')">
+                  🔄 สลับสีฟิล์ม (Invert)
+                </button>
+              </div>
+            </div>
+
+            <!-- 4. Interactive Overlay Toggles -->
+            <div class="xray-control-group">
+              <div class="xray-control-label">
+                <span>ระบบช่วยวิเคราะห์ (Overlays)</span>
+              </div>
+              <div class="xray-toggles-grid">
+                <button type="button" class="xray-toggle-btn active" id="xray-toggle-landmarks-btn" aria-pressed="true" onclick="window.xrayViewer?.toggleLandmarks()">
+                  <i data-lucide="map-pin"></i> จุดกายวิภาค (Landmarks)
+                </button>
+                <button type="button" class="xray-toggle-btn active" id="xray-toggle-grid-btn" aria-pressed="true" onclick="window.xrayViewer?.toggleGrid()">
+                  <i data-lucide="crosshair"></i> ลำรังสี (Collimator CR)
+                </button>
+                <button type="button" class="xray-toggle-btn" id="xray-toggle-loupe-btn" aria-pressed="false" onclick="window.xrayViewer?.toggleLoupe()">
+                  <i data-lucide="zoom-in"></i> แว่นขยาย 2.4x (Loupe)
+                </button>
+              </div>
+            </div>
+
+            <!-- Diagnostic Technique Badge -->
+            <div class="xray-technique-card">
+              <div class="xray-tech-row">
+                <span class="xray-tech-label">ชื่อภาพตรวจ:</span>
+                <span class="xray-tech-value" id="xray-info-title">Chest PA (ภาพรังสีทรวงอก)</span>
+              </div>
+              <div class="xray-tech-row">
+                <span class="xray-tech-label">เทคนิคการฉายรังสี:</span>
+                <span class="xray-tech-value" id="xray-info-tech">110 kVp | 3.2 mAs • SID 180 cm</span>
+              </div>
+              <div class="xray-tech-row">
+                <span class="xray-tech-label">โหมดการแสดงผล:</span>
+                <span class="xray-tech-value" id="xray-invert-badge" style="color: var(--neon-cyan);">STANDARD (BONE WHITE)</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════
        3. PROJECTS SECTION (MAIN FEATURE ⭐)
        ═══════════════════════════════════════════════════════════ -->
   <section class="section" id="projects">
@@ -543,13 +676,16 @@
               <option value="category">📂 ตามหมวดหมู่</option>
             </select>
 
-            <!-- Grid / List View Toggle Group -->
+            <!-- Grid / List / 3D View Toggle Group -->
             <div class="view-mode-group" role="group" aria-label="สลับรูปแบบมุมมอง">
               <button id="view-grid-btn" class="view-btn active" onclick="window.projectsApp.setViewMode('grid')" title="มุมมองตาราง (Grid - กด G)" aria-label="มุมมองตาราง">
                 <i data-lucide="layout-grid" style="width: 17px; height: 17px;"></i>
               </button>
               <button id="view-list-btn" class="view-btn" onclick="window.projectsApp.setViewMode('list')" title="มุมมองรายการ (List - กด G)" aria-label="มุมมองรายการ">
                 <i data-lucide="list" style="width: 17px; height: 17px;"></i>
+              </button>
+              <button id="view-3d-btn" class="view-btn" onclick="window.projectsApp.setViewMode('3d')" title="มุมมอง 3D Coverflow (กด 3)" aria-label="มุมมอง 3D Coverflow">
+                <i data-lucide="box" style="width: 17px; height: 17px;"></i>
               </button>
             </div>
           </div>
@@ -585,6 +721,9 @@
           <div class="loader-logo gradient-text">LOADING PROJECTS...</div>
         </div>
       </div>
+
+      <!-- 3D Coverflow Project Stage (Toggleable via 3D view mode) -->
+      <div class="projects-3d-stage" id="projects-3d-stage" style="display: none;"></div>
     </div>
   </section>
 
@@ -1764,6 +1903,8 @@
   <script src="js/particles.js"></script>
   <script src="js/three-hero.js"></script>
   <script src="js/projects.js"></script>
+  <script src="js/coverflow-3d.js"></script>
+  <script src="js/xray-viewer.js"></script>
   <script src="js/main.js"></script>
   <script src="js/admin.js"></script>
   <script src="js/command-palette.js"></script>

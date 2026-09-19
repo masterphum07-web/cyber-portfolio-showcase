@@ -4,7 +4,7 @@
  * Employs Stale-While-Revalidate for dynamic assets and Cache-First for shell.
  */
 
-const CACHE_NAME = 'portfolio-cache-v2.0';
+const CACHE_NAME = 'portfolio-cache-v2.1';
 const CORE_ASSETS = [
   './',
   './index.html',
@@ -14,6 +14,8 @@ const CORE_ASSETS = [
   './js/particles.js',
   './js/three-hero.js',
   './js/projects.js',
+  './js/coverflow-3d.js',
+  './js/xray-viewer.js',
   './js/main.js',
   './js/admin.js',
   './js/command-palette.js',
@@ -26,7 +28,10 @@ const CORE_ASSETS = [
   './assets/icons/icon-512.svg',
   './assets/icons/icon-192.png',
   './assets/icons/icon-512.png',
-  './assets/icons/icon-maskable.png'
+  './assets/icons/icon-maskable.png',
+  './assets/projects/radpose-chest.jpg',
+  './assets/projects/radpose-abdomen.jpg',
+  './assets/projects/radpose-cspine.jpg'
 ];
 
 // External High-Performance CDN Assets for 3D & Advanced Interactions

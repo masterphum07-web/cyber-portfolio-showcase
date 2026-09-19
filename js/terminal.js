@@ -22,7 +22,7 @@ class CyberTerminal {
       'help', 'projects', 'open', 'project', 'skills', 'bio', 'whoami',
       'contact', 'theme', 'fx', 'matrix', 'starfield', 'particles',
       'resume', 'cv', 'stats', 'clear', 'cls', 'date', 'echo', 'cat',
-      'sudo', 'admin', 'exit'
+      'sudo', 'admin', 'xray', 'pacs', 'dicom', 'coverflow', '3d', 'exit'
     ];
 
     this.init();
@@ -270,6 +270,15 @@ class CyberTerminal {
         this.printLine(`<span class="term-info">🔒 กำลังเปิดหน้าต่าง Admin CMS Backoffice Login...</span>`);
         window.adminCMS?.openLoginModal?.();
         break;
+      case 'xray':
+      case 'pacs':
+      case 'dicom':
+        this.cmdXRay();
+        break;
+      case 'coverflow':
+      case '3d':
+        this.cmdCoverflow();
+        break;
       case 'sudo':
         this.printLine(`<span class="term-error">🚫 Permission denied: User 'guest' is not in the sudoers file. This incident will be reported to Phumphat. 😎</span>`);
         break;
@@ -306,6 +315,8 @@ class CyberTerminal {
   <div class="term-row"><span class="term-cmd">stats</span><span>สถิติพอร์ตโฟลิโอ, ผลการทดสอบ และเวอร์ชันระบบ</span></div>
   <div class="term-row"><span class="term-cmd">cat &lt;file&gt;</span><span>ดูเนื้อหาไฟล์ (เช่น cat README.md, cat package.json)</span></div>
   <div class="term-row"><span class="term-cmd">date</span><span>แสดงวันและเวลาปัจจุบัน</span></div>
+  <div class="term-row"><span class="term-cmd">xray / pacs</span><span>เปิดสถานีจำลองรังสีการแพทย์ PACS Imaging Lab</span></div>
+  <div class="term-row"><span class="term-cmd">coverflow / 3d</span><span>สลับมุมมองผลงานเป็น 3D Spatial Coverflow</span></div>
   <div class="term-row"><span class="term-cmd">admin</span><span>เข้าสู่ระบบหลังบ้าน Admin CMS</span></div>
   <div class="term-row"><span class="term-cmd">clear</span><span>ล้างหน้าจอเทอร์มินัล</span></div>
   <div class="term-row"><span class="term-cmd">exit</span><span>ปิดหน้าต่างเทอร์มินัล</span></div>
@@ -459,6 +470,28 @@ class CyberTerminal {
 </div>
 `;
     this.printLine(statsHtml);
+  }
+
+  cmdXRay() {
+    this.printLine(`<div class="term-highlight" style="margin-bottom: 4px;">🩻 RADIOLOGIC TECHNOLOGY & MEDICAL IMAGING PACS LAB</div>`);
+    this.printLine(`<div class="term-info">ความละเอียดภาพ: High-Res 16-bit Dicom Simulation</div>`);
+    this.printLine(`<div class="term-info">ฟีเจอร์: Contrast/Brightness Windowing, Invert, Loupe 2.4x Lens, CR Grid, Anatomy Pins</div>`);
+    this.printLine(`<span class="term-success">✓ กำลังเลื่อนหน้าจอไปยังห้องปฏิบัติการรังสีวินิจฉัย...</span>`);
+    const xrayEl = document.getElementById('xray-lab');
+    if (xrayEl) {
+      xrayEl.scrollIntoView({ behavior: 'smooth' });
+    }
+  }
+
+  cmdCoverflow() {
+    this.printLine(`<div class="term-highlight" style="margin-bottom: 4px;">🌀 3D SPATIAL COVERFLOW SHOWCASE</div>`);
+    this.printLine(`<div class="term-info">สลับมุมมองผลงานเป็น 3D Coverflow Perspective Stage แล้ว!</div>`);
+    this.printLine(`<span class="term-success">✓ ใช้เมาส์ลาก (Drag), เลื่อนล้อเมาส์ (Wheel) หรือปุ่มลูกศรซ้าย/ขวาเพื่อเลือกชมโปรเจค</span>`);
+    window.projectsApp?.setViewMode('3d');
+    const projEl = document.getElementById('projects');
+    if (projEl) {
+      projEl.scrollIntoView({ behavior: 'smooth' });
+    }
   }
 
   cmdCat(filename) {

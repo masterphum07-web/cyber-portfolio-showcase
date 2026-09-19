@@ -365,11 +365,18 @@ class ProjectsManager {
       return;
     }
 
+    this.filteredProjects = filtered;
+
     this.gridElement.innerHTML = filtered.map(p => this.createProjectCardHTML(p)).join('');
 
     // Re-initialize Lucide Icons & 3D Tilt Engine
     if (window.lucide) window.lucide.createIcons();
     this.tiltEngine.bind(this.gridElement);
+
+    // Sync with 3D Coverflow stage if active or initialized
+    if (window.coverflowApp) {
+      window.coverflowApp.setProjects(filtered);
+    }
   }
 
   // HTML การ์ดโปรเจคแบบ 3D
@@ -604,18 +611,33 @@ class ProjectsManager {
 
   applyViewMode(mode) {
     if (!this.gridElement) return;
-    if (mode === 'list') {
-      this.gridElement.classList.add('list-view');
-    } else {
-      this.gridElement.classList.remove('list-view');
-    }
-
+    const stage3d = document.getElementById('projects-3d-stage');
     const gridBtn = document.getElementById('view-grid-btn');
     const listBtn = document.getElementById('view-list-btn');
-    if (gridBtn && listBtn) {
-      gridBtn.classList.toggle('active', mode === 'grid');
-      listBtn.classList.toggle('active', mode === 'list');
+    const view3dBtn = document.getElementById('view-3d-btn');
+
+    if (mode === '3d') {
+      this.gridElement.style.display = 'none';
+      if (stage3d) {
+        stage3d.style.display = 'block';
+        if (!window.coverflowApp) {
+          window.initCoverflow3D?.();
+        }
+        window.coverflowApp?.setProjects(this.filteredProjects || this.getFilteredProjects());
+      }
+    } else {
+      if (stage3d) stage3d.style.display = 'none';
+      this.gridElement.style.display = '';
+      if (mode === 'list') {
+        this.gridElement.classList.add('list-view');
+      } else {
+        this.gridElement.classList.remove('list-view');
+      }
     }
+
+    if (gridBtn) gridBtn.classList.toggle('active', mode === 'grid');
+    if (listBtn) listBtn.classList.toggle('active', mode === 'list');
+    if (view3dBtn) view3dBtn.classList.toggle('active', mode === '3d');
   }
 
   // เรียงลำดับโปรเจค

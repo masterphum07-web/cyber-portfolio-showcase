@@ -198,6 +198,8 @@ document.addEventListener('DOMContentLoaded', () => {
   initSkillsRadarChart();
   initTestimonialsSwiper();
   initTechStackTooltips();
+  window.initXRayViewer?.();
+  window.initCoverflow3D?.();
 });
 
 /* ═══════════════════════════════════════════════════════════
@@ -846,9 +848,18 @@ function initKeyboardShortcuts() {
     } else if (e.key === 'g' || e.key === 'G') {
       if (isProjectModalOpen) return;
       if (window.projectsApp) {
-        const nextMode = window.projectsApp.currentView === 'grid' ? 'list' : 'grid';
+        const modes = ['grid', 'list', '3d'];
+        const curIdx = modes.indexOf(window.projectsApp.currentView);
+        const nextMode = modes[(curIdx + 1) % modes.length];
         window.projectsApp.setViewMode(nextMode);
-        window.showToast?.(`สลับมุมมองเป็น ${nextMode === 'grid' ? 'ตาราง (Grid)' : 'รายการ (List)'}`, 'info', 'layout');
+        const modeLabels = { grid: 'ตาราง (Grid)', list: 'รายการ (List)', '3d': '3D Coverflow 🪐' };
+        window.showToast?.(`สลับมุมมองเป็น ${modeLabels[nextMode]}`, 'info', 'layout');
+      }
+    } else if (e.key === '3') {
+      if (isProjectModalOpen) return;
+      if (window.projectsApp) {
+        window.projectsApp.setViewMode('3d');
+        window.showToast?.('เปิดมุมมอง 3D Coverflow 🪐', 'info', 'box');
       }
     }
   });
