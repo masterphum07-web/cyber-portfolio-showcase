@@ -292,8 +292,9 @@
       "title": "RadiAR-XR: ระบบจำลองการฝึกอบรมความปลอดภัยทางรังสีด้วย WebXR & Pose Tracking",
       "description_short": "ระบบจำลองการฝึกอบรมความปลอดภัยทางรังสีในห้องเอกซเรย์เสมือนจริง ตรวจจับท่าทางด้วย MediaPipe",
       "description_full": "งานวิจัยและนวัตกรรมการศึกษาเพื่อความปลอดภัยทางรังสีวิทยา จำลองห้องเอกซเรย์แบบ 3 มิติบนเว็บเบราว์เซอร์ พร้อมระบบวิเคราะห์ความปลอดภัยในการรับรังสีของบุคลากร มีโมเดลตรวจจับท่าทางและตำแหน่งของร่างกายแบบ Real-time (Pose Tracker) เพื่อประเมินระยะห่างและมุมการกระเจิงของรังสี (Radiation Scatter Angle)",
-      "thumbnail": "assets/projects/radiar-xr.png",
+      "thumbnail": "assets/projects/radiar-xr-graphic-banner.jpg",
       "screenshots": [
+        "assets/projects/radiar-xr-graphic-banner.jpg",
         "assets/projects/radiar-xr.png"
       ],
       "video_url": "https://www.youtube.com/embed/dQw4w9WgXcQ",
@@ -320,8 +321,9 @@
       "docs_url": "",
       "start_date": "2025-08",
       "end_date": "ปัจจุบัน (กำลังวิจัยและพัฒนา)",
-      "image": "assets/projects/radiar-xr.png",
+      "image": "assets/projects/radiar-xr-graphic-banner.jpg",
       "gallery": [
+        "assets/projects/radiar-xr-graphic-banner.jpg",
         "assets/projects/radiar-xr.png"
       ]
     },
@@ -330,8 +332,9 @@
       "title": "Election Live: ระบบถ่ายทอดสดผลการเลือกตั้งสโมสรนักศึกษาแบบ Real-time",
       "description_short": "ระบบแสดงผลคะแนนการเลือกตั้งแบบเรียลไทม์ พร้อมห้องควบคุมแอดมินสำหรับจัดการการปล่อยคะแนน",
       "description_full": "เว็บแอปพลิเคชันสำหรับถ่ายทอดผลการนับคะแนนการเลือกตั้งคณะกรรมการสโมสรนักศึกษาแบบสดๆ หน้าจอแสดงผลแบบ Glassmorphism สวยงาม พร้อมระบบค่อยๆ ปล่อยคะแนนจำลอง (Animated Vote Releasing) และหน้าจอแอดมินสำหรับควบคุมตัวเลข ผลการนับ และเปอร์เซ็นต์ผู้มาใช้สิทธิ",
-      "thumbnail": "assets/projects/election-live.png",
+      "thumbnail": "assets/projects/election-live-graphic-banner.jpg",
       "screenshots": [
+        "assets/projects/election-live-graphic-banner.jpg",
         "assets/projects/election-live.png",
         "assets/projects/smo-logo.png"
       ],
@@ -358,8 +361,9 @@
       "docs_url": "https://github.com/masterphum07-web/SMO#readme",
       "start_date": "2025-07",
       "end_date": "2025-08",
-      "image": "assets/projects/election-live.png",
+      "image": "assets/projects/election-live-graphic-banner.jpg",
       "gallery": [
+        "assets/projects/election-live-graphic-banner.jpg",
         "assets/projects/election-live.png",
         "assets/projects/smo-logo.png"
       ]
@@ -492,8 +496,9 @@
       "title": "Lucky Wheel Pro: วงล้อสุ่มผู้โชคดี & สุ่มรหัสนักศึกษาพร้อมเสียงประกอบ",
       "description_short": "วงล้อสุ่มดิจิทัลปรับแต่งรายชื่อได้อิสระ หมุนด้วยฟิสิกส์ลื่นไหล พร้อมระบบเสียงสังเคราะห์ Web Audio",
       "description_full": "เว็บแอปพลิเคชันวงล้อสุ่มชื่อและรหัสนักศึกษาสำหรับกิจกรรมจับรางวัล กิจกรรมสัมมนา และการเรียนการสอน มีระบบฟิสิกส์การหมุนแบบแรงเฉื่อย (Inertial Spin Physics), ปรับแต่งสีและสัดส่วนของแต่ละช่องได้อิสระ, เสียงสังเคราะห์เวลาวงล้อหมุนกระทบหมุด (Tick Audio) และเอฟเฟกต์พลุกระดาษเมื่อหยุดที่ผู้ชนะ",
-      "thumbnail": "assets/projects/lucky-wheel.png",
+      "thumbnail": "assets/projects/lucky-wheel-graphic-banner.jpg",
       "screenshots": [
+        "assets/projects/lucky-wheel-graphic-banner.jpg",
         "assets/projects/lucky-wheel.png"
       ],
       "video_url": "https://www.youtube.com/embed/dQw4w9WgXcQ",
@@ -519,8 +524,9 @@
       "docs_url": "",
       "start_date": "2025-07",
       "end_date": "2025-08",
-      "image": "assets/projects/lucky-wheel.png",
+      "image": "assets/projects/lucky-wheel-graphic-banner.jpg",
       "gallery": [
+        "assets/projects/lucky-wheel-graphic-banner.jpg",
         "assets/projects/lucky-wheel.png"
       ]
     },
@@ -529,8 +535,9 @@
       "title": "PhumShop: ร้านค้าออนไลน์และระบบเรนเดอร์กราฟิก 16:9 อัตโนมัติ",
       "description_short": "ร้านค้าสินค้าดิจิทัลและระบบเจนเนอเรตภาพแบนเนอร์อัตโนมัติความละเอียดสูง 8K",
       "description_full": "ระบบ E-Commerce ร้านค้าออนไลน์สำหรับจำหน่ายสินค้าและบริการดิจิทัล พร้อมโมดูลสร้างกราฟิกโปรโมตแบบ 16:9 ในตัว สามารถใส่โลโก้ จัดข้อความ และส่งออกเป็นรูปภาพความละเอียดสูงระดับ 8K ด้วย Canvas HTML5 แบบอัตโนมัติเพื่อนำไปโปรโมตบนโซเชียลมีเดียได้ทันที",
-      "thumbnail": "assets/projects/phumshop-banner.png",
+      "thumbnail": "assets/projects/phumshop-graphic-banner.jpg",
       "screenshots": [
+        "assets/projects/phumshop-graphic-banner.jpg",
         "assets/projects/phumshop-banner.png",
         "assets/projects/phumshop-menu.png"
       ],
@@ -556,8 +563,9 @@
       "docs_url": "https://github.com/masterphum07-web/phumshop#readme",
       "start_date": "2025-05",
       "end_date": "2025-07",
-      "image": "assets/projects/phumshop-banner.png",
+      "image": "assets/projects/phumshop-graphic-banner.jpg",
       "gallery": [
+        "assets/projects/phumshop-graphic-banner.jpg",
         "assets/projects/phumshop-banner.png",
         "assets/projects/phumshop-menu.png"
       ]

@@ -4,7 +4,7 @@
  * Employs Stale-While-Revalidate for dynamic assets and Cache-First for shell.
  */
 
-const CACHE_NAME = 'portfolio-cache-v2.5';
+const CACHE_NAME = 'portfolio-cache-v2.6';
 const CORE_ASSETS = [
   './',
   './index.html',
@@ -32,16 +32,20 @@ const CORE_ASSETS = [
   './assets/projects/radpose-chest.jpg',
   './assets/projects/radpose-abdomen.jpg',
   './assets/projects/radpose-cspine.jpg',
-  './assets/projects/dochub-graphic-banner.jpg',
   './assets/projects/radpose-graphic-banner.jpg',
   './assets/projects/wtk-music-graphic-banner.jpg',
   './assets/projects/rtpi-graphic-banner.jpg',
   './assets/projects/phumtify-graphic-banner.jpg',
   './assets/projects/bloom-care-graphic-banner.jpg',
-  './assets/projects/photobooth-graphic-banner.jpg',
-  './assets/projects/smo-attendance-graphic-banner.jpg',
-  './assets/projects/badminton-graphic-banner.jpg',
   './assets/projects/mt5-ea-graphic-banner.jpg',
+  './assets/projects/radiar-xr-graphic-banner.jpg',
+  './assets/projects/election-live-graphic-banner.jpg',
+  './assets/projects/photobooth-graphic-banner.jpg',
+  './assets/projects/badminton-graphic-banner.jpg',
+  './assets/projects/dochub-graphic-banner.jpg',
+  './assets/projects/lucky-wheel-graphic-banner.jpg',
+  './assets/projects/phumshop-graphic-banner.jpg',
+  './assets/projects/smo-attendance-graphic-banner.jpg',
   './assets/projects/live-phumshop02.png',
   './assets/projects/live-radpose3d.png',
   './assets/projects/live-music-pi.png',
