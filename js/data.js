@@ -372,8 +372,9 @@ window.PORTFOLIO_DATA = {
       "title": "Photobooth Pro: ตู้ถ่ายภาพออนไลน์พร้อมฟิลเตอร์ สติกเกอร์ และกรอบภาพ",
       "description_short": "เว็บแอปพลิเคชันตู้ถ่ายภาพ Photobooth ในเบราว์เซอร์ พร้อมระบบแต่งภาพ สติกเกอร์ และสแกน QR Code",
       "description_full": "แอปพลิเคชันตู้ถ่ายภาพ Photobooth แบบดิจิทัลที่ใช้งานได้บนคอมพิวเตอร์และแท็บเล็ต ถ่ายภาพผ่านเว็บแคม มีตัวนับเวลาถอยหลัง (Countdown Timer), เลือกสไตล์กรอบภาพ 4 ช่อง (Photo Strip), เพิ่มฟิลเตอร์สีวินเทจและไซเบอร์, วางสติกเกอร์ตกแต่ง และดาวน์โหลดรูปภาพหรือสร้าง QR Code เพื่อแชร์ไปยังสมาร์ทโฟน",
-      "thumbnail": "assets/projects/photobooth-strip.png",
+      "thumbnail": "assets/projects/photobooth-graphic-banner.jpg",
       "screenshots": [
+        "assets/projects/photobooth-graphic-banner.jpg",
         "assets/projects/photobooth-strip.png"
       ],
       "video_url": "https://www.youtube.com/embed/dQw4w9WgXcQ",
@@ -382,10 +383,10 @@ window.PORTFOLIO_DATA = {
       "tech_stack": [
         "React",
         "Vite",
+        "Tailwind CSS",
         "Canvas API",
         "WebRTC MediaStream",
-        "Tailwind CSS",
-        "Lucide Icons"
+        "Cloudinary"
       ],
       "features": [
         "จับภาพจากเว็บแคมแบบสดพร้อมระบบนับถอยหลัง",
@@ -400,8 +401,9 @@ window.PORTFOLIO_DATA = {
       "docs_url": "",
       "start_date": "2025-08",
       "end_date": "2025-09",
-      "image": "assets/projects/photobooth-strip.png",
+      "image": "assets/projects/photobooth-graphic-banner.jpg",
       "gallery": [
+        "assets/projects/photobooth-graphic-banner.jpg",
         "assets/projects/photobooth-strip.png"
       ]
     },
@@ -565,9 +567,10 @@ window.PORTFOLIO_DATA = {
       "id": 14,
       "title": "ระบบเช็คชื่อสโมสรนักศึกษาปี 69 (SMO Attendance System)",
       "description_short": "ระบบบันทึกเวลาและตรวจสอบการเข้าร่วมกิจกรรมองค์ประชุมสโมสรนักศึกษา วทก. เชื่อมต่อ Google Sheets API อัตโนมัติ",
-      "description_full": "เว็บจำลองการทดลองเสมือนจริงสำหรับการเรียนการสอนวิชาปฏิบัติการอิเล็กทรอนิกส์ ครอบคลุมการทดลองที่ 5 (อุปกรณ์สารกึ่งตัวนำกำลัง SCR / TRIAC / SSR) และการทดลองที่ 6 (ดิจิทัลลอจิกเกต, วงจร Tri-state, และ Flip-Flop) ผู้เรียนสามารถต่อวงจรเสมือน, ปรับค่าสัญญาณ, และสังเกตพฤติกรรมของวงจรผ่านกราฟรูปคลื่นแบบ Real-time",
-      "thumbnail": "assets/projects/smo-attendance.png",
+      "description_full": "ระบบสารสนเทศกิจการนักศึกษาสำหรับบันทึกเวลาและตรวจสอบการเข้าร่วมประชุมสโมสรนักศึกษา วทก. ปีการศึกษา 2569 ครอบคลุมสมาชิก 53 คนจาก 6 สาขาวิชา มีระบบเช็คด่วน 1 คลิก, สรุปสถิติ Leaderboard รายบุคคล, แดชบอร์ดกราฟวิเคราะห์อัตราการเข้าประชุม, และระบบแยกแท็บ Google Sheets อัตโนมัติ",
+      "thumbnail": "assets/projects/smo-attendance-graphic-banner.jpg",
       "screenshots": [
+        "assets/projects/smo-attendance-graphic-banner.jpg",
         "assets/projects/smo-attendance.png",
         "assets/projects/smo-logo.png"
       ],
@@ -586,15 +589,16 @@ window.PORTFOLIO_DATA = {
         "ระบบล็อกอินความปลอดภัยสำหรับแอดมินและผู้บันทึกสโมสรนักศึกษา",
         "เชื่อมต่อฐานข้อมูล Google Sheets และคลาวด์ไดรฟ์ของวิทยาลัยโดยตรง"
       ],
-      "architecture": "React Virtual Circuit Simulator Engine",
+      "architecture": "Google Apps Script Serverless Engine + Google Sheets Cloud Database",
       "author": "ภูมิภัทร (masterphum07)",
       "github_url": "https://github.com/masterphum07-web",
       "live_url": "",
       "docs_url": "",
       "start_date": "2025-06",
       "end_date": "2025-08",
-      "image": "assets/projects/smo-attendance.png",
+      "image": "assets/projects/smo-attendance-graphic-banner.jpg",
       "gallery": [
+        "assets/projects/smo-attendance-graphic-banner.jpg",
         "assets/projects/smo-attendance.png",
         "assets/projects/smo-logo.png"
       ]
