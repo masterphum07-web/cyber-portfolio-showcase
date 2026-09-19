@@ -49,7 +49,15 @@ const requiredFiles = [
   'assets/icons/icon-maskable.png',
   'assets/projects/radpose-chest.jpg',
   'assets/projects/radpose-abdomen.jpg',
-  'assets/projects/radpose-cspine.jpg'
+  'assets/projects/radpose-cspine.jpg',
+  'assets/projects/dochub-graphic-banner.jpg',
+  'assets/projects/radpose-graphic-banner.jpg',
+  'assets/projects/wtk-music-graphic-banner.jpg',
+  'assets/projects/rtpi-graphic-banner.jpg',
+  'assets/projects/live-phumshop02.png',
+  'assets/projects/live-radpose3d.png',
+  'assets/projects/live-music-pi.png',
+  'assets/projects/live-rtpi.png'
 ];
 
 requiredFiles.forEach(file => {

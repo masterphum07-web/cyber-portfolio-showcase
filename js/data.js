@@ -37,8 +37,10 @@ window.PORTFOLIO_DATA = {
       "title": "RadPose 3D: Patient Positioning & Radiographic Anatomy Simulator",
       "description_short": "โปรแกรมจำลองท่าถ่ายเอกซเรย์ผู้ป่วย 3 มิติ และกายวิภาคศาสตร์ทางรังสีวิทยาสำหรับนักศึกษารังสีเทคนิค",
       "description_full": "เว็บแอปพลิเคชัน 3 มิติ Interactive จำลองการจัดท่าผู้ป่วยในการตรวจทางรังสีวิทยา (Radiographic Patient Positioning) และการทำงานของหลอดเอกซเรย์ตามมาตรฐาน ACR และตำรากายวิภาคศาสตร์ ผู้ใช้สามารถหมุนดูมุม 360 องศา, ปรับมุมหลอด X-ray (Central Ray), และศึกษาจุด Landmark ร่างกายแบบเสมือนจริง",
-      "thumbnail": "assets/projects/radpose-3d-ui.png",
+      "thumbnail": "assets/projects/radpose-graphic-banner.jpg",
       "screenshots": [
+        "assets/projects/radpose-graphic-banner.jpg",
+        "assets/projects/live-radpose3d.png",
         "assets/projects/radpose-3d-ui.png",
         "assets/projects/radpose-chest.jpg",
         "assets/projects/radpose-abdomen.jpg",
@@ -68,8 +70,10 @@ window.PORTFOLIO_DATA = {
       "docs_url": "https://github.com/masterphum07-web/radpose-3d#readme",
       "start_date": "2025-06",
       "end_date": "2025-09",
-      "image": "assets/projects/radpose-3d-ui.png",
+      "image": "assets/projects/radpose-graphic-banner.jpg",
       "gallery": [
+        "assets/projects/radpose-graphic-banner.jpg",
+        "assets/projects/live-radpose3d.png",
         "assets/projects/radpose-3d-ui.png",
         "assets/projects/radpose-chest.jpg",
         "assets/projects/radpose-abdomen.jpg",
@@ -81,8 +85,10 @@ window.PORTFOLIO_DATA = {
       "title": "WTK Music Studio: ระบบจองห้องซ้อมดนตรี ชมรมดนตรี วทก.",
       "description_short": "ระบบจองห้องซ้อมดนตรีออนไลน์แบบ Zero-Cost พร้อมระบบป้องกันการจองชนกัน และแจ้งเตือนอีเมลอัตโนมัติ",
       "description_full": "ระบบจองห้องซ้อมดนตรีออนไลน์สำหรับชมรมดนตรี วิทยาลัยเทคโนโลยีทางการแพทย์และสาธารณสุข กาญจนาภิเษก (วทก.) พัฒนาด้วยสถาปัตยกรรมไร้ค่าใช้จ่ายเซิร์ฟเวอร์ (Zero-Cost Architecture) มีระบบ LockService ป้องกันการจองช่วงเวลาชนกัน, ระบบแจ้งเตือนทางอีเมลอัตโนมัติถึงนักศึกษาและอาจารย์, แดชบอร์ดตรวจสอบสถิติการใช้งาน และหน้าต่างจัดการหลังบ้าน Admin Console",
-      "thumbnail": "assets/projects/wtk-music-site.png",
+      "thumbnail": "assets/projects/wtk-music-graphic-banner.jpg",
       "screenshots": [
+        "assets/projects/wtk-music-graphic-banner.jpg",
+        "assets/projects/live-music-pi.png",
         "assets/projects/wtk-music-site.png",
         "assets/projects/wtk-music-banner.png",
         "assets/projects/wtk-music-info.png"
@@ -111,8 +117,10 @@ window.PORTFOLIO_DATA = {
       "docs_url": "https://github.com/masterphum07-web/MUSIC-PI#readme",
       "start_date": "2025-08",
       "end_date": "2025-09",
-      "image": "assets/projects/wtk-music-site.png",
+      "image": "assets/projects/wtk-music-graphic-banner.jpg",
       "gallery": [
+        "assets/projects/wtk-music-graphic-banner.jpg",
+        "assets/projects/live-music-pi.png",
         "assets/projects/wtk-music-site.png",
         "assets/projects/wtk-music-banner.png",
         "assets/projects/wtk-music-info.png"
@@ -123,8 +131,10 @@ window.PORTFOLIO_DATA = {
       "title": "RTPI: ศูนย์รวมตารางสอบ ตารางสอน และกิจกรรม สาขารังสีเทคนิค วทก.",
       "description_short": "เว็บพอร์ทัลค้นหาตารางสอบ ตารางเรียน และกิจกรรมประจำสาขาวิชารังสีเทคนิค วทก. เชื่อมต่อ Google Sheets",
       "description_full": "เว็บแอปพลิเคชันสำหรับนักศึกษาและคณาจารย์สาขาวิชารังสีเทคนิค วทก. รวมตารางสอบ ตารางสอน ข่าวสารกิจกรรม และระบบค้นหาห้องสอบ/วิชาเรียนแบบเรียลไทม์ เชื่อมโยงฐานข้อมูลสดจาก Google Sheets พร้อมระบบผู้ดูแลสำหรับอัปโหลดเอกสารและรูปภาพตารางสอบโดยตรงผ่านหน้าเว็บ",
-      "thumbnail": "assets/projects/rtpi-schedule.png",
+      "thumbnail": "assets/projects/rtpi-graphic-banner.jpg",
       "screenshots": [
+        "assets/projects/rtpi-graphic-banner.jpg",
+        "assets/projects/live-rtpi.png",
         "assets/projects/rtpi-schedule.png",
         "assets/projects/rtpi-exam.png",
         "assets/projects/rtpi-logo.png"
@@ -153,8 +163,10 @@ window.PORTFOLIO_DATA = {
       "docs_url": "https://github.com/masterphum07-web/RTPI#readme",
       "start_date": "2025-07",
       "end_date": "2025-08",
-      "image": "assets/projects/rtpi-schedule.png",
+      "image": "assets/projects/rtpi-graphic-banner.jpg",
       "gallery": [
+        "assets/projects/rtpi-graphic-banner.jpg",
+        "assets/projects/live-rtpi.png",
         "assets/projects/rtpi-schedule.png",
         "assets/projects/rtpi-exam.png",
         "assets/projects/rtpi-logo.png"
@@ -428,11 +440,13 @@ window.PORTFOLIO_DATA = {
     },
     {
       "id": 11,
-      "title": "DOC HUB: ระบบคลังเอกสารและคลาวด์ไดรฟ์สำหรับองค์กร",
-      "description_short": "ระบบคลังเอกสารออนไลน์ ค้นหาและอัปโหลดไฟล์สะดวกรวดเร็ว เชื่อมต่อ Google Drive & Sheets",
-      "description_full": "ระบบจัดการเอกสารอิเล็กทรอนิกส์และคลังไฟล์ดิจิทัลที่ใช้งานง่าย รองรับการอัปโหลดไฟล์ PDF, รูปภาพ, ไฟล์นำเสนอ และเอกสารงานวิจัย จัดหมวดหมู่ตามปีการศึกษาและแผนกงาน พร้อมระบบค้นหาเอกสารแบบทันใจ (Instant Search) และกำหนดสิทธิ์การดาวน์โหลด",
-      "thumbnail": "assets/projects/doc-hub.png",
+      "title": "PHUMSHOP WEB: DocHub & Study Hub (คลังเอกสาร & โหมดเตรียมสอบอัจฉริยะ)",
+      "description_short": "แพลตฟอร์มศูนย์รวมชีทสรุป คลังเอกสารการเรียนรู้ และโหมดเตรียมสอบอัจฉริยะ พร้อม Flashcards และ Exam Countdown สด",
+      "description_full": "ระบบคลังเอกสารการเรียนรู้และชุมชนแบ่งปันชีทสรุปเพื่อการศึกษา พัฒนาด้วย Google Apps Script และ Google Drive & Sheets API มาพร้อมโหมดเตรียมสอบอัจฉริยะ มีระบบนับถอยหลังวันสอบแบบวินาทีสด (Exam Countdown), แฟลชการ์ดช่วยจำทบทวนสูตรและนิยาม (Study Hub & Flashcards), ระบบจัดตารางอ่านหนังสือ To-Do List, Leaderboard Top 5 สถิติไฟล์ยอดนิยม และ Admin Dashboard วิเคราะห์สถิติเรียลไทม์",
+      "thumbnail": "assets/projects/dochub-graphic-banner.jpg",
       "screenshots": [
+        "assets/projects/dochub-graphic-banner.jpg",
+        "assets/projects/live-phumshop02.png",
         "assets/projects/doc-hub.png"
       ],
       "video_url": "https://www.youtube.com/embed/dQw4w9WgXcQ",
@@ -441,25 +455,30 @@ window.PORTFOLIO_DATA = {
       "tech_stack": [
         "Google Apps Script",
         "Google Drive API",
-        "Bootstrap",
+        "Google Sheets API",
+        "Tailwind CSS",
         "JavaScript",
         "HTML5"
       ],
       "features": [
-        "อัปโหลดและจัดระเบียบไฟล์เอกสารขึ้น Google Drive อัตโนมัติ",
-        "ระบบค้นหาชื่อไฟล์และหมวดหมู่อย่างรวดเร็ว",
-        "แสดงตัวอย่างเอกสาร (Document Preview) ได้โดยตรงบนหน้าเว็บ",
-        "ระบบตรวจสอบประเภทไฟล์และจำกัดขนาดเพื่อความปลอดภัย"
+        "คลังโฟลเดอร์แยกรายวิชา จัดระเบียบไฟล์และเชื่อมต่อ Google Drive & Sheets API โหลดตรงรวดเร็ว",
+        "ระบบค้นหา Multi-Filter Tagging กรองสรุป แนวข้อสอบ และแบบฝึกหัดทันใจ",
+        "Exam Countdown ระบบนับถอยหลังวันสอบทุกวิชา เตือนระดับด่วนสด <3 วัน และ <7 วัน",
+        "Study Hub & Flashcards พลิกการ์ดทบทวนความรู้ พร้อมระบบ To-Do List จัดตารางอ่านหนังสือ",
+        "Leaderboard Top 5 แสดงสถิติไฟล์ยอดนิยมและยอดเปิดอ่านสูงสุด",
+        "Admin Dashboard วิเคราะห์สถิติผู้เข้าใช้งานและเอกสารยอดนิยมเรียลไทม์"
       ],
-      "architecture": "Google Drive REST API + Apps Script Backend Controller",
+      "architecture": "Google Drive & Sheets API Webhook + Dynamic Client SPA",
       "author": "ภูมิภัทร (masterphum07)",
-      "github_url": "https://github.com/masterphum07-web",
-      "live_url": "",
-      "docs_url": "",
+      "github_url": "https://github.com/masterphum07-web/Phumshop02",
+      "live_url": "https://masterphum07-web.github.io/Phumshop02/",
+      "docs_url": "https://github.com/masterphum07-web/Phumshop02#readme",
       "start_date": "2025-06",
-      "end_date": "2025-07",
-      "image": "assets/projects/doc-hub.png",
+      "end_date": "2025-08",
+      "image": "assets/projects/dochub-graphic-banner.jpg",
       "gallery": [
+        "assets/projects/dochub-graphic-banner.jpg",
+        "assets/projects/live-phumshop02.png",
         "assets/projects/doc-hub.png"
       ]
     },
